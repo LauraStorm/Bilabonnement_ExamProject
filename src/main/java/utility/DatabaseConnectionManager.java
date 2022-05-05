@@ -17,16 +17,23 @@ public class DatabaseConnectionManager {
             return conn;
         }
 
-        url = System.getenv("db.url");
-        username = System.getenv("db.username");
-        password = System.getenv("db.password");
+
+        url = "jdbc:mysql://bilabonnementdatabase.mysql.database.azure.com:3306/bilabonnement?useSSL=true&requireSSL=false";
+        username = "bilabonnement@bilabonnementdatabase";
+        password = "LauraRasmusSimonElisa123";
 
         try {
             conn = DriverManager.getConnection(url, username, password);
+            System.out.println("yes");
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("no");
         }
 
         return conn;
+    }
+
+    public static void main(String[] args) {
+        DatabaseConnectionManager.getConnection();
     }
 }
