@@ -1,6 +1,6 @@
-package repositories;
+package com.example.bilabonnement_examproject.repositories;
 
-import models.LocationModel;
+import com.example.bilabonnement_examproject.models.LocationModel;
 
 import java.util.List;
 

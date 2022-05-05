@@ -1,4 +1,4 @@
-package repositories;
+package com.example.bilabonnement_examproject.repositories;
 
 import java.util.List;
 

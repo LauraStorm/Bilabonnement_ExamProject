@@ -1,6 +1,6 @@
-package repositories;
+package com.example.bilabonnement_examproject.repositories;
 
-import models.CarModel;
+import com.example.bilabonnement_examproject.models.CarModel;
 
 import java.util.List;
 

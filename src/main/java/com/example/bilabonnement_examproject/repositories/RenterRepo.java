@@ -1,6 +1,6 @@
-package repositories;
+package com.example.bilabonnement_examproject.repositories;
 
-import models.RenterModel;
+import com.example.bilabonnement_examproject.models.RenterModel;
 
 import java.util.List;
 
