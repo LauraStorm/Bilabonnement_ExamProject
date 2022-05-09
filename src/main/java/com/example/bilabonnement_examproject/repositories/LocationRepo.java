@@ -24,4 +24,6 @@ public class LocationRepo implements CRUDInterface<LocationModel>{
     public boolean updateEntity(int key) {
         return false;
     }
+
+    public LocationModel getSingleEntityByCityAndZipcode(String city, int ZipCode){return null; }
 }
