@@ -25,5 +25,5 @@ public class LocationRepo implements CRUDInterface<LocationModel>{
         return false;
     }
 
-    public LocationModel getSingleEntityByCityAndZipcode(String city, int ZipCode){return null; }
+    public LocationModel getSingleLocationByCityAndZipcode(String city, int ZipCode){return null; }
 }
