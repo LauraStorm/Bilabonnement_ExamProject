@@ -21,7 +21,9 @@ public class LocationRepo implements CRUDInterface<LocationModel>{
     }
 
     @Override
-    public boolean updateEntity(int id) {
+    public boolean updateEntity(int key) {
         return false;
     }
+
+    public LocationModel getSingleLocationByCityAndZipcode(String city, int ZipCode){return null; }
 }

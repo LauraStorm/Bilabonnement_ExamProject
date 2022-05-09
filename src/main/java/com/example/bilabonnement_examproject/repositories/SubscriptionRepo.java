@@ -21,7 +21,7 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel>{
     }
 
     @Override
-    public boolean updateEntity(int id) {
+    public boolean updateEntity(int key) {
         return false;
     }
 }

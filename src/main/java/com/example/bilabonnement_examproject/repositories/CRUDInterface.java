@@ -14,6 +14,6 @@ public interface CRUDInterface <T>{
     public boolean createEntity(T entity);
 
     //update entity
-    public boolean updateEntity(int id);
+    public boolean updateEntity(int key);
 
 }

@@ -21,7 +21,7 @@ public class CarRepo implements CRUDInterface<CarModel>{
     }
 
     @Override
-    public boolean updateEntity(int id) {
+    public boolean updateEntity(int key) {
         return false;
     }
 }
