@@ -11,7 +11,7 @@ public class RenterRepo implements CRUDInterface<RenterModel>{
     }
 
     @Override
-    public RenterModel getSingleEntity(int id) {
+    public RenterModel getSingleEntity(Object id) {
         return null;
     }
 
@@ -21,7 +21,7 @@ public class RenterRepo implements CRUDInterface<RenterModel>{
     }
 
     @Override
-    public boolean updateEntity(int key) {
+    public boolean updateEntity(String key) {
         return false;
     }
 }

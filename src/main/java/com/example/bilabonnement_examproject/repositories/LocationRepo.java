@@ -11,7 +11,7 @@ public class LocationRepo implements CRUDInterface<LocationModel>{
     }
 
     @Override
-    public LocationModel getSingleEntity(int id) {
+    public LocationModel getSingleEntity(Object id) {
         return null;
     }
 
@@ -21,7 +21,7 @@ public class LocationRepo implements CRUDInterface<LocationModel>{
     }
 
     @Override
-    public boolean updateEntity(int key) {
+    public boolean updateEntity(String key) {
         return false;
     }
 

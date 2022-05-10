@@ -11,7 +11,7 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel>{
     }
 
     @Override
-    public SubscriptionModel getSingleEntity(int id) {
+        public SubscriptionModel getSingleEntity(Object id) {
         return null;
     }
 
@@ -21,7 +21,7 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel>{
     }
 
     @Override
-    public boolean updateEntity(int key) {
+    public boolean updateEntity(String key) {
         return false;
     }
 }

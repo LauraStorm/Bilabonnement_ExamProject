@@ -8,12 +8,12 @@ public interface CRUDInterface <T>{
     public List<T> getAllEntities();
 
     //read single entity
-    public T getSingleEntity(int id);
+    public T getSingleEntity(Object id);
 
     //create entity
     public boolean createEntity(T entity);
 
     //update entity
-    public boolean updateEntity(int key);
+    public boolean updateEntity(String key);
 
 }
