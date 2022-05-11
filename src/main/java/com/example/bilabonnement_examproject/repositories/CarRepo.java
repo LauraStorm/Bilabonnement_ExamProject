@@ -7,12 +7,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarRepo implements CRUDInterface<CarModel, String>{
     @Override
     public List<CarModel> getAllEntities() {
-        return null;
+        ArrayList<CarModel> allCars = new ArrayList<CarModel>();
+
+        try {
+            Connection conn = DatabaseConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM cars");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                String chassisNumber = rs.getString("chassis_number");
+                String model = rs.getString("address");
+                String color = rs.getString("color");
+                boolean rented = rs.getBoolean("rented");
+
+                CarModel car = new CarModel(chassisNumber,model,color,rented);
+                allCars.add(car);
+            }
+            System.out.println("All cars is found");
+
+        } catch (SQLException e) {
+            System.out.println("something went wrong with finding all cars");
+            e.printStackTrace();
+        }
+
+        return allCars;
     }
 
     @Override
