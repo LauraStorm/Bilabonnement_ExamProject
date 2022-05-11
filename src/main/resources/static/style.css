@@ -1,0 +1,25 @@
+.header{
+    display: flex;
+    position: relative;
+}
+
+
+.header.sidebar{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: tomato;
+    padding: 30px 0;
+}
+
+
+
+.choose-chassis-number-damage{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    font-size: 40px;
+    margin: 2.5% 50% 1%;
+
+}
