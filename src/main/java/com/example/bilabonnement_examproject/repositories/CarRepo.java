@@ -22,7 +22,7 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
 
             while (rs.next()){
                 String chassisNumber = rs.getString("chassis_number");
-                String model = rs.getString("address");
+                String model = rs.getString("model");
                 String color = rs.getString("color");
                 boolean rented = rs.getBoolean("rented");
 
