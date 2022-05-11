@@ -8,20 +8,26 @@ import java.util.List;
 
 public class LocationService {
 
+    //lav unit test
     public boolean isLocationValid(String city, String address, int postcode){
         LocationRepo locationRepo = new LocationRepo();
         List<LocationModel> locations = locationRepo.getAllEntities();
-        boolean isValid = true;
+        LocationModel locationModel = null;
 
         for (int i = 0; i < locations.size(); i++) {
-            if (locations.get(i).getCity() == city && locations.get(i).getAddress() == address
+            if (locations.get(i).getCity().equalsIgnoreCase(city) && locations.get(i).getAddress().equalsIgnoreCase(address)
             && locations.get(i).getPostcode()==postcode){
-                isValid = true;
+
+                locationModel = locations.get(i);
+
             } else{
-                isValid = false;
             }
         }
 
-        return isValid;
+        if (locationModel == null){
+            return false;
+        } else {
+            return true;
+        }
     }
 }

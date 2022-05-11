@@ -1,20 +1,27 @@
 package com.example.bilabonnement_examproject;
 
 import com.example.bilabonnement_examproject.models.CarModel;
-import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
-import com.example.bilabonnement_examproject.repository.CarRepoTest;
-import com.example.bilabonnement_examproject.repository.DamageReportRepoTest;
+import repository.CarRepoTest;
 import com.example.bilabonnement_examproject.services.CarService;
-import com.example.bilabonnement_examproject.services.DamageService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarServiceTest {
+    private CRUDInterface<CarModel,Integer> carRepo;
+
+    public CarServiceTest(CRUDInterface carRepo){
+        this.carRepo = carRepo;
+    }
+
+    public CarServiceTest() {
+
+    }
 
     @Test
     void isChassisNumberValid() {
+
 
         //Arrange
         CRUDInterface<CarModel,Integer> testRepo = new CarRepoTest();
