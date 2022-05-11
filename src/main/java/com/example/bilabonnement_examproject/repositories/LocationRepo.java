@@ -3,6 +3,7 @@ package com.example.bilabonnement_examproject.repositories;
 import com.example.bilabonnement_examproject.models.LocationModel;
 import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,6 +51,8 @@ public class LocationRepo implements CRUDInterface<LocationModel>{
             int postcode1 = rs.getInt("postcode");
             int deliveryPrice = rs.getInt("delivery_price");
 
+
+
             location = new LocationModel(id, address1, city1, postcode1, deliveryPrice);
             System.out.println(location);
 
@@ -60,5 +63,6 @@ public class LocationRepo implements CRUDInterface<LocationModel>{
 
         return location;
     }
+
 
 }
