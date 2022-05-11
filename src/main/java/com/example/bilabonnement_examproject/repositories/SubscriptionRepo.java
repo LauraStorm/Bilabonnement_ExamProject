@@ -35,7 +35,7 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Intege
             stmt.setString(6,entity.getChassisNumber());
             stmt.setInt(7,entity.getLocationId());
             stmt.setInt(8, entity.getRentersId());
-            stmt.setInt(9, entity.getPickupDate());
+            stmt.setString(9, entity.getPickupDate());
 
             stmt.executeUpdate();
 

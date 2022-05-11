@@ -1,24 +1,17 @@
 package com.example.bilabonnement_examproject.controllers;
-
 import com.example.bilabonnement_examproject.models.RenterModel;
 import com.example.bilabonnement_examproject.repositories.RenterRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
-
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class RenterController {
 
     @GetMapping("/create-renter-information")
-    public String getCreateRenterPage(HttpSession session){
-        //System.out.println("from renter " + session.getAttribute("chassisSession"));
-
-        //RenterModel renterModel = new RenterModel("tim", "tim", "kea", 6089, "kbh", "jsjds@jskdk.ksdk", 12345678, 982939000, 92892003, 82839923);
-        //RenterRepo renterRepo = new RenterRepo();
-        //renterRepo.createEntity(renterModel);
+    public String getCreateRenterPage(){
         return "create-renter-information";
     }
 
@@ -39,8 +32,8 @@ public class RenterController {
         String accountNumber = dataFromForm.getParameter("accountNumber");
 
         renterModel = new RenterModel(firstName, lastName, address, Integer.parseInt(postcode),
-                city, email, Integer.parseInt(tlf), Integer.parseInt(cpr), Integer.parseInt(regNumber),
-                Integer.parseInt(accountNumber));
+                city, email, Integer.parseInt(tlf), cpr, Integer.parseInt(regNumber),
+                accountNumber);
 
         renterRepo.createEntity(renterModel);
 

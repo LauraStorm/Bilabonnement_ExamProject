@@ -9,11 +9,11 @@ public class RenterModel {
     private String city;
     private String email;
     private int tlf;
-    private int cpr;
+    private String cpr;
     private int regNumber;
-    private int accountNumber;
+    private String accountNumber;
 
-    public RenterModel(int id, String firstName, String lastName, String address, int postcode, String city, String email, int tlf, int cpr, int regNumber, int accountNumber) {
+    public RenterModel(int id, String firstName, String lastName, String address, int postcode, String city, String email, int tlf, String cpr, int regNumber, String accountNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -91,11 +91,11 @@ public class RenterModel {
         this.tlf = tlf;
     }
 
-    public int getCpr() {
+    public String getCpr() {
         return cpr;
     }
 
-    public void setCpr(int cpr) {
+    public void setCpr(String cpr) {
         this.cpr = cpr;
     }
 
@@ -107,15 +107,15 @@ public class RenterModel {
         this.regNumber = regNumber;
     }
 
-    public int getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(int accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
-    public RenterModel(String firstName, String lastName, String address, int postcode, String city, String email, int tlf, int cpr, int regNumber, int accountNumber) {
+    public RenterModel(String firstName, String lastName, String address, int postcode, String city, String email, int tlf, String cpr, int regNumber, String accountNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;

@@ -34,9 +34,9 @@ public class RenterRepo implements CRUDInterface<RenterModel, Integer>{
             stmt.setString(5, entity.getCity());
             stmt.setString(6, entity.getEmail());
             stmt.setInt(7,entity.getTlf());
-            stmt.setInt(8, entity.getCpr());
+            stmt.setString(8, entity.getCpr());
             stmt.setInt(9, entity.getRegNumber());
-            stmt.setInt(10, entity.getAccountNumber());
+            stmt.setString(10, entity.getAccountNumber());
 
             stmt.executeUpdate();
             System.out.println("renter created");
@@ -69,7 +69,7 @@ public class RenterRepo implements CRUDInterface<RenterModel, Integer>{
             stmt.setString(5,renterToFindId.getCity());
             stmt.setString(6,renterToFindId.getEmail());
             stmt.setInt(7, renterToFindId.getTlf());
-            stmt.setInt(8, renterToFindId.getCpr());
+            stmt.setString(8, renterToFindId.getCpr());
 
             ResultSet rs = stmt.executeQuery();
             rs.next();

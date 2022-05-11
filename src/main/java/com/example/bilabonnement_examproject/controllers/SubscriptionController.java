@@ -2,6 +2,7 @@ package com.example.bilabonnement_examproject.controllers;
 
 import com.example.bilabonnement_examproject.models.SubscriptionModel;
 import com.example.bilabonnement_examproject.repositories.SubscriptionRepo;
+import com.example.bilabonnement_examproject.services.SubscriptionService;
 import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,21 +23,24 @@ public class SubscriptionController {
     @PostMapping("/get-subscription-information")
     public String getSubscriptionDetails(WebRequest dataFromForm, HttpSession session){
         SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
+        SubscriptionService subscriptionService = new SubscriptionService();
         SubscriptionModel subscriptionModel = null;
 
         String locationId = String.valueOf(session.getAttribute("locationIdSession"));
         String chassisNumber = String.valueOf(session.getAttribute("chassisSession"));
         String rentersId = String.valueOf(session.getAttribute("renterId"));
-        String selfrisk = dataFromForm.getParameter("selfrisk");
-        String deliveryInsurance = dataFromForm.getParameter("deliveryInsurance");
+        String selfrisk = subscriptionService.StringTooBooleanTerms(dataFromForm.getParameter("selfrisk"));
+        String deliveryInsurance = subscriptionService.StringTooBooleanTerms(dataFromForm.getParameter("deliveryInsurance"));
         String totalPrice = dataFromForm.getParameter("totalPrice");
         String lenght = dataFromForm.getParameter("lenght");
         String subscriptionType = dataFromForm.getParameter("subscriptionType");
         String pickupDate = dataFromForm.getParameter("pickupDate");
 
+        System.out.println(rentersId);
+
         subscriptionModel = new SubscriptionModel(Integer.parseInt(locationId), chassisNumber, Integer.parseInt(rentersId),
                 Boolean.parseBoolean(selfrisk), Boolean.parseBoolean(deliveryInsurance), Integer.parseInt(totalPrice),
-                Integer.parseInt(lenght), subscriptionType, Integer.parseInt(pickupDate));
+                Integer.parseInt(lenght), subscriptionType, pickupDate);
 
         subscriptionRepo.createEntity(subscriptionModel);
 

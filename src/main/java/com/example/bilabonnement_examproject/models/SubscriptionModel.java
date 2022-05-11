@@ -10,9 +10,9 @@ public class SubscriptionModel {
     private int totalPriceMd;
     private int length;
     private String subscriptionType;
-    int pickupDate;
+    private String pickupDate;
 
-    public SubscriptionModel(int id, int locationId, String chassisNumber, int rentersId, boolean selfrisk, boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType, int pickupDate) {
+    public SubscriptionModel(int id, int locationId, String chassisNumber, int rentersId, boolean selfrisk, boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType, String pickupDate) {
         this.id = id;
         this.locationId = locationId;
         this.chassisNumber = chassisNumber;
@@ -25,7 +25,7 @@ public class SubscriptionModel {
         this.pickupDate = pickupDate;
     }
 
-    public SubscriptionModel(int locationId, String chassisNumber, int rentersId, boolean selfrisk, boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType, int pickupDate) {
+    public SubscriptionModel(int locationId, String chassisNumber, int rentersId, boolean selfrisk, boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType, String pickupDate) {
         this.locationId = locationId;
         this.chassisNumber = chassisNumber;
         this.rentersId = rentersId;
@@ -109,11 +109,11 @@ public class SubscriptionModel {
         this.subscriptionType = subscriptionType;
     }
 
-    public int getPickupDate() {
+    public String getPickupDate() {
         return pickupDate;
     }
 
-    public void setPickupDate(int pickupDate) {
+    public void setPickupDate(String pickupDate) {
         this.pickupDate = pickupDate;
     }
 
