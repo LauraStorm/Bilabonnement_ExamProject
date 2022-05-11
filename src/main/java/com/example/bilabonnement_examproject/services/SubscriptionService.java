@@ -13,4 +13,18 @@ public class SubscriptionService {
 
         return paid;
     }
+
+    public String findType (int length){
+        String type = "";
+
+        if (length == 4){
+            type = "limited";
+        } else {
+            type = "unlimited";
+        }
+
+        return type;
+    }
+
+
 }
