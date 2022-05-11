@@ -33,6 +33,8 @@ public class RenterController {
         String regNumber = dataFromForm.getParameter("regNumber");
         String accountNumber = dataFromForm.getParameter("accountNumber");
 
+        //validere inputs og redirecter til næste side hvis de er valide ellers bliver
+        //man på siden
         if (renterService.isAccountNumberValid(Integer.parseInt(regNumber), accountNumber) &&
         renterService.isCprValid(cpr) && renterService.isEmailValid(email) &&
         renterService.isPostCodeValid(Integer.parseInt(postcode)) &&
