@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Registrer Abonnement</title>
     <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
 </head>
-<body>
 
+<body>
+<div>
+    <h1>Registrer bilr</h1>
+    <form action="/get-chassis-number" method="post">
+        <br>
+        <br>
+        stel nummer
+        <br>
+        <input type="number" name="chassis-number">
+        <input type="submit">
+    </form>
+
+</div>
 </body>
 </html>

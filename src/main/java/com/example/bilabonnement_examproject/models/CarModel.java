@@ -4,14 +4,14 @@ public class CarModel {
     private String chassisNumber;
     private String model;
     private String color;
-    private boolean rented;
+    private boolean isRented;
 
 
     public CarModel(String chassisNumber, String model, String color, boolean rented) {
         this.chassisNumber = chassisNumber;
         this.model = model;
         this.color = color;
-        this.rented = rented;
+        this.isRented = isRented;
     }
 
     public String getChassisNumber() {
@@ -39,11 +39,11 @@ public class CarModel {
     }
 
     public boolean isRented() {
-        return rented;
+        return isRented;
     }
 
     public void setRented(boolean rented) {
-        this.rented = rented;
+        this.isRented = isRented;
     }
 
 
