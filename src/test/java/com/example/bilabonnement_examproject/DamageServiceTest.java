@@ -23,7 +23,7 @@ public class DamageServiceTest {
    "aaaaaaaaaaaaaaaaaaaaaaaaabbbb";
 
         //Arrange
-        CRUDInterface<DamageReportModel> testRepo = new DamageReportRepoTest();
+        CRUDInterface<DamageReportModel, Integer> testRepo = new DamageReportRepoTest();
         DamageService damageService = new DamageService(testRepo);
         boolean expectedDescriptionIsOnlyDigits = false;
         boolean expectedDescriptionIsEmpty = false;

@@ -44,6 +44,10 @@ public class RenterController {
 
         renterRepo.createEntity(renterModel);
 
+        int renterId = renterRepo.getRenterId(renterModel);
+
+        session.setAttribute("renterId", renterId);
+
         return "redirect:/register-location";
     }
 }

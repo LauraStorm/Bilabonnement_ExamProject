@@ -26,7 +26,7 @@ public class SubscriptionController {
 
         String locationId = String.valueOf(session.getAttribute("locationIdSession"));
         String chassisNumber = String.valueOf(session.getAttribute("chassisSession"));
-        String rentersId = null;
+        String rentersId = String.valueOf(session.getAttribute("renterId"));
         String selfrisk = dataFromForm.getParameter("selfrisk");
         String deliveryInsurance = dataFromForm.getParameter("deliveryInsurance");
         String totalPrice = dataFromForm.getParameter("totalPrice");

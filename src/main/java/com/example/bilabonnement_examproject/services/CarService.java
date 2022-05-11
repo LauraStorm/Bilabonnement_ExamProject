@@ -6,7 +6,7 @@ import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
 
 public class CarService {
-    private final CRUDInterface<CarModel> carRepo;
+    private final CRUDInterface<CarModel,Integer> carRepo;
 
     public CarService(CRUDInterface carRepo){
         this.carRepo = carRepo;

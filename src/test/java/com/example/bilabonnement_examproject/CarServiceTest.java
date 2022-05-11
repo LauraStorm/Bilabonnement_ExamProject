@@ -17,7 +17,7 @@ public class CarServiceTest {
     void isChassisNumberValid() {
 
         //Arrange
-        CRUDInterface<CarModel> testRepo = new CarRepoTest();
+        CRUDInterface<CarModel,Integer> testRepo = new CarRepoTest();
         CarService carService = new CarService(testRepo);
         boolean expectedIsNotFound = false;
         boolean expectedIs18DigitsLong = false;

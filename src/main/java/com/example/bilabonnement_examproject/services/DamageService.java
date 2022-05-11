@@ -4,7 +4,7 @@ import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 
 public class DamageService {
-    private final CRUDInterface<DamageReportModel> damageRepo;
+    private final CRUDInterface<DamageReportModel, Integer> damageRepo;
 
     public DamageService(CRUDInterface damageRepo){
         this.damageRepo = damageRepo;

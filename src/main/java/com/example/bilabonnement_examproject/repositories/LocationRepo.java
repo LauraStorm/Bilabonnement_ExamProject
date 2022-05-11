@@ -10,14 +10,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class LocationRepo implements CRUDInterface<LocationModel>{
+public class LocationRepo implements CRUDInterface<LocationModel, Integer>{
     @Override
     public List<LocationModel> getAllEntities() {
         return null;
     }
 
     @Override
-    public LocationModel getSingleEntity(Object id) {
+    public LocationModel getSingleEntity(Integer id) {
         return null;
     }
 
@@ -27,7 +27,7 @@ public class LocationRepo implements CRUDInterface<LocationModel>{
     }
 
     @Override
-    public boolean updateEntity(String key) {
+    public boolean updateEntity(Integer key) {
         return false;
     }
 

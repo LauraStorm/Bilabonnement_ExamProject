@@ -23,15 +23,14 @@ public class CarController {
     public String getChassisNumber(WebRequest dataFromForm, HttpSession session){
         String chassisNumberFromForm = dataFromForm.getParameter("chassis-number");
 
-        session.setAttribute("chassisSession", chassisNumberFromForm);
-
-
         CarRepo carRepo = new CarRepo();
         boolean isUpdated = carRepo.updateEntity(chassisNumberFromForm);
 
 
         if (isUpdated == true){
             //hvis chassis number er valid og bilen er updatet bliver man sendt videre
+            session.setAttribute("chassisSession", chassisNumberFromForm);
+
             return "redirect:/create-renter-information";
         } else {
             //hvis chassis number ikke er valid bliver useren på siden

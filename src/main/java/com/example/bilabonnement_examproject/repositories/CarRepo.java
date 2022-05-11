@@ -9,14 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CarRepo implements CRUDInterface<CarModel>{
+public class CarRepo implements CRUDInterface<CarModel, String>{
     @Override
     public List<CarModel> getAllEntities() {
         return null;
     }
 
     @Override
-    public CarModel getSingleEntity(Object id) {
+    public CarModel getSingleEntity(String id) {
 
         Connection conn = DatabaseConnectionManager.getConnection();
         CarModel car = null;
@@ -24,7 +24,7 @@ public class CarRepo implements CRUDInterface<CarModel>{
 
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM cars WHERE chassis_number=?");
-            stmt.setString(1,id.toString());
+            stmt.setString(1,id);
             ResultSet rs = stmt.executeQuery();
 
             rs.next();

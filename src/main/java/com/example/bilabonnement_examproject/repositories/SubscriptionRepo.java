@@ -8,14 +8,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class SubscriptionRepo implements CRUDInterface<SubscriptionModel>{
+public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Integer>{
     @Override
     public List<SubscriptionModel> getAllEntities() {
         return null;
     }
 
     @Override
-        public SubscriptionModel getSingleEntity(Object id) {
+        public SubscriptionModel getSingleEntity(Integer id) {
         return null;
     }
 
@@ -25,7 +25,7 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel>{
 
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO subscriptions(selfrisk, delivery_insurance, total_price_pr_md," +
-                    "length, subscription_type, chassis_number, locations_id, renters_id, pickup_date)" +
+                    "length, subscription_type, cars_chassis_number, locations_id, renters_id, pickup_date)" +
                     "VALUES (?,?,?,?,?,?,?,?,?)");
             stmt.setBoolean(1,entity.isSelfrisk());
             stmt.setBoolean(2,entity.isDeliveryInsurance());
@@ -47,7 +47,7 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel>{
     }
 
     @Override
-    public boolean updateEntity(String key) {
+    public boolean updateEntity(Integer key) {
         return false;
     }
 }

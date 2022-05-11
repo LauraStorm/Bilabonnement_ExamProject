@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DamageReportRepoTest implements CRUDInterface<DamageReportModel> {
+public class DamageReportRepoTest implements CRUDInterface<DamageReportModel, Integer> {
     private ArrayList<DamageReportModel> damageReportModelsList  = new ArrayList<DamageReportModel>(
             Arrays.asList(
                     new DamageReportModel(1, "Manglende Sidespejl", 799, "52938102853019408"),
@@ -27,7 +27,7 @@ public class DamageReportRepoTest implements CRUDInterface<DamageReportModel> {
     }
 
     @Override
-    public DamageReportModel getSingleEntity(int id) {
+    public DamageReportModel getSingleEntity(Integer id) {
         DamageReportModel fetchedDamage = null;
         for (DamageReportModel damage:damageReportModelsList
         ) {
@@ -51,7 +51,7 @@ public class DamageReportRepoTest implements CRUDInterface<DamageReportModel> {
 
 
     @Override
-    public boolean updateEntity(int key) {
+    public boolean updateEntity(Integer key) {
         return false;
     }
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CarRepoTest implements CRUDInterface<CarModel> {
+public class CarRepoTest implements CRUDInterface<CarModel, Integer> {
     private ArrayList<CarModel> carModelArrayList = new ArrayList<CarModel>(
             Arrays.asList(
             new CarModel("52931102953019407", "Opel Crossland Sport 110 HK", "Yellow", true),
@@ -27,7 +27,7 @@ public class CarRepoTest implements CRUDInterface<CarModel> {
     }
 
     @Override
-    public CarModel getSingleEntity(int id) {
+    public CarModel getSingleEntity(Integer id) {
         CarModel fetchedCar = null;
         for (CarModel car:carModelArrayList
              ) {
@@ -50,7 +50,7 @@ public class CarRepoTest implements CRUDInterface<CarModel> {
     }
 
     @Override
-    public boolean updateEntity(int key) {
+    public boolean updateEntity(Integer key) {
         CarModel fetchedCar = null;
         for (CarModel car:carModelArrayList
         ) {
