@@ -1,6 +1,7 @@
 package com.example.bilabonnement_examproject.controllers;
 import com.example.bilabonnement_examproject.models.RenterModel;
 import com.example.bilabonnement_examproject.repositories.RenterRepo;
+import com.example.bilabonnement_examproject.services.RenterService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ public class RenterController {
     @PostMapping("/get-renter-information")
     public String getRenterDetails(WebRequest dataFromForm, HttpSession session){
         RenterRepo renterRepo = new RenterRepo();
+        RenterService renterService = new RenterService();
         RenterModel renterModel = null;
 
         String firstName = dataFromForm.getParameter("firstName");
@@ -31,16 +33,25 @@ public class RenterController {
         String regNumber = dataFromForm.getParameter("regNumber");
         String accountNumber = dataFromForm.getParameter("accountNumber");
 
-        renterModel = new RenterModel(firstName, lastName, address, Integer.parseInt(postcode),
-                city, email, Integer.parseInt(tlf), cpr, Integer.parseInt(regNumber),
-                accountNumber);
+        if (renterService.isAccountNumberValid(Integer.parseInt(regNumber), accountNumber) &&
+        renterService.isCprValid(cpr) && renterService.isEmailValid(email) &&
+        renterService.isPostCodeValid(Integer.parseInt(postcode)) &&
+        renterService.isRegNumberValid(Integer.parseInt(regNumber)) &&
+        renterService.isTlfValid(Integer.parseInt(tlf))){
 
-        renterRepo.createEntity(renterModel);
+            renterModel = new RenterModel(firstName, lastName, address, Integer.parseInt(postcode),
+                    city, email, Integer.parseInt(tlf), cpr, Integer.parseInt(regNumber),
+                    accountNumber);
 
-        int renterId = renterRepo.getRenterId(renterModel);
+            renterRepo.createEntity(renterModel);
 
-        session.setAttribute("renterId", renterId);
+            int renterId = renterRepo.getRenterId(renterModel);
 
-        return "redirect:/register-location";
+            session.setAttribute("renterId", renterId);
+
+            return "redirect:/register-location";
+        } else {
+            return "redirect:/create-renter-information";
+        }
     }
 }

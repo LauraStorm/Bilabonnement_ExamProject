@@ -30,7 +30,7 @@ public class RenterService {
 
     //skal have et regex så den kun kan indeholde tal og -
     public boolean isCprValid(String cpr){
-        if (cpr.length() == 11 && cpr.indexOf(6)=='-'){
+        if (cpr.length() == 11 && cpr.charAt(6)=='-'){
             return true;
         } else {
             return false;
@@ -53,8 +53,4 @@ public class RenterService {
             return false;
         }
     }
-
-
-
-
 }
