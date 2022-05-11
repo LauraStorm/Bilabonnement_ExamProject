@@ -38,9 +38,9 @@ public class SubscriptionController {
 
         System.out.println(rentersId);
 
-        subscriptionModel = new SubscriptionModel(Integer.parseInt(locationId), chassisNumber, Integer.parseInt(rentersId),
-                Boolean.parseBoolean(selfrisk), Boolean.parseBoolean(deliveryInsurance), Integer.parseInt(totalPrice),
-                Integer.parseInt(lenght), subscriptionType, pickupDate);
+        subscriptionModel = new SubscriptionModel(Boolean.parseBoolean(selfrisk), Boolean.parseBoolean(deliveryInsurance), Integer.parseInt(totalPrice),
+                Integer.parseInt(lenght), subscriptionType,chassisNumber, Integer.parseInt(locationId), Integer.parseInt(rentersId),
+                pickupDate);
 
         subscriptionRepo.createEntity(subscriptionModel);
 

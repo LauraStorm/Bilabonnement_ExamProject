@@ -5,13 +5,44 @@ import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Integer>{
     @Override
     public List<SubscriptionModel> getAllEntities() {
-        return null;
+        ArrayList<SubscriptionModel> allSubscriptions = new ArrayList<SubscriptionModel>();
+
+
+        try {
+            Connection conn = DatabaseConnectionManager.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT  * FROM subscriptions");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                int  id = rs.getInt("id");
+                boolean selfRisk = rs.getBoolean("selfrisk");
+                boolean deliveryInsurance = rs.getBoolean("delivery_insurance");
+                int totalPrice = rs.getInt("total_price_pr_md");
+                int length = rs.getInt("length");
+                String subscriptionType = rs.getString("subscription_type");
+                String chassisNumber = rs.getString("cars_chassis_number");
+                int locationID = rs.getInt("locations_id");
+                int rentersId = rs.getInt("renters_id");
+                String pickUpDate = rs.getString("pickup_date");
+
+                SubscriptionModel subscription = new SubscriptionModel(id,selfRisk,deliveryInsurance,totalPrice,length,subscriptionType,chassisNumber,locationID,rentersId,pickUpDate);
+                allSubscriptions.add(subscription);
+
+            }
+            System.out.println("All Subscriptions is found!");
+        } catch (SQLException e) {
+            System.out.println("Something went wrong with finding all subscriptions");
+            e.printStackTrace();
+        }
+        return allSubscriptions;
     }
 
     @Override

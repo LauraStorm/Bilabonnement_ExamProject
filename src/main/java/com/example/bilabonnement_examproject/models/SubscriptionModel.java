@@ -12,7 +12,7 @@ public class SubscriptionModel {
     private String subscriptionType;
     private String pickupDate;
 
-    public SubscriptionModel(int id, int locationId, String chassisNumber, int rentersId, boolean selfrisk, boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType, String pickupDate) {
+    public SubscriptionModel(int id,boolean selfrisk,boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType,String chassisNumber, int locationId, int rentersId, String pickupDate) {
         this.id = id;
         this.locationId = locationId;
         this.chassisNumber = chassisNumber;
@@ -25,7 +25,7 @@ public class SubscriptionModel {
         this.pickupDate = pickupDate;
     }
 
-    public SubscriptionModel(int locationId, String chassisNumber, int rentersId, boolean selfrisk, boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType, String pickupDate) {
+    public SubscriptionModel(boolean selfrisk, boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType, String chassisNumber, int locationId,  int rentersId, String pickupDate) {
         this.locationId = locationId;
         this.chassisNumber = chassisNumber;
         this.rentersId = rentersId;
