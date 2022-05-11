@@ -24,8 +24,8 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel>{
         Connection conn = DatabaseConnectionManager.getConnection();
 
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO subscription(selfrisk, delivery_insurance, total_price_pr_md," +
-                    "lenght, subscription, chassis_number, locations_id, renters_id, pickup_date)" +
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO subscriptions(selfrisk, delivery_insurance, total_price_pr_md," +
+                    "length, subscription_type, chassis_number, locations_id, renters_id, pickup_date)" +
                     "VALUES (?,?,?,?,?,?,?,?,?)");
             stmt.setBoolean(1,entity.isSelfrisk());
             stmt.setBoolean(2,entity.isDeliveryInsurance());
