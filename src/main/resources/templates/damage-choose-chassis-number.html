@@ -2,10 +2,22 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Rappoter Skade</title>
+    <title>Rapporter Skade</title>
     <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
 </head>
 <body>
 
-</body>
+<img src="../static/Logo-bilabonnement.png" height="160" width="1000"/></body>
+<div class="choose-chassis-number-damage">
+    <form action="/get-chassis-number" method="post">
+        <label>Indtast stelnummer på bil:</label>
+        <br>
+        <br>
+        <input type="text" name="chassis-number">
+        <br>
+        <br>
+        <input type="submit" value="Gå Videre">
+    </form>
+
+</div>
 </html>
