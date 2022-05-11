@@ -6,7 +6,8 @@ public class CarModel {
     private String color;
     private boolean isRented;
 
-    public CarModel(String chassisNumber, String model, String color, boolean isRented) {
+
+    public CarModel(String chassisNumber, String model, String color, boolean rented) {
         this.chassisNumber = chassisNumber;
         this.model = model;
         this.color = color;
@@ -42,16 +43,10 @@ public class CarModel {
     }
 
     public void setRented(boolean rented) {
-        isRented = rented;
+        this.isRented = isRented;
     }
 
-    @Override
-    public String toString() {
-        return "CarModel{" +
-                "chassisNumber='" + chassisNumber + '\'' +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", isRented=" + isRented +
-                '}';
-    }
+
+
 }
+
