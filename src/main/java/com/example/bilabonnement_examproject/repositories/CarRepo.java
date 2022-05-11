@@ -27,6 +27,7 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
             stmt.setString(1,id);
             ResultSet rs = stmt.executeQuery();
 
+
             rs.next();
             String chassisNumber = rs.getString("chassis_number");
             String model = rs.getString("model");

@@ -8,12 +8,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LocationRepo implements CRUDInterface<LocationModel, Integer>{
     @Override
     public List<LocationModel> getAllEntities() {
-        return null;
+        ArrayList<LocationModel> allLocations = new ArrayList<LocationModel>();
+        Connection connection = DatabaseConnectionManager.getConnection();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM locations");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String address = rs.getString("address");
+                String city = rs.getString("city");
+                String postcode = rs.getString("postcode");
+                int deliveryPrice = rs.getInt("delivery_price");
+
+                LocationModel location = new LocationModel(id,address,city,Integer.parseInt(postcode),deliveryPrice);
+                allLocations.add(location);
+            }
+
+            System.out.println("All locations found");
+        } catch (SQLException e) {
+            System.out.println("something went wrong with findig all locations");
+            e.printStackTrace();
+        }
+        return allLocations;
     }
 
     @Override
