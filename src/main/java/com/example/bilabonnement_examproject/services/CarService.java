@@ -32,5 +32,9 @@ public class CarService {
         }
         return isValid;
     }
+
+    public boolean isCarRented(CarModel carModel){
+        return false;
+    }
 }
 

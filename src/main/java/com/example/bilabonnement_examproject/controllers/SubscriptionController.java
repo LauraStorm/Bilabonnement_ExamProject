@@ -33,7 +33,7 @@ public class SubscriptionController {
         String deliveryInsurance = subscriptionService.StringTooBooleanTerms(dataFromForm.getParameter("deliveryInsurance"));
         String totalPrice = dataFromForm.getParameter("totalPrice");
         String lenght = dataFromForm.getParameter("lenght");
-        String subscriptionType = dataFromForm.getParameter("subscriptionType");
+        String subscriptionType = subscriptionService.findType(Integer.parseInt(lenght));
         String pickupDate = dataFromForm.getParameter("pickupDate");
 
         System.out.println(rentersId);
