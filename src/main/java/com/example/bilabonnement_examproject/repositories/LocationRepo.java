@@ -75,8 +75,6 @@ public class LocationRepo implements CRUDInterface<LocationModel, Integer>{
             int postcode1 = rs.getInt("postcode");
             int deliveryPrice = rs.getInt("delivery_price");
 
-
-
             location = new LocationModel(id, address1, city1, postcode1, deliveryPrice);
             System.out.println(location);
 
