@@ -1,4 +1,4 @@
-package com.example.bilabonnement_examproject.repository;
+package repository;
 
 import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;

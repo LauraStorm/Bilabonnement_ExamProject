@@ -1,11 +1,8 @@
 package com.example.bilabonnement_examproject;
 
-import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
-import com.example.bilabonnement_examproject.repository.CarRepoTest;
-import com.example.bilabonnement_examproject.repository.DamageReportRepoTest;
-import com.example.bilabonnement_examproject.services.CarService;
+import repository.DamageReportRepoTest;
 import com.example.bilabonnement_examproject.services.DamageService;
 import org.junit.jupiter.api.Test;
 
