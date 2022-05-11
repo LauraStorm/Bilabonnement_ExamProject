@@ -10,7 +10,9 @@ public class RenterService {
         }
     }
 
-    public boolean
+    public boolean isEmailValid(String email){
+
+    }
 
 
 }
