@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Startside</title>
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+
+</head>
+<body>
+<br>
+
+<nav id="navigator">
+    <!--Side navigator -->
+    <section class="section 1">
+
+        <nav class="side-nav">
+            <div class="nav-valg ">
+                <h3>Dataregistrering</h3>
+                <a href="register-car">Registrer ny lejeaftale</a>
+            </div>
+
+            <br>
+
+            <div class="nav-valg">
+                <h3>Skade & Udbedring</h3>
+                <a href="">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
+                <a href="choosechassisnumber">Registrer fejl og mangler</a>
+            </div>
+
+            <br>
+
+            <div class="nav-valg">
+                <h3>Forretningsudviklere</h3>
+                <a href="rented-cars">Vis oversigt over udlejede biler</a>
+                <a href="">Vis pris på udlejede biler</a>
+            </div>
+
+        </nav>
+
+    </section>
+
+    <section class="board">
+
+        <div class="logo">
+            <img id="logo"  src="pictures/Logo-bilabonnement.png">
+        </div>
+
+    </section>
+</nav>
+
+</body>
+</html>

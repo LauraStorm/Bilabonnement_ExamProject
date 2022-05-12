@@ -24,3 +24,10 @@
 
 }
 
+.whiteboard{
+    margin-left: 600px;
+}
+
+.whiteboard > * {
+    margin-left: 400px;
+}
