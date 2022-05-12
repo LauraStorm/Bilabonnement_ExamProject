@@ -11,6 +11,7 @@
 <h1>Registrer lokation</h1>
     <br>
     <br>
+    <div th:text="${error}" th:if="${error}" style="color: red"></div>
     <form action="get-location-information" method="post">
         Adresse
         <br>

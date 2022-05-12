@@ -9,7 +9,10 @@
 
 <body>
 <div>
-    <h1>Registrer bilr</h1>
+    <h1>Registrer bil</h1>
+
+    <div th:text="${error}" th:if="${error}" style="color: red"></div>
+
     <form action="/get-chassis-number" method="post">
         <br>
         <br>
