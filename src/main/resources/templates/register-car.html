@@ -13,18 +13,22 @@
 <nav>
     <th:block th:replace="fragments/navigator :: nav"></th:block>
 </nav>
-<div class="whiteboard">
-    <h1>HAlli hallo og lige et øjeblik !!!!!!!!!!!!!!!!!!!!!!!!!</h1>
 
-    <h1>Registrer bilr</h1>
-    <form action="/get-chassis-number" method="post">
-        <br>
-        <br>
-        stel nummer
-        <br>
-        <input type="number" name="chassis-number">
-        <input type="submit">
-    </form>
+<div class="whiteboard">
+
+    <h1>Registrer ny lejeaftale</h1>
+
+    <div class="tabel">
+        <form action="/get-chassis-number" method="post">
+            <br>
+            <br>
+            Stel nummer
+            <br>
+            <input type="number" name="chassis-number">
+            <input type="submit">
+        </form>
+    </div>
+
 
 </div>
 </body>
