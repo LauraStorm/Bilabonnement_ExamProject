@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,7 +20,7 @@ public class LocationController {
     }
 
     @PostMapping("/get-location-information")
-    public String getLocationDetails(WebRequest dataFromForm, HttpSession session){
+    public String getLocationDetails(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
         LocationRepo locationRepo = new LocationRepo();
         LocationService locationService = new LocationService();
         LocationModel location = null;
@@ -27,6 +28,12 @@ public class LocationController {
         String address = dataFromForm.getParameter("address");
         String city = dataFromForm.getParameter("city");
         String postcode = dataFromForm.getParameter("postcode");
+
+        if (postcode == ""){
+            postcode = "0";
+        }
+
+        String fejlBesked = "Lokationen findes ikke";
 
         if (locationService.isLocationValid(city,address,Integer.parseInt(postcode)) == true) {
 
@@ -36,6 +43,9 @@ public class LocationController {
 
             return "redirect:/create-subscription";
         } else {
+
+            attributes.addFlashAttribute("error", fejlBesked);
+
             return "redirect:/register-location";
         }
     }
