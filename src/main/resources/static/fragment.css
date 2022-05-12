@@ -9,7 +9,7 @@
 }
 
 .side-nav{
-    width: 300px;
+    width: 15%;
     height: 100%;
     background-color: #f2f2f2;
     position: fixed;
@@ -33,7 +33,7 @@
     color: black;
     text-decoration: none;
     padding: 18px;
-    padding-left: 40px;
+    padding-left: 15%;
     display: block;
     font-size: 18px;
 
@@ -46,7 +46,7 @@
 .logo{
     display: flex;
     justify-content:center;
-    margin-left: 300px;
+    margin-left: 15%;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -56,17 +56,19 @@
 }
 
 .tabel {
+    position: relative;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-left: 500px;
+    margin-left: 15%;
 }
 
 .whiteboard{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 300px;
+    margin-left: 15%;
     padding-top: 100px;
     padding-bottom: 5px;
 }
