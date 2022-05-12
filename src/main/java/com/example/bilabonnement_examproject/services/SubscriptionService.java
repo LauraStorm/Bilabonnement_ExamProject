@@ -39,6 +39,7 @@ public class SubscriptionService {
         int sum = 0;
         //If hvis den rented
 
+
         for (SubscriptionModel currentSubscription : allSubscriptions) {
             //antal mdr. * total pris pr. mdr.
         }
