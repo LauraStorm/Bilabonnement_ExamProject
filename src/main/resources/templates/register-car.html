@@ -9,27 +9,17 @@
 </head>
 
 <body>
-<div>
-    <h1>Registrer bil</h1>
-
-    <div th:text="${error}" th:if="${error}" style="color: red"></div>
-
-    <form action="/get-chassis-number" method="post">
-        <br>
-        <br>
-        stel nummer
-        <br>
-        <input type="number" name="chassis-number">
-        <input type="submit">
-    </form>
 
 <nav>
     <th:block th:replace="fragments/navigator :: nav"></th:block>
 </nav>
 
 <div class="whiteboard">
+
+
     <div class="tabel">
     <h1>Registrer ny lejeaftale</h1>
+        <div th:text="${error}" th:if="${error}" style="color: red"></div>
         <form action="/get-chassis-number" method="post">
             <br>
             <br>

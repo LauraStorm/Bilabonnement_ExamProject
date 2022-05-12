@@ -12,30 +12,29 @@
     <th:block th:replace="fragments/navigator :: nav"></th:block>
 </nav>
 
-< class="whiteboard">
+<div class="whiteboard">
 
-    <h1>Registrer lokation</h1>
-    <br>
-    <br>
     <div class="tabel">
-    <div th:text="${error}" th:if="${error}" style="color: red"></div>
-    <form action="get-location-information" method="post">
-        Adresse
-        <br>
-        <input type="text" name="address">
-        <br>
-        by
-        <br>
-        <input type="text" name="city">
-        <br>
-        postnummer
-        <br>
-        <input type="number" name="postcode">
-        <br>
-        <input type="submit">
+        <h1>Registrer lokation</h1>
+        <div th:text="${error}" th:if="${error}" style="color: red"></div>
 
-    </form>
+        <form action="get-location-information" method="post">
+            Adresse
+            <br>
+            <input type="text" name="address">
+            <br>
+            by
+            <br>
+            <input type="text" name="city">
+            <br>
+            postnummer
+            <br>
+            <input type="number" name="postcode">
+            <br>
+            <input type="submit">
+        </form>
+    </div>
 </div>
-</div>
+
 </body>
 </html>
