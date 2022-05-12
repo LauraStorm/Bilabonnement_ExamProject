@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Skades kvittering</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+
+</head>
+<body>
+<div class="container">
+    <section class="section 1">
+
+        <nav class="side-nav">
+            <div class="nav-valg ">
+                <h3>Dataregistrering</h3>
+                <a href="register-car">Registrer ny lejeaftale</a>
+            </div>
+
+            <br>
+
+            <div class="nav-valg">
+                <h3>Skade & Udbedring</h3>
+                <a href="">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
+                <a href="carid">Registrer fejl og mangler</a>
+            </div>
+
+            <br>
+
+            <div class="nav-valg">
+                <h3>Forretningsudviklere</h3>
+                <a href="">Vis oversigt over udlejede biler</a>
+                <a href="">Vis pris på udlejede biler</a>
+            </div>
+
+        </nav>
+
+    </section>
+
+
+
+
+    <section class="board">
+
+        <div class="logo">
+            <img id="logo"  src="pictures/Logo-bilabonnement.png">
+        </div>
+
+    </section>
+</div>
+<h1>Skades kvittering</h1>
+<section>
+<p th:text="'place: ' + ${damage.defectDescription}"></p>
+<p th:text="'price: ' + ${damage.price}"></p>
+<a th:href="'/damage?carid='+ ${damage.getChassisNumber()}"><button class="goto_button">
+    Angiv en skade
+</button></a>
+<a href="/carid"><button class="goto_button">
+    Angiv en ny bil
+</button>
+</a>
+</section>
+<a href="/"><button class="goto_button">
+    Hjem
+</button>
+</a>
+</body>
+
+<br>
+<!--Side navigator -->
+</html>

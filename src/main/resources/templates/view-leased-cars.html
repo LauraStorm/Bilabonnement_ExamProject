@@ -25,10 +25,10 @@
                 </tr>
                 <tr th:name="rentedCars" th:each="rentedCars : ${rentedCars}">
 
-                    <td th:text="${rentedCars.getChassisNumber}"></td>
-                    <td th:text="${rentedCars.getModel}"></td>
-                    <td th:text="${rentedCars.getColor}"></td>
-                    <td th:text="${rentedCars.isRented}"></td>
+                <td th:text="${rentedCars.getChassisNumber}"></td>
+                <td th:text="${rentedCars.getModel}"></td>
+                <td th:text="${rentedCars.getColor}"></td>
+                <td th:text="${rentedCars.isRentedToString(rentedCars.isRented)}"></td>
 
                 </tr>
             </table>

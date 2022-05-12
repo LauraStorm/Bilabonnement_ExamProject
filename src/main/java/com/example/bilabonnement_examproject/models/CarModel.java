@@ -1,5 +1,7 @@
 package com.example.bilabonnement_examproject.models;
 
+import com.example.bilabonnement_examproject.services.CarService;
+
 public class CarModel {
     private String chassisNumber;
     private String model;
@@ -42,6 +44,12 @@ public class CarModel {
         return isRented;
     }
 
+    public String isRentedToString(boolean isRented){
+        CarService carService = new CarService();
+
+        return carService.convertBooleanTermsToString(isRented);
+    }
+
     public void setRented(boolean rented) {
         this.isRented = isRented;
     }
@@ -49,11 +57,12 @@ public class CarModel {
 
     @Override
     public String toString() {
+        CarService carService = new CarService();
         return "CarModel{" +
                 "chassisNumber='" + chassisNumber + '\'' +
                 ", model='" + model + '\'' +
                 ", color='" + color + '\'' +
-                ", isRented=" + isRented +
+                ", isRented=" + carService.convertBooleanTermsToString(isRented) +
                 '}';
     }
 }

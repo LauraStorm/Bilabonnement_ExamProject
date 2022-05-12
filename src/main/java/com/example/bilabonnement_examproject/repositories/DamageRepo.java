@@ -49,10 +49,24 @@ public class DamageRepo implements CRUDInterface<DamageReportModel, Integer> {
 
     @Override
     public boolean createEntity(DamageReportModel entity) {
-        return false;
+        Connection conn = DatabaseConnectionManager.getConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("insert into defects (defect_description, price, cars_chassis_number) values " +
+                    "(?,?,?)");
+            stmt.setString(1, entity.getDefectDescription());
+            stmt.setInt(2, (int) entity.getPrice());
+            stmt.setString(3, entity.getChassisNumber());
+            int i = stmt.executeUpdate();
+            System.out.println(i + " reports inserted!");
+            return true;
+        } catch (SQLException sqlException) {
+            System.out.println("something went wrong!");
+            sqlException.printStackTrace();
+            return false;
+        }
     }
 
-    @Override
+        @Override
     public boolean updateEntity(Integer key) {
         return false;
     }
