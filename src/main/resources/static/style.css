@@ -14,7 +14,6 @@
 
 h1{
     display: flex;
-    justify-content: center;
 }
 /*
 input {
@@ -26,9 +25,6 @@ input {
 
  */
 
-.tabel{
-    margin-left: 250px;
-}
 
 .choose-chassis-number-damage{
     display: flex;

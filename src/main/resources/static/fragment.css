@@ -55,6 +55,12 @@
     width: 65%;
 }
 
+.tabel {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 500px;
+}
 
 .whiteboard{
     display: flex;
@@ -64,3 +70,4 @@
     padding-top: 100px;
     padding-bottom: 5px;
 }
+

@@ -7,64 +7,43 @@
 
 </head>
 <body>
-<div class="container">
-    <section class="section 1">
 
-        <nav class="side-nav">
-            <div class="nav-valg ">
-                <h3>Dataregistrering</h3>
-                <a href="register-car">Registrer ny lejeaftale</a>
-            </div>
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
 
-            <br>
-
-            <div class="nav-valg">
-                <h3>Skade & Udbedring</h3>
-                <a href="">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
-                <a href="carid">Registrer fejl og mangler</a>
-            </div>
-
-            <br>
-
-            <div class="nav-valg">
-                <h3>Forretningsudviklere</h3>
-                <a href="">Vis oversigt over udlejede biler</a>
-                <a href="">Vis pris på udlejede biler</a>
-            </div>
-
-        </nav>
-
-    </section>
-
-
-
-
-    <section class="board">
-
-        <div class="logo">
-            <img id="logo"  src="pictures/Logo-bilabonnement.png">
-        </div>
-
-    </section>
-</div>
+<div class="whiteboard">
+    <div class="tabel">
 <h1>Skades kvittering</h1>
 <section>
-<p th:text="'place: ' + ${damage.defectDescription}"></p>
-<p th:text="'price: ' + ${damage.price}"></p>
-<a th:href="'/damage?carid='+ ${damage.getChassisNumber()}"><button class="goto_button">
-    Angiv en skade
+        <table>
+            <tr>
+                <th>Beskrivels</th>
+                <th>Pris</th>
+            </tr>
+            <tr>
+                <td><p th:text="${damage.defectDescription}"></p></td>
+                <td><p th:text="${damage.price}"></p></td>
+            </tr>
+        </table>
+<a th:href="'/damage?carid='+ ${damage.getChassisNumber()}">
+    <button class="goto_button">
+    Ny skade
 </button></a>
 <a href="/carid"><button class="goto_button">
-    Angiv en ny bil
+    Ny bil
 </button>
 </a>
-</section>
 <a href="/"><button class="goto_button">
     Hjem
 </button>
 </a>
+
+</section>
+</div>
 </body>
 
 <br>
+</div>
 <!--Side navigator -->
 </html>
