@@ -3,20 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Registrer Abonnement</title>
+    <title>Kvittering </title>
     <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
 </head>
 
 <body>
 <div>
-    <h1>Registrer bil</h1>
-    <form action="/get-chassis-number" method="post">
+    <h1>Aflever bil</h1>
+
+    <form action="/returncarpage" method="post">
         <br>
         <br>
-        stel nummer
+        Indtast stelnummer:
         <br>
-        <input type="number" name="chassis-number">
-        <input type="submit">
+        <input type="number" name="chassis-number-input">
+        <input type="submit" value="Register">
     </form>
 
 </div>

@@ -3,6 +3,8 @@ package com.example.bilabonnement_examproject.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.context.request.WebRequest;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -10,6 +12,29 @@ import java.sql.SQLException;
 
 @Controller
 public class IndexController {
+
+    @GetMapping("/login")
+    public String loginpage(){
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(WebRequest dataFromForm){
+        String login = dataFromForm.getParameter("login");
+        String password = dataFromForm.getParameter("adgangskode");
+
+        return "redirect:/homepage";
+
+    }
+
+    @GetMapping("/gethomepage")
+    public String getHomePage(){
+        return "homepage";
+    }
+
+
+
+
 
     /*
     @GetMapping("/")

@@ -2,13 +2,10 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Startside</title>
-    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
-
+    <title>Kvittering </title>
+    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
 </head>
 <body>
-<br>
-<!--Side navigator -->
 <div class="container">
     <section class="section 1">
 
@@ -22,7 +19,7 @@
 
             <div class="nav-valg">
                 <h3>Skade & Udbedring</h3>
-                <a href="getreturncarpage">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
+                <a href="">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
                 <a href="carid">Registrer fejl og mangler</a>
             </div>
 
@@ -38,9 +35,6 @@
 
     </section>
 
-
-
-
     <section class="board">
 
         <div class="logo">
@@ -50,5 +44,15 @@
     </section>
 </div>
 
+<div class="return-car-success">
+
+    <form action="/gethomepage" method="post">
+        <br>
+        <br>
+        Bilen er afleveret
+        <br>
+        <input type="submit" value="Tilbage til forside">
+    </form>
+</div>
 </body>
 </html>

@@ -57,4 +57,21 @@ public class DamageController {
         damageService.createDamageReport(damage);
         return "result-damage";
     }
+
+    @GetMapping("/getreturncarpage")
+    public String getReturnCarPage(WebRequest dataFromForm){
+        CarRepo carRepo = new CarRepo();
+        CarService carService = new CarService();
+
+        String chassisNumberInput = dataFromForm.getParameter("chassis-number-input");
+        carService.isChassisNumberValid(chassisNumberInput);
+        carRepo.changeRentedStatus(chassisNumberInput);
+
+        return "return-car";
+    }
+
+    @GetMapping("/returncarsuccesspage")
+    public String returnCarSuccessPage(){
+        return "return-car-success";
+    }
 }
