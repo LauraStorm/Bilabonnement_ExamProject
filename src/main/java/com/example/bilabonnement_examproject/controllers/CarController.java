@@ -36,7 +36,7 @@ public class CarController {
             return "redirect:/create-renter-information";
 
         } else {
-            attributes.addFlashAttribute("error", fejlbesked);
+            attributes.addFlashAttribute("error", fejlbesked);//errormessage?
             //hvis chassis number ikke er valid bliver useren på siden
             return "redirect:/register-car";
         }

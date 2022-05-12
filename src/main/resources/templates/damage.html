@@ -18,10 +18,11 @@
 <div class="whiteboard">
     <div class="tabel">
 <h1>Skade formular</h1>
-<p th:name="carid" th:value="${carid}"></p>
+        <div th:text="${error}" th:if="${error}" style="color: red"></div>
+        <p th:name="carid" th:value="${carid}"></p>
 <form action="#" th:action="@{'/damage?carid='+${carid}}" th:object="${damage}" method="post">
     <p>Beskrivelse: <input type="text" th:field="*{defectDescription}" /></p>
-    <p>Pris: <input type="text" th:field="*{price}" /></p>
+    <p>Pris: <input type="text" th:field="*{price}"/></p>
     <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil felterne" /></p>
     <a href="/"><button class="goto_button">
         Hjem
