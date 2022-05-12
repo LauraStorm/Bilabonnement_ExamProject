@@ -50,5 +50,13 @@ public class CarService {
         }
         return rentedCars;
     }
+
+    public String convertBooleanTermsToString(boolean isRented){
+        if (isRented == true){
+            return "ja";
+        } else {
+            return "nej";
+        }
+    }
 }
 
