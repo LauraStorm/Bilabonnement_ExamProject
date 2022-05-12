@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Startside</title>
+    <title>Stelnummer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
 
 </head>
 <body>
+
 <br>
 <!--Side navigator -->
 <div class="container">
@@ -50,5 +51,18 @@
     </section>
 </div>
 
+<h1>Find den bil du vil registrer skader på</h1>
+<form action="#" th:action="@{/carid}" method="post">
+    <p>Stelnummer: <input name="carid" type="number"/></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<a href="/"><button class="goto_button">
+    Home
+</button>
+</a>
 </body>
+
+
+
+
 </html>

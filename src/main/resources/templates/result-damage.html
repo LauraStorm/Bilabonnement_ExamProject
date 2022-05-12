@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Startside</title>
+    <title>Skades kvittering</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
 
 </head>
 <body>
-<br>
-<!--Side navigator -->
 <div class="container">
     <section class="section 1">
 
@@ -49,6 +47,24 @@
 
     </section>
 </div>
-
+<h1>Skades kvittering</h1>
+<section>
+<p th:text="'place: ' + ${damage.defectDescription}"></p>
+<p th:text="'price: ' + ${damage.price}"></p>
+<a th:href="'/damage?carid='+ ${damage.getChassisNumber()}"><button class="goto_button">
+    Angiv en skade
+</button></a>
+<a href="/carid"><button class="goto_button">
+    Angiv en ny bil
+</button>
+</a>
+</section>
+<a href="/"><button class="goto_button">
+    Hjem
+</button>
+</a>
 </body>
+
+<br>
+<!--Side navigator -->
 </html>
