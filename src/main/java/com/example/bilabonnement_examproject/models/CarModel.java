@@ -11,7 +11,7 @@ public class CarModel {
         this.chassisNumber = chassisNumber;
         this.model = model;
         this.color = color;
-        this.isRented = isRented;
+        this.isRented = rented;
     }
 
     public String getChassisNumber() {
@@ -47,6 +47,14 @@ public class CarModel {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "CarModel{" +
+                "chassisNumber='" + chassisNumber + '\'' +
+                ", model='" + model + '\'' +
+                ", color='" + color + '\'' +
+                ", isRented=" + isRented +
+                '}';
+    }
 }
 
