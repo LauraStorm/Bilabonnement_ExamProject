@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <title>Registrer Abonnement</title>
     <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
 
 </head>
 <body>
-<div>
-<h1>Registrer lokation</h1>
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
+
+< class="whiteboard">
+
+    <h1>Registrer lokation</h1>
     <br>
     <br>
+    <div class="tabel">
     <div th:text="${error}" th:if="${error}" style="color: red"></div>
     <form action="get-location-information" method="post">
         Adresse
@@ -28,6 +35,7 @@
         <input type="submit">
 
     </form>
+</div>
 </div>
 </body>
 </html>

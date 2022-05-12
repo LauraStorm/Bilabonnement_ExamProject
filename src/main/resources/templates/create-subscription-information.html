@@ -4,60 +4,67 @@
     <meta charset="UTF-8">
     <title>Registrer Abonnement</title>
     <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
 
 </head>
 <body>
-<div>
+
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
+<div class="whiteboard">
+
     <h1>Registrer abonnement</h1>
     <br>
     <br>
-    <form action="get-subscription-information" method="post">
-        selvrisiko ja/nej
-        <br>
-        <input type="radio" id="ja" value="ja" name="selfrisk">
-        <label for="ja">Ja</label>
-        <input type="radio" id="nej" value="nej" name="selfrisk">
-        <label for="nej">Nej</label>
-        <br>
-        afhentnings forsikring ja/nej
-        <br>
-        <input type="radio" id="ja1" value="ja" name="deliveryInsurance">
-        <label for="ja1">Ja</label>
-        <input type="radio" id="nej1" value="nej" name="deliveryInsurance">
-        <label for="nej1">Nej</label>
-        <br>
-        total pris
-        <br>
-        <input type="number" name="totalPrice">
-        <br>
-        lejeperiode
-        <br>
-        <input type="radio" name="lenght" id="3" value="3">
-        <label for="3">3 Måneder</label>
+    <div class="tabel">
+        <form action="get-subscription-information" method="post">
+            Selvrisiko
+            <br>
+            <input type="radio" id="ja" value="ja" name="selfrisk">
+            <label for="ja">Ja</label>
+            <input type="radio" id="nej" value="nej" name="selfrisk">
+            <label for="nej">Nej</label>
+            <br>
+            Afhentnings forsikring
+            <br>
+            <input type="radio" id="ja1" value="ja" name="deliveryInsurance">
+            <label for="ja1">Ja</label>
+            <input type="radio" id="nej1" value="nej" name="deliveryInsurance">
+            <label for="nej1">Nej</label>
+            <br>
+            Total pris
+            <br>
+            <input type="number" name="totalPrice">
+            <br>
+            Lejeperiode
+            <br>
+            <input type="radio" name="lenght" id="3" value="3">
+            <label for="3">3 Måneder</label>
 
-        <input type="radio" name="lenght" id="4" value="4">
-        <label for="4">4 Måneder</label>
+            <input type="radio" name="lenght" id="4" value="4">
+            <label for="4">4 Måneder</label>
 
-        <input type="radio" name="lenght" id="6" value="6">
-        <label for="6">6 Måneder</label>
-        <br>
-        <input type="radio" name="lenght" id="12" value="12">
-        <label for="12">12 Måneder</label>
+            <input type="radio" name="lenght" id="6" value="6">
+            <label for="6">6 Måneder</label>
+            <br>
+            <input type="radio" name="lenght" id="12" value="12">
+            <label for="12">12 Måneder</label>
 
-        <input type="radio" name="lenght" id="24" value="24">
-        <label for="24">24 Måneder</label>
+            <input type="radio" name="lenght" id="24" value="24">
+            <label for="24">24 Måneder</label>
 
-        <input type="radio" name="lenght" id="36" value="36">
-        <label for="36">36 Måneder</label>
-        <br>
+            <input type="radio" name="lenght" id="36" value="36">
+            <label for="36">36 Måneder</label>
+            <br>
 
-        startdato
-        <br>
-        <input type="date" name="pickupDate">
-        <br>
-        <input type="submit">
-
-    </form>
+            Startdato/Udlejningsdato
+            <br>
+            <input type="date" name="pickupDate">
+            <br>
+            <input type="submit">
+        </form>
+    </div>
 </div>
 </body>
 </html>
