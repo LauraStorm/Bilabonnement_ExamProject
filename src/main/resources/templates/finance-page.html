@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Stelnummer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{style.css}" type="text/css">
+
+</head>
+<body>
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
+<br>
+
+
+<div class="whiteboard">
+    <div class="tabel">
+        <h1>Den forventede fortjeneste af nuværende lejeaftaler</h1>
+        <p class="title" th:name="sumofcurrentleases" th:text="${sumcurrentlease} + ' kr.'"></p>
+    </div>
+</div>
+</body>
+
+
+
+
+</html>
