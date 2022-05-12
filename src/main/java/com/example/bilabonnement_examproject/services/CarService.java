@@ -6,6 +6,9 @@ import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CarService {
     private CRUDInterface<CarModel,Integer> carRepo;
 
@@ -33,8 +36,19 @@ public class CarService {
         return isValid;
     }
 
-    public boolean isCarRented(CarModel carModel){
-        return false;
+    public List<CarModel> getRentedCars(List<CarModel> allCars){
+        CarRepo carRepo = new CarRepo();
+        //List<CarModel> allCars = carRepo.getAllEntities();
+        List<CarModel> rentedCars = new ArrayList<CarModel>();
+
+        for (int i = 0; i < allCars.size(); i++) {
+            if (allCars.get(i).isRented() == true){
+                rentedCars.add(allCars.get(i));
+            } else {
+
+            }
+        }
+        return rentedCars;
     }
 }
 

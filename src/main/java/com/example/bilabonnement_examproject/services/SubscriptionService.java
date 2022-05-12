@@ -33,19 +33,51 @@ public class SubscriptionService {
         return type;
     }
 
-    public int getTotalPriceForRentedCars (){
+    public int getTotalPriceForRentedCars () {
         List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
 
         int sum = 0;
         //If hvis den rented
-
-
         for (SubscriptionModel currentSubscription : allSubscriptions) {
             //antal mdr. * total pris pr. mdr.
         }
 
-          return sum;
+        return sum;
     }
 
 
+
+    //år-månede-dag -> xxxx-xx-xx
+    public String getDeliveryDate(String pickupDate, int lenght){
+        String deliveryDate = "";
+
+        String year = "";
+        String month = "";
+        String day = "";
+
+        String[] pickupDates = pickupDate.split("-");
+
+        year = pickupDates[0];
+        month = pickupDates[1];
+        day = pickupDates[2];
+
+        int monthNumber = Integer.parseInt(month) + lenght;
+        int yearNumber = Integer.parseInt(year);
+
+
+        while(monthNumber >= 12) {
+            if (monthNumber > 12) {
+                monthNumber = monthNumber - 12;
+                yearNumber = yearNumber + 1;
+            }
+        }
+
+        if (monthNumber < 10){
+            deliveryDate = yearNumber + "-" + 0 + monthNumber + "-" + day;
+        } else {
+            deliveryDate = yearNumber + "-" + monthNumber + "-" + day;
+        }
+
+        return deliveryDate;
+    }
 }

@@ -7,6 +7,25 @@
 
 </head>
 <body>
+<div class="tabel">
+    <form action="">
+        <table>
+            <tr>
+                <th>Stel nummer</th>
+                <th>Model</th>
+                <th>Farve</th>
+                <th>Status</th>
+            </tr>
+            <tr th:name="rentedCars" th:each="rentedCars : ${rentedCars}">
 
+                <td th:text="${rentedCars.getChassisNumber}"></td>
+                <td th:text="${rentedCars.getModel}"></td>
+                <td th:text="${rentedCars.getColor}"></td>
+                <td th:text="${rentedCars.isRented}"></td>
+
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>

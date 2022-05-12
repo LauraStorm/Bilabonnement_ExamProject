@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CarRepoTest implements CRUDInterface<CarModel, Integer> {
+public class CarRepoTest implements CRUDInterface<CarModel, String> {
     private ArrayList<CarModel> carModelArrayList = new ArrayList<CarModel>(
             Arrays.asList(
             new CarModel("52931102953019407", "Opel Crossland Sport 110 HK", "Yellow", true),
@@ -27,16 +27,18 @@ public class CarRepoTest implements CRUDInterface<CarModel, Integer> {
     }
 
     @Override
-    public CarModel getSingleEntity(Integer id) {
+    public CarModel getSingleEntity(String id) {
         CarModel fetchedCar = null;
         for (CarModel car:carModelArrayList
-             ) {
+        ) {
             if (car.getChassisNumber().equals(String.valueOf(id))) {
                 fetchedCar = car;
             }
         }
         return fetchedCar;
     }
+
+
 
     @Override
     public boolean createEntity(CarModel entity) {
@@ -50,10 +52,9 @@ public class CarRepoTest implements CRUDInterface<CarModel, Integer> {
     }
 
     @Override
-    public boolean updateEntity(Integer key) {
+    public boolean updateEntity(String key) {
         CarModel fetchedCar = null;
-        for (CarModel car:carModelArrayList
-        ) {
+        for (CarModel car:carModelArrayList) {
             if (car.getChassisNumber().equals(String.valueOf(key))) {
                 fetchedCar = car;
                 if (car.isRented()) {

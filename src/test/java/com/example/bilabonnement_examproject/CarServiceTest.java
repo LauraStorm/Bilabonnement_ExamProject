@@ -24,7 +24,7 @@ public class CarServiceTest {
 
 
         //Arrange
-        CRUDInterface<CarModel,Integer> testRepo = new CarRepoTest();
+        CRUDInterface<CarModel,String> testRepo = new CarRepoTest();
         CarService carService = new CarService(testRepo);
         boolean expectedIsNotFound = false;
         boolean expectedIs18DigitsLong = false;
