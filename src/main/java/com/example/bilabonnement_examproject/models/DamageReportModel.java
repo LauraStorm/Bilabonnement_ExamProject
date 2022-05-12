@@ -1,11 +1,18 @@
 package com.example.bilabonnement_examproject.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class DamageReportModel {
     private int id;
     private String defectDescription;
     private double price;
     private String chassisNumber;
 
+    public DamageReportModel() {
+    }
 
     public DamageReportModel(String defectDescription, double price) {
         this.defectDescription = defectDescription;

@@ -24,12 +24,10 @@ public class CarService {
         if (chassisNumber.length() == 17 && !chassisNumber.matches("[a-zA-Z]+")
                 && chassisNumber.matches("[0-9]+")) {
 
-            for (CarModel carModel: carRepo.getAllEntities()) {
-                if (carModel.getChassisNumber().equals(chassisNumber)) {
+                if (carRepo.getSingleEntity(chassisNumber).getColor() != null) {
                     isValid = true;
                 }
             }
-        }
         return isValid;
     }
 

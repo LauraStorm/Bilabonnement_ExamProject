@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Damage overview</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+
+</head>
+<body>
+<h1>Overview</h1>
+<section>
+<p th:text="'place: ' + ${damage.defectDescription}"></p>
+<p th:text="'price: ' + ${damage.price}"></p>
+<a th:href="'/damage?carid='+ ${damage.getChassisNumber()}"><button class="goto_button">
+    Submit another damage
+</button></a>
+<a href="/carid"><button class="goto_button">
+    Submit for another car
+</button>
+</a>
+</section>
+<a href="/"><button class="goto_button">
+    Home
+</button>
+</a>
+</body>
+</html>
