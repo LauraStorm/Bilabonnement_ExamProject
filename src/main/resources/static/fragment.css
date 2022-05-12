@@ -55,15 +55,19 @@
     width: 65%;
 }
 
-input {
+.tabel {
     display: flex;
     justify-content: center;
-    margin-left: 600px;
-
+    flex-direction: column;
+    margin-left: 500px;
 }
 
-h1{
+.whiteboard{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-left: 300px;
+    padding-top: 100px;
+    padding-bottom: 5px;
 }
+

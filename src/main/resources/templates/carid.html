@@ -4,62 +4,30 @@
     <title>Stelnummer</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{style.css}" type="text/css">
 
 </head>
 <body>
-
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
 <br>
-<!--Side navigator -->
-<div class="container">
-    <section class="section 1">
-
-        <nav class="side-nav">
-            <div class="nav-valg ">
-                <h3>Dataregistrering</h3>
-                <a href="register-car">Registrer ny lejeaftale</a>
-            </div>
-
-            <br>
-
-            <div class="nav-valg">
-                <h3>Skade & Udbedring</h3>
-                <a href="">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
-                <a href="carid">Registrer fejl og mangler</a>
-            </div>
-
-            <br>
-
-            <div class="nav-valg">
-                <h3>Forretningsudviklere</h3>
-                <a href="">Vis oversigt over udlejede biler</a>
-                <a href="">Vis pris på udlejede biler</a>
-            </div>
-
-        </nav>
-
-    </section>
 
 
-
-
-    <section class="board">
-
-        <div class="logo">
-            <img id="logo"  src="pictures/Logo-bilabonnement.png">
-        </div>
-
-    </section>
-</div>
-
+<div class="whiteboard">
+    <div class="tabel">
 <h1>Find den bil du vil registrer skader på</h1>
 <form action="#" th:action="@{/carid}" method="post">
     <p>Stelnummer: <input name="carid" type="number"/></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil feltet" /></p>
+    <a href="/"><button class="goto_button">
+        Hjem
+    </button>
+    </a>
 </form>
-<a href="/"><button class="goto_button">
-    Home
-</button>
 </a>
+    </div>
+</div>
 </body>
 
 

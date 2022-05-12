@@ -4,50 +4,19 @@
     <meta charset="UTF-8">
     <title>Startside</title>
     <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
 
 </head>
+
 <body>
 <br>
-<!--Side navigator -->
-<div class="container">
-    <section class="section 1">
-
-        <nav class="side-nav">
-            <div class="nav-valg ">
-                <h3>Dataregistrering</h3>
-                <a href="register-car">Registrer ny lejeaftale</a>
-            </div>
-
-            <br>
-
-            <div class="nav-valg">
-                <h3>Skade & Udbedring</h3>
-                <a href="getreturncarpage">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
-                <a href="carid">Registrer fejl og mangler</a>
-            </div>
-
-            <br>
-
-            <div class="nav-valg">
-                <h3>Forretningsudviklere</h3>
-                <a href="">Vis oversigt over udlejede biler</a>
-                <a href="">Vis pris på udlejede biler</a>
-            </div>
-
-        </nav>
-
-    </section>
 
 
-
-
-    <section class="board">
-
-        <div class="logo">
-            <img id="logo"  src="pictures/Logo-bilabonnement.png">
-        </div>
-
-    </section>
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
+<div class="whiteboard">
+    <h1>HAlli hallo og lige et øjeblik !!!!!!!!!!!!!!!!!!!!!!!!!</h1>
 </div>
 
 </body>

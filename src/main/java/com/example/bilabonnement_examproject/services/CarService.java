@@ -35,8 +35,6 @@ public class CarService {
     }
 
     public List<CarModel> getRentedCars(List<CarModel> allCars){
-        CarRepo carRepo = new CarRepo();
-        //List<CarModel> allCars = carRepo.getAllEntities();
         List<CarModel> rentedCars = new ArrayList<CarModel>();
 
         for (int i = 0; i < allCars.size(); i++) {
@@ -47,6 +45,14 @@ public class CarService {
             }
         }
         return rentedCars;
+    }
+
+    public String convertBooleanTermsToString(boolean isRented){
+        if (isRented == true){
+            return "ja";
+        } else {
+            return "nej";
+        }
     }
 }
 

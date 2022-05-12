@@ -4,29 +4,37 @@
     <meta charset="UTF-8">
     <title>Registrer Abonnement</title>
     <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
 
 </head>
 <body>
-<div>
-<h1>Registrer lokation</h1>
-    <br>
-    <br>
-    <form action="get-location-information" method="post">
-        Adresse
-        <br>
-        <input type="text" name="address">
-        <br>
-        by
-        <br>
-        <input type="text" name="city">
-        <br>
-        postnummer
-        <br>
-        <input type="number" name="postcode">
-        <br>
-        <input type="submit">
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
 
-    </form>
+<div class="whiteboard">
+
+    <div class="tabel">
+        <h1>Registrer lokation</h1>
+        <div th:text="${error}" th:if="${error}" style="color: red"></div>
+
+        <form action="get-location-information" method="post">
+            Adresse
+            <br>
+            <input type="text" name="address">
+            <br>
+            by
+            <br>
+            <input type="text" name="city">
+            <br>
+            postnummer
+            <br>
+            <input type="number" name="postcode">
+            <br>
+            <input type="submit">
+        </form>
+    </div>
 </div>
+
 </body>
 </html>

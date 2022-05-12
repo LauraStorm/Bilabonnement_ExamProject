@@ -4,28 +4,35 @@
     <meta charset="UTF-8">
     <title>Lejede Biler</title>
     <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
 
 </head>
 <body>
-<div class="tabel">
-    <form action="">
-        <table>
-            <tr>
-                <th>Stel nummer</th>
-                <th>Model</th>
-                <th>Farve</th>
-                <th>Status</th>
-            </tr>
-            <tr th:name="rentedCars" th:each="rentedCars : ${rentedCars}">
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
+<div class="whiteboard">
+    <div class="tabel">
+    <h1>Udlejede biler</h1>
+        <form action="">
+            <table>
+                <tr>
+                    <th>Stel nummer</th>
+                    <th>Model</th>
+                    <th>Farve</th>
+                    <th>Status</th>
+                </tr>
+                <tr th:name="rentedCars" th:each="rentedCars : ${rentedCars}">
 
                 <td th:text="${rentedCars.getChassisNumber}"></td>
                 <td th:text="${rentedCars.getModel}"></td>
                 <td th:text="${rentedCars.getColor}"></td>
-                <td th:text="${rentedCars.isRented}"></td>
+                <td th:text="${rentedCars.isRentedToString(rentedCars.isRented)}"></td>
 
-            </tr>
-        </table>
-    </form>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 </body>
 </html>

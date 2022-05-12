@@ -14,6 +14,8 @@ public class LocationService {
         List<LocationModel> locations = locationRepo.getAllEntities();
         LocationModel locationModel = null;
 
+
+
         for (int i = 0; i < locations.size(); i++) {
             if (locations.get(i).getCity().equalsIgnoreCase(city) && locations.get(i).getAddress().equalsIgnoreCase(address)
             && locations.get(i).getPostcode()==postcode){

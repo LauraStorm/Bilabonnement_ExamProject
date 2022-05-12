@@ -10,59 +10,25 @@
 
 <br>
 <!--Side navigator -->
-<div class="container">
-    <section class="section 1">
 
-        <nav class="side-nav">
-            <div class="nav-valg ">
-                <h3>Dataregistrering</h3>
-                <a href="register-car">Registrer ny lejeaftale</a>
-            </div>
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
 
-            <br>
-
-            <div class="nav-valg">
-                <h3>Skade & Udbedring</h3>
-                <a href="">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
-                <a href="carid">Registrer fejl og mangler</a>
-            </div>
-
-            <br>
-
-            <div class="nav-valg">
-                <h3>Forretningsudviklere</h3>
-                <a href="">Vis oversigt over udlejede biler</a>
-                <a href="">Vis pris på udlejede biler</a>
-            </div>
-
-        </nav>
-
-    </section>
-
-
-
-
-    <section class="board">
-
-        <div class="logo">
-            <img id="logo"  src="pictures/Logo-bilabonnement.png">
-        </div>
-
-    </section>
-</div>
-
-
+<div class="whiteboard">
+    <div class="tabel">
 <h1>Skade formular</h1>
 <p th:name="carid" th:value="${carid}"></p>
-
 <form action="#" th:action="@{'/damage?carid='+${carid}}" th:object="${damage}" method="post">
     <p>Beskrivelse: <input type="text" th:field="*{defectDescription}" /></p>
     <p>Pris: <input type="text" th:field="*{price}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil felterne" /></p>
+    <a href="/"><button class="goto_button">
+        Hjem
+    </button>
 </form>
-<a href="/"><button class="goto_button">
-    Hjem
-</button>
-</a>
+</div>
+</div>
+</div>
 </body>
 </html>

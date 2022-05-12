@@ -17,31 +17,26 @@ public class SubscriptionService {
         } else {
             paid = "false";
         }
-
         return paid;
     }
 
     public String findType (int length){
         String type = "";
-
         if (length == 4){
             type = "limited";
         } else {
             type = "unlimited";
         }
-
         return type;
     }
 
     public int getTotalPriceForRentedCars () {
         List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
-
         int sum = 0;
         //If hvis den rented
         for (SubscriptionModel currentSubscription : allSubscriptions) {
             //antal mdr. * total pris pr. mdr.
         }
-
         return sum;
     }
 
