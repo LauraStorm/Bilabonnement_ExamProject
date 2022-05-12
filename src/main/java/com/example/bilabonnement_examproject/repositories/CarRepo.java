@@ -134,13 +134,17 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setBoolean(1, rentedStatus);
 
-            stmt.executeUpdate();
+            int update = stmt.executeUpdate();
+
+            if (update > 0){
+                System.out.println("Update complete");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("update fail");
         }
 
-        return new CarModel();
+        return carModel;
     }
 }

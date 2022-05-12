@@ -59,7 +59,12 @@ public class DamageController {
     }
 
     @GetMapping("/getreturncarpage")
-    public String getReturnCarPage(WebRequest dataFromForm){
+    public String getReturnCarPage(){
+        return "return-car";
+    }
+
+    @PostMapping("/returncarpage")
+    public String returnCarPage(WebRequest dataFromForm){
         CarRepo carRepo = new CarRepo();
         CarService carService = new CarService();
 
@@ -67,11 +72,11 @@ public class DamageController {
         carService.isChassisNumberValid(chassisNumberInput);
         carRepo.changeRentedStatus(chassisNumberInput);
 
-        return "return-car";
+        return "redirect:/return-car-success";
     }
 
     @GetMapping("/returncarsuccesspage")
-    public String returnCarSuccessPage(){
+    public String returnCarSuccessPage(Model modelToView){
         return "return-car-success";
     }
 }
