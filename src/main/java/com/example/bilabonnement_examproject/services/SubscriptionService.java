@@ -9,20 +9,23 @@ import java.util.List;
 public class SubscriptionService {
     private SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
 
+
     public String StringTooBooleanTerms(String input){
-        String paid = null;
+        String paid = "";
 
         if (input.equalsIgnoreCase("ja")){
             paid = "true";
+        } else if(input == null){
+            paid = "";
         } else {
             paid = "false";
         }
         return paid;
     }
 
-    public String findType (int length){
+    public String findType (String length){
         String type = "";
-        if (length == 4){
+        if (length.length() == 4){
             type = "limited";
         } else {
             type = "unlimited";

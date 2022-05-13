@@ -3,14 +3,12 @@ package com.example.bilabonnement_examproject.controllers;
 import com.example.bilabonnement_examproject.models.SubscriptionModel;
 import com.example.bilabonnement_examproject.repositories.SubscriptionRepo;
 import com.example.bilabonnement_examproject.services.SubscriptionService;
-import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
-import java.io.StringBufferInputStream;
 
 @Controller
 public class SubscriptionController {
@@ -21,30 +19,40 @@ public class SubscriptionController {
     }
 
     @PostMapping("/get-subscription-information")
-    public String getSubscriptionDetails(WebRequest dataFromForm, HttpSession session){
+    public String getSubscriptionDetails(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
         SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
         SubscriptionService subscriptionService = new SubscriptionService();
         SubscriptionModel subscriptionModel = null;
+        String errorMessage = "Alle felter skal udfyldes";
 
         String locationId = String.valueOf(session.getAttribute("locationIdSession"));
         String chassisNumber = String.valueOf(session.getAttribute("chassisSession"));
         String rentersId = String.valueOf(session.getAttribute("renterId"));
-        String selfrisk = subscriptionService.StringTooBooleanTerms(dataFromForm.getParameter("selfrisk"));
-        String deliveryInsurance = subscriptionService.StringTooBooleanTerms(dataFromForm.getParameter("deliveryInsurance"));
+        String selfrisk = (dataFromForm.getParameter("selfrisk"));
+        String deliveryInsurance = (dataFromForm.getParameter("deliveryInsurance"));
         String totalPrice = dataFromForm.getParameter("totalPrice");
         String lenght = dataFromForm.getParameter("lenght");
-        String subscriptionType = subscriptionService.findType(Integer.parseInt(lenght));
+        String subscriptionType = lenght;
         String pickupDate = dataFromForm.getParameter("pickupDate");
 
-        System.out.println(rentersId);
+        if (selfrisk == null || deliveryInsurance == null || totalPrice == "" || lenght == ""
+        || subscriptionType ==  "" || pickupDate == "") {
 
-        subscriptionModel = new SubscriptionModel(Boolean.parseBoolean(selfrisk), Boolean.parseBoolean(deliveryInsurance), Integer.parseInt(totalPrice),
-                Integer.parseInt(lenght), subscriptionType,chassisNumber, Integer.parseInt(locationId), Integer.parseInt(rentersId),
-                pickupDate);
+            attributes.addFlashAttribute("error", errorMessage);
+            return "redirect:/create-subscription";
 
-        subscriptionRepo.createEntity(subscriptionModel);
 
-        return"redirect:/success";
+        } else {
+
+            subscriptionModel = new SubscriptionModel(Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(selfrisk)),
+                    Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(deliveryInsurance)), Integer.parseInt(totalPrice),
+                    Integer.parseInt(lenght), subscriptionService.findType(subscriptionType), chassisNumber, Integer.parseInt(locationId), Integer.parseInt(rentersId),
+                    pickupDate);
+
+            subscriptionRepo.createEntity(subscriptionModel);
+
+            return "redirect:/success";
+        }
     }
     @GetMapping("/success")
     public String getSuccesPage(){

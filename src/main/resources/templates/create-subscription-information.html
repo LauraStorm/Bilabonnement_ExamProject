@@ -16,6 +16,7 @@
     <div class="tabel">
 
     <h1>Registrer abonnement</h1>
+        <div th:text="${error}" th:if="${error}" style="color: red"></div>
         <form action="get-subscription-information" method="post">
             Selvrisiko
             <br>
