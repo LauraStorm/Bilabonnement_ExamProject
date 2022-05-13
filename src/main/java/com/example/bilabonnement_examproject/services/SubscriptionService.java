@@ -50,7 +50,7 @@ public class SubscriptionService {
                     int spanDays = expectedTimeSpanPickUpAndEnd(
                             currentSubscription.getPickupDate(),currentSubscription.getLength()).getDays();
 
-                     */¨
+                     */
 
                     int spanMonths = expectedTimeSpanPickUpAndEnd(
                             currentSubscription.getPickupDate(),currentSubscription.getLength()).getMonths();

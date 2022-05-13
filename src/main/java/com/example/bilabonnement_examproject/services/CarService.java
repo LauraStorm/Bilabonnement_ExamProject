@@ -27,7 +27,7 @@ public class CarService {
         if (chassisNumber.length() == 17 && !chassisNumber.matches("[a-zA-Z]+")
                 && chassisNumber.matches("[0-9]+")) {
 
-                if (carRepo.getSingleEntity(chassisNumber).getColor() != null) {
+                if (!carRepo.getSingleEntity(chassisNumber).isRented()) {
                     isValid = true;
                 }
             }
