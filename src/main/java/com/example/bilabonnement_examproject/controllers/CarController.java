@@ -36,6 +36,7 @@ public class CarController {
             session.setAttribute("chassisSession", chassisNumberFromForm);
             boolean isUpdated = carRepo.updateEntity(chassisNumberFromForm);
             result = "redirect:/create-renter-information";
+
         } else if(chassisNumberFromForm.length() != 17) {
             attributes.addFlashAttribute("error", errorTypo);//errormessage?
             result = "redirect:/register-car";

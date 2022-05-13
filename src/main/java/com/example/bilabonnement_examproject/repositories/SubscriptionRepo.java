@@ -32,8 +32,9 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Intege
                 int locationID = rs.getInt("locations_id");
                 int rentersId = rs.getInt("renters_id");
                 String pickUpDate = rs.getString("pickup_date");
+                String deliveryDate = rs.getString("delivery_date");
 
-                SubscriptionModel subscription = new SubscriptionModel(id,selfRisk,deliveryInsurance,totalPrice,length,subscriptionType,chassisNumber,locationID,rentersId,pickUpDate);
+                SubscriptionModel subscription = new SubscriptionModel(id,selfRisk,deliveryInsurance,totalPrice,length,subscriptionType,chassisNumber,locationID,rentersId,pickUpDate, deliveryDate);
                 allSubscriptions.add(subscription);
 
             }
@@ -56,8 +57,8 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Intege
 
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO subscriptions(selfrisk, delivery_insurance, total_price_pr_md," +
-                    "length, subscription_type, cars_chassis_number, locations_id, renters_id, pickup_date)" +
-                    "VALUES (?,?,?,?,?,?,?,?,?)");
+                    "length, subscription_type, cars_chassis_number, locations_id, renters_id, pickup_date, delivery_date)" +
+                    "VALUES (?,?,?,?,?,?,?,?,?, ?)");
             stmt.setBoolean(1,entity.isSelfrisk());
             stmt.setBoolean(2,entity.isDeliveryInsurance());
             stmt.setInt(3,entity.getTotalPriceMd());
@@ -67,6 +68,7 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Intege
             stmt.setInt(7,entity.getLocationId());
             stmt.setInt(8, entity.getRentersId());
             stmt.setString(9, entity.getPickupDate());
+            stmt.setString(10,entity.getDeliveryDate());
 
             stmt.executeUpdate();
 

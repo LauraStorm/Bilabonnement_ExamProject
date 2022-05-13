@@ -34,6 +34,7 @@ public class SubscriptionController {
         String lenght = dataFromForm.getParameter("lenght");
         String subscriptionType = lenght;
         String pickupDate = dataFromForm.getParameter("pickupDate");
+        String deliveryDate = "";
 
         if (selfrisk == null || deliveryInsurance == null || totalPrice == "" || lenght == ""
         || subscriptionType ==  "" || pickupDate == "") {
@@ -47,7 +48,7 @@ public class SubscriptionController {
             subscriptionModel = new SubscriptionModel(Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(selfrisk)),
                     Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(deliveryInsurance)), Integer.parseInt(totalPrice),
                     Integer.parseInt(lenght), subscriptionService.findType(subscriptionType), chassisNumber, Integer.parseInt(locationId), Integer.parseInt(rentersId),
-                    pickupDate);
+                    pickupDate, subscriptionService.getDeliveryDate(pickupDate, Integer.parseInt(lenght)));
 
             subscriptionRepo.createEntity(subscriptionModel);
 

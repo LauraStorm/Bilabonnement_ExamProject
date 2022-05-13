@@ -11,8 +11,9 @@ public class SubscriptionModel {
     private int length;
     private String subscriptionType;
     private String pickupDate;
+    private String deliveryDate;
 
-    public SubscriptionModel(int id,boolean selfrisk,boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType,String chassisNumber, int locationId, int rentersId, String pickupDate) {
+    public SubscriptionModel(int id,boolean selfrisk,boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType,String chassisNumber, int locationId, int rentersId, String pickupDate, String deliveryDate) {
         this.id = id;
         this.locationId = locationId;
         this.chassisNumber = chassisNumber;
@@ -23,9 +24,10 @@ public class SubscriptionModel {
         this.length = length;
         this.subscriptionType = subscriptionType;
         this.pickupDate = pickupDate;
+        this.deliveryDate = deliveryDate;
     }
 
-    public SubscriptionModel(boolean selfrisk, boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType, String chassisNumber, int locationId,  int rentersId, String pickupDate) {
+    public SubscriptionModel(boolean selfrisk, boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType, String chassisNumber, int locationId,  int rentersId, String pickupDate, String deliveryDate) {
         this.locationId = locationId;
         this.chassisNumber = chassisNumber;
         this.rentersId = rentersId;
@@ -35,6 +37,7 @@ public class SubscriptionModel {
         this.length = length;
         this.subscriptionType = subscriptionType;
         this.pickupDate = pickupDate;
+        this.deliveryDate = deliveryDate;
     }
 
     public int getId() {
@@ -117,6 +120,14 @@ public class SubscriptionModel {
         this.pickupDate = pickupDate;
     }
 
+    public String getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
     @Override
     public String toString() {
         return "SubscriptionModel{" +
@@ -129,7 +140,8 @@ public class SubscriptionModel {
                 ", totalPriceMd=" + totalPriceMd +
                 ", length=" + length +
                 ", subscriptionType='" + subscriptionType + '\'' +
-                ", pickupDate=" + pickupDate +
+                ", pickupDate='" + pickupDate + '\'' +
+                ", deliveryDate='" + deliveryDate + '\'' +
                 '}';
     }
 }
