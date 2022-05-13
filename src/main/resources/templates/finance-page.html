@@ -16,17 +16,8 @@
 
 <div class="whiteboard">
     <div class="tabel">
-<h1>Find den bil du vil registrere skader på</h1>
-        <div th:text="${error}" th:if="${error}" style="color: red"></div>
-<form action="#" th:action="@{/carid}" method="post">
-    <p>Stelnummer: <input name="carid" type="number"/></p>
-    <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil feltet" /></p>
-    <a href="/"><button class="goto_button">
-        Hjem
-    </button>
-    </a>
-</form>
-</a>
+        <h1>Den forventede fortjeneste af nuværende lejeaftaler</h1>
+        <p class="title" th:name="sumofcurrentleases" th:text="${sumcurrentlease} + ' kr.'"></p>
     </div>
 </div>
 </body>

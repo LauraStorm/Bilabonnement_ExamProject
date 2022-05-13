@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,13 +27,14 @@ public class DamageController {
     }
 
     @PostMapping("/carid")
-    public String carIdSubmit(WebRequest formData) {
+    public String carIdSubmit(WebRequest formData, RedirectAttributes attributes) {
         String result = "";
         String carId = formData.getParameter("carid");
         assert carId != null;
         if (carService.isChassisNumberValid(carId)) {
             result = "redirect:/damage?carid=" + carId;
         } else {
+            attributes.addFlashAttribute("error","Stelnummeret findes ikke!");
             result = "redirect:/carid";
         }
         return result;
@@ -50,12 +52,23 @@ public class DamageController {
     @PostMapping("/damage")
     public String damageDataSubmit(@ModelAttribute DamageReportModel damage,
                                    Model model,
-                                   @RequestParam(value = "carid") String carId) {
+                                   @RequestParam(value = "carid") String carId,
+                                   RedirectAttributes attributes) {
+        String result = "";
         model.getAttribute("carid");
         damage.setChassisNumber(carId);
         model.addAttribute("damage", damage);
-        damageService.createDamageReport(damage);
-        return "result-damage";
+        if (damage.getDefectDescription().isEmpty()) {
+            attributes.addFlashAttribute("error","Der mangler en beskrivelse!");
+            result = "redirect:/damage?carid=" + carId;
+        } else if (damage.getPrice() == 0.0){
+            attributes.addFlashAttribute("error","Der mangler en pris!");
+            result = "redirect:/damage?carid=" + carId;
+        } else {
+            damageService.createDamageReport(damage);
+            result = "result-damage";
+        }
+        return result;
     }
 
     @GetMapping("/getreturncarpage")

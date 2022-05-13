@@ -27,8 +27,8 @@ public class CarController {
         String fejlbesked = "Stelnummer findes ikke";
 
 
-
-        if (carService.isChassisNumberValid(chassisNumberFromForm) == true){
+        assert chassisNumberFromForm != null;
+        if (carService.isChassisNumberValid(chassisNumberFromForm)){
 
             //hvis chassis number er valid og bilen er updatet bliver man sendt videre
             session.setAttribute("chassisSession", chassisNumberFromForm);
@@ -36,7 +36,7 @@ public class CarController {
             return "redirect:/create-renter-information";
 
         } else {
-            attributes.addFlashAttribute("error", fejlbesked);
+            attributes.addFlashAttribute("error", fejlbesked);//errormessage?
             //hvis chassis number ikke er valid bliver useren på siden
             return "redirect:/register-car";
         }
@@ -52,4 +52,5 @@ public class CarController {
 
         return "view-leased-cars";
     }
+
 }
