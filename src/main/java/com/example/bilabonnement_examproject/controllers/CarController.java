@@ -21,25 +21,31 @@ public class CarController {
 
     @PostMapping("/get-chassis-number")
     public String getChassisNumber(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
+        String result = "";
         CarRepo carRepo = new CarRepo();
         CarService carService = new CarService();
         String chassisNumberFromForm = dataFromForm.getParameter("chassis-number");
-        String fejlbesked = "Stelnummer findes ikke";
+        String errorRented = "Bilen er udlejet";
+        String errorTypo = "Stelnummeret er forkert";
 
 
         assert chassisNumberFromForm != null;
-        if (carService.isChassisNumberValid(chassisNumberFromForm)){
+        if (carService.isChassisNumberValid(chassisNumberFromForm)) {
 
             //hvis chassis number er valid og bilen er updatet bliver man sendt videre
             session.setAttribute("chassisSession", chassisNumberFromForm);
             boolean isUpdated = carRepo.updateEntity(chassisNumberFromForm);
-            return "redirect:/create-renter-information";
+            result = "redirect:/create-renter-information";
+        } else if(chassisNumberFromForm.length() != 17) {
+            attributes.addFlashAttribute("error", errorTypo);//errormessage?
+            result = "redirect:/register-car";
 
         } else {
-            attributes.addFlashAttribute("error", fejlbesked);//errormessage?
+            attributes.addFlashAttribute("error", errorRented);//errormessage?
             //hvis chassis number ikke er valid bliver useren på siden
-            return "redirect:/register-car";
+            result = "redirect:/register-car";
         }
+        return result;
     }
 
     @GetMapping("/rented-cars")
