@@ -27,8 +27,8 @@ public class CarController {
         String fejlbesked = "Stelnummer findes ikke";
 
 
-
-        if (carService.isChassisNumberValid(chassisNumberFromForm) == true){
+        assert chassisNumberFromForm != null;
+        if (carService.isChassisNumberValid(chassisNumberFromForm)){
 
             //hvis chassis number er valid og bilen er updatet bliver man sendt videre
             session.setAttribute("chassisSession", chassisNumberFromForm);
