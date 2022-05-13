@@ -115,4 +115,36 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
 
         return returnValue;
     }
+
+    public CarModel changeRentedStatus(String chassisNumber) {
+
+        Connection conn = DatabaseConnectionManager.getConnection();
+
+        CarModel carModel = getSingleEntity(chassisNumber);
+
+        boolean rentedStatus = true;
+
+        if (carModel.isRented() && rentedStatus == true){
+            rentedStatus = false;
+        }
+
+        try {
+
+            String sql = "UPDATE cars SET rented=?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setBoolean(1, rentedStatus);
+
+            int update = stmt.executeUpdate();
+
+            if (update > 0){
+                System.out.println("Update complete");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("update fail");
+        }
+
+        return carModel;
+    }
 }

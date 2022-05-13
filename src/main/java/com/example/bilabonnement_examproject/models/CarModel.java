@@ -16,6 +16,10 @@ public class CarModel {
         this.isRented = rented;
     }
 
+    public CarModel(){
+
+    }
+
     public String getChassisNumber() {
         return chassisNumber;
     }

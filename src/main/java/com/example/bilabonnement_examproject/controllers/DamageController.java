@@ -70,4 +70,26 @@ public class DamageController {
         }
         return result;
     }
+
+    @GetMapping("/getreturncarpage")
+    public String getReturnCarPage(){
+        return "return-car";
+    }
+
+    @PostMapping("/returncarpage")
+    public String returnCarPage(WebRequest dataFromForm){
+        CarRepo carRepo = new CarRepo();
+        CarService carService = new CarService();
+
+        String chassisNumberInput = dataFromForm.getParameter("chassis-number-input");
+        carService.isChassisNumberValid(chassisNumberInput);
+        carRepo.changeRentedStatus(chassisNumberInput);
+
+        return "redirect:/return-car-success";
+    }
+
+    @GetMapping("/returncarsuccesspage")
+    public String returnCarSuccessPage(Model modelToView){
+        return "return-car-success";
+    }
 }

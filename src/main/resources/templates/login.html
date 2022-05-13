@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kvittering </title>
+    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+</head>
+<body>
+<section class="content">
+    <div class="form">
+        <form class="" method="post" action="/login">
+            <br>
+            <br>
+            <p class="">Login</p>
+            <br>
+            <br>
+            <div class="">
+
+                <div class="inputdiv">
+
+                    <label for="login"> Login:</label>
+                    <input id="login" type="login" name="login" placeholder="Login"/>
+                    <br>
+                    <label for="adgangskode"> Adgangskode:</label>
+                    <input id="adgangskode" type="password" name="adgangskode" placeholder="Skriv din adgangskode"/>
+                    <br>
+                    <button input type="submit"> Login
+                        <p th:name="userid">
+                            <a th:href="${'usersite?id=' + userid}">   </a>
+                        </p>
+                    </button>
+                    <br>
+                    <br>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</section>
+</body>
+</html>
