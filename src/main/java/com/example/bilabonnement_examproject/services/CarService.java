@@ -34,6 +34,19 @@ public class CarService {
         return isValid;
     }
 
+    public List<CarModel> getUnrentedCars(List<CarModel> allCars){
+        List<CarModel> UnrentedCars = new ArrayList<CarModel>();
+
+        for (int i = 0; i < allCars.size(); i++) {
+            if (allCars.get(i).isRented() == false){
+                UnrentedCars.add(allCars.get(i));
+            } else {
+
+            }
+        }
+        return UnrentedCars;
+    }
+
     public List<CarModel> getRentedCars(List<CarModel> allCars){
         List<CarModel> rentedCars = new ArrayList<CarModel>();
 

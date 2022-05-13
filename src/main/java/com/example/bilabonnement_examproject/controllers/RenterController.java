@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -17,10 +19,11 @@ public class RenterController {
     }
 
     @PostMapping("/get-renter-information")
-    public String getRenterDetails(WebRequest dataFromForm, HttpSession session){
+    public String getRenterDetails(WebRequest dataFromForm, HttpSession session,  RedirectAttributes attributes){
         RenterRepo renterRepo = new RenterRepo();
         RenterService renterService = new RenterService();
         RenterModel renterModel = null;
+        String errorMessage = "Invalid bruger data";
 
         String firstName = dataFromForm.getParameter("firstName");
         String lastName = dataFromForm.getParameter("lastName");
@@ -33,6 +36,9 @@ public class RenterController {
         String regNumber = dataFromForm.getParameter("regNumber");
         String accountNumber = dataFromForm.getParameter("accountNumber");
 
+        if (regNumber ==""){
+            regNumber = "0";
+        }
         //validere inputs og redirecter til næste side hvis de er valide ellers bliver
         //man på siden
         if (renterService.isAccountNumberValid(Integer.parseInt(regNumber), accountNumber) &&
@@ -53,6 +59,7 @@ public class RenterController {
 
             return "redirect:/register-location";
         } else {
+            attributes.addFlashAttribute("error", errorMessage);
             return "redirect:/create-renter-information";
         }
     }
