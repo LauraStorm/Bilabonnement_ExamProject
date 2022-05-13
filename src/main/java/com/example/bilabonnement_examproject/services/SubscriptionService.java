@@ -45,13 +45,16 @@ public class SubscriptionService {
             if (currentCar.isRented()){
         for ( SubscriptionModel currentSubscription : allSubscriptions) {
                 if (currentCar.getChassisNumber().equals(currentSubscription.getChassisNumber())){
+
                     /*
                     int spanDays = expectedTimeSpanPickUpAndEnd(
                             currentSubscription.getPickupDate(),currentSubscription.getLength()).getDays();
 
-                     */
+                     */¨
+
                     int spanMonths = expectedTimeSpanPickUpAndEnd(
                             currentSubscription.getPickupDate(),currentSubscription.getLength()).getMonths();
+
                     sum += currentSubscription.getTotalPriceMd()*spanMonths;
                 }
             }
@@ -98,7 +101,6 @@ public class SubscriptionService {
     }
 
     public Period expectedTimeSpanPickUpAndEnd(String pickUpDate, int leaseLength){
-        String convertedPickupDate = "";
         HashMap<Integer,Month> monthHashMap = new HashMap<Integer,Month>();
         monthHashMap.put(1,Month.JANUARY);
         monthHashMap.put(2,Month.FEBRUARY);
