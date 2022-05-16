@@ -1,5 +1,6 @@
 package com.example.bilabonnement_examproject.controllers;
 
+import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.repositories.DamageRepo;
@@ -77,7 +78,7 @@ public class DamageController {
     }
 
     @PostMapping("/returncarpage")
-    public String returnCarPage(WebRequest dataFromForm){
+    public String returnCarPage(WebRequest dataFromForm, Model model){
         CarRepo carRepo = new CarRepo();
         CarService carService = new CarService();
 
@@ -85,11 +86,14 @@ public class DamageController {
         carService.isChassisNumberValid(chassisNumberInput);
         carRepo.changeRentedStatus(chassisNumberInput);
 
-        return "redirect:/return-car-success";
+        model.addAttribute("car", carRepo.getSingleEntity(chassisNumberInput));
+
+        return "redirect:/returncarsuccesspage";
     }
 
     @GetMapping("/returncarsuccesspage")
-    public String returnCarSuccessPage(Model modelToView){
+    public String returnCarSuccessPage(@ModelAttribute CarModel car, Model model) {
+        model.addAttribute("car", car);
         return "return-car-success";
     }
 }

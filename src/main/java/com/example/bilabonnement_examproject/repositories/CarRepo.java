@@ -124,15 +124,14 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
 
         boolean rentedStatus = true;
 
-        if (carModel.isRented() && rentedStatus == true){
+        if (carModel.isRented()){
             rentedStatus = false;
         }
 
         try {
 
-            String sql = "UPDATE cars SET rented=?";
+            String sql = "UPDATE cars SET rented=" + rentedStatus + " WHERE chassis_number="+chassisNumber;
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setBoolean(1, rentedStatus);
 
             int update = stmt.executeUpdate();
 

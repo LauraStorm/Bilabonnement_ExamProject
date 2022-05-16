@@ -36,3 +36,22 @@ input {
 
 }
 
+.tabel {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 300px;
+}
+
+.whiteboard{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 300px;
+    padding-top: 100px;
+    padding-bottom: 5px;
+}
+
+
