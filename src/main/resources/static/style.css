@@ -1,3 +1,27 @@
+
+h1{
+    display: flex;
+}
+/*
+input {
+    display: flex;
+    justify-content: center;
+    margin-left: 600px;
+
+}
+ */
+
+
+.choose-chassis-number-damage{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    font-size: 40px;
+    margin: 2.5% 50% 1%;
+
+}
+
 .tabel {
     position: relative;
     display: flex;
@@ -14,30 +38,6 @@
     margin-left: 300px;
     padding-top: 100px;
     padding-bottom: 5px;
-}
-
-h1{
-    display: flex;
-}
-/*
-input {
-    display: flex;
-    justify-content: center;
-    margin-left: 600px;
-
-}
-
- */
-
-
-.choose-chassis-number-damage{
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    flex-direction: column;
-    font-size: 40px;
-    margin: 2.5% 50% 1%;
-
 }
 
 

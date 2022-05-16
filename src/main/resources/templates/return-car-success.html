@@ -1,13 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Kvittering </title>
     <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
 </head>
 <body>
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
 
-fed!
+<div class="whiteboard">
+    Bilen blev succesfuldt opdateret
+
+    <table>
+        <tr>
+        <th>Stelnummer</th>
+        <th>Model</th>
+        <th>Farve</th>
+        <th>Lejet</th>
+        </tr>
+
+        <tr>
+            <td><p th:text="${car.chassisNumber}"></p></td>
+            <td><p th:text="${car.model}"></p></td>
+            <td><p th:text="${car.color}"></p></td>
+            <td><p th:text="${car.rented}"></p></td>
+        </tr>
+
+    </table>
+
+    <a href="/"> <button class="goto_button"> Hjem</button></a>
+
+
+
+</div>
 
 
 </body>
