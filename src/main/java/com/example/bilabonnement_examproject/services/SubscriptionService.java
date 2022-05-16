@@ -54,7 +54,7 @@ public class SubscriptionService {
         int sum = 0;
         for (CarModel currentCar : allCars) {
             if (currentCar.isRented()){
-            for ( SubscriptionModel currentSubscription : allSubscriptions) {
+        for ( SubscriptionModel currentSubscription : allSubscriptions) {
                 if (currentCar.getChassisNumber().equals(currentSubscription.getChassisNumber())){
 
                     /*
@@ -76,6 +76,7 @@ public class SubscriptionService {
     }
 
 
+
     //år-månede-dag -> xxxx-xx-xx
     public String getDeliveryDate(String pickupDate, int lenght){
         String deliveryDate = "";
@@ -94,7 +95,7 @@ public class SubscriptionService {
         int yearNumber = Integer.parseInt(year);
 
 
-        while(monthNumber >= 12) {
+        while(monthNumber > 12) {
             if (monthNumber > 12) {
                 monthNumber = monthNumber - 12;
                 yearNumber = yearNumber + 1;
@@ -142,9 +143,9 @@ public class SubscriptionService {
         List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
 
         int totalPriceForAllRentedCars = 0;
+
         for (CarModel aCar:allCars) {
-            boolean isCarRented = aCar.isRented();
-            if (isCarRented == true){
+            if (aCar.isRented()== true){
 
                 for (SubscriptionModel aSubscription : allSubscriptions) {
                     if(aCar.getChassisNumber() == aSubscription.getChassisNumber()){
@@ -153,17 +154,22 @@ public class SubscriptionService {
                         int leasingLengthInMonth = aSubscription.getLength();
                         int pricePrMonth = aSubscription.getTotalPriceMd();
                         totalPriceForAllRentedCars = totalPriceForAllRentedCars + leasingLengthInMonth * pricePrMonth;
+                        System.out.println(aSubscription);
+                        System.out.println(totalPriceForAllRentedCars);
                     }
                 }
             }
 
         }
+        System.out.println(totalPriceForAllRentedCars);
         return totalPriceForAllRentedCars;
     }
 
     public int getCurrentTotalPriceStatus(){ //lau
        //Start dato til i dag * total pris pr mdr.
         List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
+        CarService carService = new CarService();
+        List<CarModel> allRentedCars = carService.getRentedCars(carRepo.getAllEntities());
         //liste med current lejeaftaler
         List<SubscriptionModel> nowleasing = new ArrayList<SubscriptionModel>();
 
@@ -171,6 +177,14 @@ public class SubscriptionService {
         LocalDate todaysDate = LocalDate.now();
         //pickup day
         LocalDate pickupDate;
+
+        for (int i = 0; i < allRentedCars.size(); i++) {
+            for (int j = 0; j < allSubscriptions.size(); j++) {
+                if (allRentedCars.get(i).getChassisNumber() == allSubscriptions.get(j).getChassisNumber()){
+
+                }
+            }
+        }
 
         int totalSum = 0;
         for (SubscriptionModel aSubscription :allSubscriptions) {

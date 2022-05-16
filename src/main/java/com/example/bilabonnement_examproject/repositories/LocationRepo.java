@@ -58,10 +58,11 @@ public class LocationRepo implements CRUDInterface<LocationModel, Integer>{
             int deliveryPrice = rs.getInt("delivery_price");
 
             location = new LocationModel(locationId,address,city,postcode,deliveryPrice);
+            return location;
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     @Override

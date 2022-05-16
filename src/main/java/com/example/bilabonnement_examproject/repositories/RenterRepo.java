@@ -24,7 +24,7 @@ public class RenterRepo implements CRUDInterface<RenterModel, Integer>{
 
 
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM renters WHERE chassis_number=?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM renters WHERE id=?");
             stmt.setInt(1,id);
             ResultSet rs = stmt.executeQuery();
 
@@ -50,7 +50,6 @@ public class RenterRepo implements CRUDInterface<RenterModel, Integer>{
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("renter not found");
-
             return null;
         }
     }

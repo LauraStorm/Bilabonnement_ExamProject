@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Integer>{
+
     @Override
     public List<SubscriptionModel> getAllEntities() {
         ArrayList<SubscriptionModel> allSubscriptions = new ArrayList<SubscriptionModel>();
-
 
         try {
             Connection conn = DatabaseConnectionManager.getConnection();

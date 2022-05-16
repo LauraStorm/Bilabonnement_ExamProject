@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class FinanceController {
-    private SubscriptionService subscriptionService = new SubscriptionService();
 
     @GetMapping("/finance")
     public String showFinances(Model model){
-        model.addAttribute("sumcurrentlease",subscriptionService.getTotalPriceForRentedCars());
+        SubscriptionService subscriptionService = new SubscriptionService();
+        model.addAttribute("sumcurrentlease",subscriptionService.getCurrentTotalPriceStatus());
         return "finance-page";
     }
 }

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Registrer Abonnement</title>
+  <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
   <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
 </head>
 <body>
@@ -10,10 +11,90 @@
   <th:block th:replace="fragments/navigator :: nav"></th:block>
 </nav>
 <div class="whiteboard">
-  <div class="tabel">
-  <h1>HAlli hallo og lige et øjeblik !!!!!!!!!!!!!!!!!!!!!!!!!</h1>
-</div>
 
+  <div class="receipt">
+    <h3>Oprettede lejeaftale</h3>
+    <form class="receipt-form">
+    <table class="skema">
+      <p>Udlejet Bil</p>
+      <tr>
+        <th>Stel nummer</th>
+        <th>Model</th>
+        <th>Farve</th>
+        <th>Status</th>
+      </tr>
+
+        <td th:text="${car.getChassisNumber}"></td>
+        <td th:text="${car.getModel}"></td>
+        <td th:text="${car.getColor}"></td>
+        <td th:text="${car.isRentedToString(car.isRented)}"></td>
+
+      </tr>
+    </table>
+
+    <table class="skema">
+      <p>Pickup Lokation</p>
+      <tr>
+        <th>Adresse</th>
+        <th>By</th>
+        <th>Postnummer</th>
+        <th>Afhentnings Pris</th>
+      </tr>
+
+      <td th:text="${location.getAddress}"></td>
+      <td th:text="${location.getCity}"></td>
+      <td th:text="${location.getPostcode}"></td>
+      <td th:text="${location.getDeliveryPrice}"></td>
+
+      </tr>
+    </table>
+
+    <table class="skema">
+      <p>Lejer Info</p>
+      <tr>
+        <th>Fornavn</th>
+        <th>Efternavn</th>
+        <th>Tlf</th>
+        <th>Email</th>
+        <th>Adresse</th>
+        <th>By</th>
+        <th>Postnummer</th>
+      </tr>
+
+      <td th:text="${renter.getFirstName}"></td>
+      <td th:text="${renter.getLastName}"></td>
+      <td th:text="${renter.getTlf}"></td>
+      <td th:text="${renter.getEmail}"></td>
+      <td th:text="${renter.getAddress}"></td>
+      <td th:text="${renter.getCity}"></td>
+      <td th:text="${renter.getPostcode}"></td>
+
+      </tr>
+    </table>
+
+    <table class="skema">
+      <p>Abonnement Info</p>
+      <tr>
+        <th>Selvrisiko</th>
+        <th>Afhentnings Forsikring</th>
+        <th>Pris pr mdr</th>
+        <th>Abonnements Type</th>
+        <th>Pickup Dato</th>
+        <th>Afleverings Dato</th>
+      </tr>
+
+      <td th:text="${subscription.isSelfrisk}"></td>
+      <td th:text="${subscription.isDeliveryInsurance}"></td>
+      <td th:text="${subscription.getTotalPriceMd}"></td>
+      <td th:text="${subscription.getSubscriptionType}"></td>
+      <td th:text="${subscription.getPickupDate}"></td>
+      <td th:text="${subscription.getDeliveryDate}"></td>
+
+      </tr>
+    </table>
+    </form>
+    <a href="/"><button class="goto_button">Forside</button></a>
+  </div>
 </div>
 </body>
 </html>

@@ -12,7 +12,7 @@
     <th:block th:replace="fragments/navigator :: nav"></th:block>
 </nav>
 <div class="whiteboard">
-    <div class="tabel">
+    <div class="receipt">
     <h1>Udlejede biler</h1>
         <form action="">
             <table>
@@ -20,7 +20,7 @@
                     <th>Stel nummer</th>
                     <th>Model</th>
                     <th>Farve</th>
-                    <th>Status</th>
+                    <th>Udlejet</th>
                 </tr>
                 <tr th:name="rentedCars" th:each="rentedCars : ${rentedCars}">
 

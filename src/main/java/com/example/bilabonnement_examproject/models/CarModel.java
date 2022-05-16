@@ -50,7 +50,6 @@ public class CarModel {
 
     public String isRentedToString(boolean isRented){
         CarService carService = new CarService();
-
         return carService.convertBooleanTermsToString(isRented);
     }
 
