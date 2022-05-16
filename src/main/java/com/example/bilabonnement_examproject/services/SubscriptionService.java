@@ -2,6 +2,7 @@ package com.example.bilabonnement_examproject.services;
 
 import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.SubscriptionModel;
+import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.repositories.SubscriptionRepo;
 
@@ -9,13 +10,20 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class SubscriptionService {
-    private SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
-    private CarRepo carRepo = new CarRepo();
+    private CRUDInterface subscriptionRepo = new SubscriptionRepo();
+    private CRUDInterface carRepo = new CarRepo();
 
+    public SubscriptionService (CRUDInterface<SubscriptionModel,Integer> subscriptionRepository, CRUDInterface<CarModel,String> carRepository){
+        this.subscriptionRepo =subscriptionRepository;
+        this.carRepo=carRepository;
+    }
+
+    public SubscriptionService (){
+
+    }
 
     public String StringTooBooleanTerms(String input){
         String paid = "";
@@ -46,7 +54,7 @@ public class SubscriptionService {
         int sum = 0;
         for (CarModel currentCar : allCars) {
             if (currentCar.isRented()){
-        for ( SubscriptionModel currentSubscription : allSubscriptions) {
+            for ( SubscriptionModel currentSubscription : allSubscriptions) {
                 if (currentCar.getChassisNumber().equals(currentSubscription.getChassisNumber())){
 
                     /*
@@ -66,7 +74,6 @@ public class SubscriptionService {
         }
         return sum;
     }
-
 
 
     //år-månede-dag -> xxxx-xx-xx
@@ -128,4 +135,96 @@ public class SubscriptionService {
 
         return today.until(endOfLease);
     }
+
+
+    public int getTotalPriceForAllRentedCars(){  //lau
+        List<CarModel> allCars = carRepo.getAllEntities();
+        List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
+
+        int totalPriceForAllRentedCars = 0;
+        for (CarModel aCar:allCars) {
+            boolean isCarRented = aCar.isRented();
+            if (isCarRented == true){
+
+                for (SubscriptionModel aSubscription : allSubscriptions) {
+                    if(aCar.getChassisNumber() == aSubscription.getChassisNumber()){
+
+                        //antal mdr. * total pris pr. mdr.
+                        int leasingLengthInMonth = aSubscription.getLength();
+                        int pricePrMonth = aSubscription.getTotalPriceMd();
+                        totalPriceForAllRentedCars = totalPriceForAllRentedCars + leasingLengthInMonth * pricePrMonth;
+                    }
+                }
+            }
+
+        }
+        return totalPriceForAllRentedCars;
+    }
+
+    public int getCurrentTotalPriceStatus(){ //lau
+       //Start dato til i dag * total pris pr mdr.
+        List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
+        //liste med current lejeaftaler
+        List<SubscriptionModel> nowleasing = new ArrayList<SubscriptionModel>();
+
+        //dags dato
+        LocalDate todaysDate = LocalDate.now();
+        //pickup day
+        LocalDate pickupDate;
+
+        int totalSum = 0;
+        for (SubscriptionModel aSubscription :allSubscriptions) {
+            String [] pickup = aSubscription.getPickupDate().split("-");
+            //pickup day
+            int pickupYear = Integer.parseInt(pickup[0]);
+            int pickupMonth = Integer.parseInt(pickup[1]);
+            int pickupDay = Integer.parseInt(pickup[2]);
+            pickupDate = LocalDate.of(pickupYear,pickupMonth,pickupDay);
+            //Delivery
+            String [] delivery = aSubscription.getDeliveryDate().split("-");
+            int deliveryYear = Integer.parseInt(delivery[0]);
+            int deliveryMonth = Integer.parseInt(delivery[1]);
+            int deliveryDay = Integer.parseInt(delivery[2]);
+            LocalDate deliveryDate = LocalDate.of(deliveryYear,deliveryMonth,deliveryDay);
+
+            //HVIS pick up er før d.d. og delivery er efter d.d.
+            if (pickupDate.isBefore(todaysDate) && deliveryDate.isAfter(todaysDate)){
+                nowleasing.add(aSubscription);
+
+                Period periodBetweenDates = Period.between(pickupDate,todaysDate);
+                System.out.println("period: " + periodBetweenDates);
+                System.out.println("month: " +periodBetweenDates.getMonths());
+
+                int totalMonth = 0;
+                if (periodBetweenDates.getYears() <= 1 ){
+                    totalMonth += 12 * periodBetweenDates.getYears();
+                }
+                if (periodBetweenDates.getMonths() != 0){
+                    totalMonth += periodBetweenDates.getMonths();
+                }
+
+                if (periodBetweenDates.getMonths() == 0 && periodBetweenDates.getDays() > 0 ){
+                    totalMonth += 1;
+                }
+
+                int sum = totalMonth * aSubscription.getTotalPriceMd();
+                totalSum = totalSum + sum;
+            }
+        }
+        System.out.println("size: " +nowleasing.size());
+        System.out.println("totalSum: " +totalSum);
+
+        return totalSum;
+    }
+
+    public int getExpectedSumFromTodayUntilDeliveryDate (){
+        int totalLeasePrice = getTotalPriceForAllRentedCars();
+        int currentTotalPriceStatus = getCurrentTotalPriceStatus();
+
+        int expectedMoneyToReceive = totalLeasePrice - currentTotalPriceStatus;
+
+        return expectedMoneyToReceive;
+    }
+
+
 }
