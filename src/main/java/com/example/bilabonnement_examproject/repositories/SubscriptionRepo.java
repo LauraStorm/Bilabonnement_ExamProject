@@ -48,6 +48,7 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Intege
 
     @Override
         public SubscriptionModel getSingleEntity(Integer id) {
+
         return null;
     }
 

@@ -42,6 +42,25 @@ public class LocationRepo implements CRUDInterface<LocationModel, Integer>{
 
     @Override
     public LocationModel getSingleEntity(Integer id) {
+        Connection conn = DatabaseConnectionManager.getConnection();
+        LocationModel location = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM locations WHERE id=?");
+            stmt.setInt(1,id);
+            ResultSet rs = stmt.executeQuery();
+
+            rs.next();
+            int locationId = rs.getInt("id");
+            String address = rs.getString("address");
+            String city =rs.getString("city");
+            int postcode = rs.getInt("postcode");
+            int deliveryPrice = rs.getInt("delivery_price");
+
+            location = new LocationModel(locationId,address,city,postcode,deliveryPrice);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

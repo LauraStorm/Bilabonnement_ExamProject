@@ -41,7 +41,6 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
 
     @Override
     public CarModel getSingleEntity(String id) {
-
         Connection conn = DatabaseConnectionManager.getConnection();
         CarModel car = null;
 

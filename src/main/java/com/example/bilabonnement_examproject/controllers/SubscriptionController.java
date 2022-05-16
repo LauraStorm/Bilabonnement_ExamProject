@@ -55,6 +55,12 @@ public class SubscriptionController {
             return "redirect:/success";
         }
     }
+
+    @GetMapping("/")
+    public String getSubscriptionReceipt(){
+
+        return "subscription-receipt";
+    }
     @GetMapping("/success")
     public String getSuccesPage(){
         return "success-page";

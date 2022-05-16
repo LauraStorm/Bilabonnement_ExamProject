@@ -24,8 +24,8 @@ class SubscriptionServiceTest {
         int valid = subscriptionService.getTotalPriceForAllRentedCars();
 
         //ASSERT
-        assertEquals(expectedValidTotalSum,valid);  //TRUE
-        //assertEquals(expectedInvalidSum,valid); //False
+        //assertEquals(expectedValidTotalSum,valid);  //TRUE
+        assertEquals(expectedInvalidSum,valid); //False
     }
     @Test
     void getCurrentTotalPriceStatus(){

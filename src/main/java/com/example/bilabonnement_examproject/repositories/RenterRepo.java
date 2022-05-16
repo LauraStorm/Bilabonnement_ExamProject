@@ -1,5 +1,6 @@
 package com.example.bilabonnement_examproject.repositories;
 
+import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.RenterModel;
 import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
 
@@ -18,7 +19,40 @@ public class RenterRepo implements CRUDInterface<RenterModel, Integer>{
 
     @Override
     public RenterModel getSingleEntity(Integer id) {
-        return null;
+        Connection conn = DatabaseConnectionManager.getConnection();
+        RenterModel renter = null;
+
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM renters WHERE chassis_number=?");
+            stmt.setInt(1,id);
+            ResultSet rs = stmt.executeQuery();
+
+
+            rs.next();
+            int renterId = rs.getInt("id");
+            String firstName = rs.getString("first_name");
+            String lastName = rs.getString("last_name");
+            String address = rs.getString("adress");
+            int postcode =rs.getInt("postcode");
+            String city = rs.getString("city");
+            String email = rs.getString("email");
+            int tlf = rs.getInt("tlf_number");
+            String cpr = rs.getString("cpr_number");
+            int regNr =rs.getInt("reg_number");
+            String accountNumber =rs.getString("account_number");
+
+
+            renter = new RenterModel(renterId,firstName,lastName,address,postcode,city,email,tlf,cpr,regNr,accountNumber);
+            System.out.println(renter);
+            return renter;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("renter not found");
+
+            return null;
+        }
     }
 
     @Override
