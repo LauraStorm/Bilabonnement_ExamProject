@@ -12,9 +12,10 @@
 </nav>
 
 <div class="whiteboard">
-    Bilen blev succesfuldt opdateret
-
-    <table>
+    <div class="receipt">
+    <h3>Bilen blev succesfuldt opdateret</h3>
+    <form class="receipt-form">
+    <table class="skema">
         <tr>
         <th>Stelnummer</th>
         <th>Model</th>
@@ -23,20 +24,18 @@
         </tr>
 
         <tr>
-            <td><p th:text="${car.chassisNumber}"></p></td>
-            <td><p th:text="${car.model}"></p></td>
-            <td><p th:text="${car.color}"></p></td>
-            <td><p th:text="${car.rented}"></p></td>
+            <td th:text="${car.chassisNumber}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.color}"></td>
+            <td th:text="${car.rented}"></td>
         </tr>
 
     </table>
+    </form>
 
     <a href="/"> <button class="goto_button"> Hjem</button></a>
 
-
-
+    </div>
 </div>
-
-
 </body>
 </html>

@@ -16,16 +16,21 @@
 
 <div class="whiteboard">
 
-    <h1>Aflever bil</h1>
+    <div class="tabel">
+        <h1>Aflever bil</h1>
 
-    <form action="/returncarpage" method="post">
-        <br>
-        <br>
-        Indtast stelnummer:
-        <br>
-        <input type="number" name="chassis-number-input">
-        <input type="submit" value="Register">
-    </form>
+        <div th:text="${error}" th:if="${error}" style="color: red"></div>
+
+
+        <form action="/returncarpage" method="post">
+            <br>
+            <br>
+            Indtast stelnummer:
+            <br>
+            <input type="number" name="chassis-number-input">
+            <p><input type="submit" value="Register"> <input type="reset" value="Nulstil feltet" /></p>
+        </form>
+    </div>
 
 </div>
 
