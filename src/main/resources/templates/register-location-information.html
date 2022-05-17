@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Registrer Abonnement</title>
@@ -17,21 +17,21 @@
     <div class="tabel">
         <h1>Registrer lokation</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
+        <form action="#" th:action="@{/register-location}" th:object="${location}" method="post">
+        <div class="dropdown">
 
-        <form action="get-location-information" method="post">
-            Adresse
-            <br>
-            <input type="text" name="address">
-            <br>
-            By
-            <br>
-            <input type="text" name="city">
-            <br>
-            Postnummer
-            <br>
-            <input type="number" name="postcode">
-            <br>
-            <input type="submit">
+            <div value="">Vælg afhentning</div>
+            <div class="dropdown-content">
+                <select th:field="*{id}">
+                    <option selected="selected"  th:each="location: ${locations}"
+                             th:text="${location.city}+',' + ${location.address}"
+                             th:value="${location.id}">
+
+                    </option>
+                </select>
+            </div>
+        </div>
+        <p><input type="submit" value="Videre" /></p>
         </form>
     </div>
 </div>

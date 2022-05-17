@@ -7,6 +7,9 @@ public class LocationModel {
     private int postcode;
     private int deliveryPrice;
 
+    public LocationModel() {
+    }
+
     public LocationModel(int id, String address, String city, int postcode, int deliveryPrice) {
         this.id = id;
         this.address = address;

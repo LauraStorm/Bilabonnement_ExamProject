@@ -26,6 +26,7 @@
             <p>Vilkår: <input type="text" th:field="*{terms}" /></p>
             <p>Kørte kilometer: <input type="text" th:field="*{kilometersDriven}"/></p>
             <p>Købsprisen: <input type="text" th:field="*{purchasePrice}"/></p>
+            <p>Overkørte kilometer: <input type="text" th:field="*{extendKilometer}"/></p>
             <div class="dropdown">
 
                 <div value="">Vælg afhentning</div>
@@ -34,7 +35,6 @@
                 <option  th:each="location: ${locations}"
                 th:text="${location.city}+',' + ${location.address}"
                          th:value="${location.id}">
-
                 </option>
                     </select>
             </div>

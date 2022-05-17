@@ -61,14 +61,16 @@ public class AdvanceAgreementRepo implements CRUDInterface<AdvanceAgreementModel
             pstmt.setString(2, entity.getChassisNumber());
             pstmt.setInt(3,entity.getKilometersDriven());
             pstmt.setString(4, entity.getTerms());
-            pstmt.setInt(5,entity.getRefusalPrice());
-            pstmt.setInt(6,entity.getPurchasePrice());
-            pstmt.setInt(7,entity.getLocationId());
+            pstmt.setInt(5,entity.getExtendKilometer());
+            pstmt.setInt(6,entity.getRefusalPrice());
+            pstmt.setInt(7,entity.getPurchasePrice());
+            pstmt.setInt(8,entity.getLocationId());
 
             int i = pstmt.executeUpdate();
             System.out.println(i + "records inserted");
             return true;
         } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
             System.out.println("Something went wrong!");
             return false;
         }
