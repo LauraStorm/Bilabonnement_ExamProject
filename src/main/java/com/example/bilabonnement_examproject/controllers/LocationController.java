@@ -12,6 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @Controller
 public class LocationController {
@@ -20,8 +21,11 @@ public class LocationController {
 
     @GetMapping("/register-location")
     public String getRegisterLocationPage(Model model){
+        ArrayList<LocationModel> locationModelsWithExtra = new ArrayList<LocationModel>();
+        locationModelsWithExtra.add(new LocationModel("Vælg adresse","Vælg by",-1,-1));
+        locationModelsWithExtra.addAll(locationRepo.getAllEntities());
         model.addAttribute("location",new LocationModel());
-        model.addAttribute("locations",locationRepo.getAllEntities());
+        model.addAttribute("locations",locationModelsWithExtra);
         return "register-location-information";
     }
 
@@ -30,10 +34,8 @@ public class LocationController {
                                      WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
         String errorMessage = "Lokationen findes ikke";
         model.addAttribute("location",location);
-
             session.setAttribute("locationIdSession", location.getId());
-
-            if (location.getId() < 0) {
+            if (location.getId() == 0) {
 
                 attributes.addFlashAttribute("error", errorMessage);
 
@@ -43,38 +45,6 @@ public class LocationController {
                 return "redirect:/create-subscription";
         }
 
-
-
-
-
-
-
-        /*
-        String address = dataFromForm.getParameter("address");
-        String city = dataFromForm.getParameter("city");
-        String postcode = dataFromForm.getParameter("postcode");
-
-        if (postcode == ""){
-            postcode = "0";
-        }
-
-        String fejlBesked = "Lokationen findes ikke";
-
-        if (locationService.isLocationValid(city,address,Integer.parseInt(postcode)) == true) {
-
-            location = locationRepo.getSingleLocationByCityAndZipcode(city, Integer.parseInt(postcode), address);
-
-            session.setAttribute("locationIdSession", location.getId());
-
-            return "redirect:/create-subscription";
-        } else {
-
-            attributes.addFlashAttribute("error", fejlBesked);
-
-            return "redirect:/register-location";
-        }
-
-         */
 
     }
 }
