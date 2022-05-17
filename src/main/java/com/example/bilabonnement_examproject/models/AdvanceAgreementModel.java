@@ -5,15 +5,21 @@ import java.util.Random;
 
 public class AdvanceAgreementModel {
     private int id;
+    private String chassisNumber;
     private String terms;
     private double kilometersDriven;
-    private String damage;
-    private int damagePrice;
-    private HashMap<String, Integer> refusalHashMap;
     private double extendKilometerPrice;
     private double refusalTotalPrice;
     private Double purchasePrice;
     private String pickUpLocation;
+
+    public String getChassisNumber() {
+        return chassisNumber;
+    }
+
+    public void setChassisNumber(String chassisNumber) {
+        this.chassisNumber = chassisNumber;
+    }
 
     public int getId() {
         return id;
@@ -37,30 +43,6 @@ public class AdvanceAgreementModel {
 
     public void setKilometersDriven(double kilometersDriven) {
         this.kilometersDriven = kilometersDriven;
-    }
-
-    public String getDamage() {
-        return damage;
-    }
-
-    public void setDamage(String damage) {
-        this.damage = damage;
-    }
-
-    public int getDamagePrice() {
-        return damagePrice;
-    }
-
-    public void setDamagePrice(int damagePrice) {
-        this.damagePrice = damagePrice;
-    }
-
-    public HashMap<String, Integer> getRefusalHashMap() {
-        return refusalHashMap;
-    }
-
-    public void setRefusalHashMap(HashMap<String, Integer> refusalHashMap) {
-        this.refusalHashMap = refusalHashMap;
     }
 
     public double getExtendKilometerPrice() {
