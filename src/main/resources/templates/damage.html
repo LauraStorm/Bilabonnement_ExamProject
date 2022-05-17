@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Skade</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -36,16 +36,15 @@
     </table>
 <h1>Tilføj skade:</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
-        <p th:name="carid" th:value="${carid}"></p>
-<form action="#" th:action="@{'/damage?carid='+${carid}}" th:object="${damage}" method="post">
+<form action="#" th:action="@{'/damage?chassisnumber='+${chassisnumber}}" th:object="${damage}" method="post">
     <p>Beskrivelse: <input type="text" th:field="*{defectDescription}" /></p>
     <p>Pris: <input type="text" th:field="*{price}"/></p>
     <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil felterne" /></p>
-    <a href="/"><button class="goto_button">
-        Hjem
-    </button>
-    </a>
 </form>
+            <a href="/"><button class="goto_button">
+                Hjem
+            </button>
+            </a>
 </div>
 </div>
 </body>

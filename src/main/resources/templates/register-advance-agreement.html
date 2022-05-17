@@ -22,7 +22,7 @@
         <h1>Registrerings formular</h1>
         <p th:name="carid" th:value="${carid}"></p>
         <div th:text="${errormessage}" th:if="${errormessage}" style="color: red"></div>
-        <form action="#" th:action="@{'/registeradvanceagreement?carid='+${carid}}" th:object="${advanceagreement}" method="post">
+        <form action="#" th:action="@{'/registeradvanceagreement?chassisnumber='+${chassisnumber}}" th:object="${advanceagreement}" method="post">
             <p>Vilkår: <input type="text" th:field="*{terms}" /></p>
             <p>Kørte kilometer: <input type="text" th:field="*{kilometersDriven}"/></p>
             <p>Købsprisen: <input type="text" th:field="*{purchasePrice}"/></p>

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Skades kvittering</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -28,11 +28,11 @@
                 <td><p th:text="${damage.price}"></p></td>
             </tr>
         </table>
-<a th:href="'/damage?carid='+ ${damage.getChassisNumber()}">
+<a th:href="'/damage?chassisnumber='+ ${damage.getChassisNumber()}">
     <button class="goto_button">
     Ny skade
 </button></a>
-<a href="/carid"><button class="goto_button">
+<a href="/selectchassisnumber?key=1"><button class="goto_button">
     Ny bil
 </button>
 </a>

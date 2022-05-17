@@ -18,8 +18,19 @@
     <div class="tabel">
 <h1>Find den bil du vil registrere skader på</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
-<form action="#" th:action="@{/carid}" method="post">
-    <p>Stelnummer: <input name="carid" type="number"/></p>
+<form action="#" th:action="@{'/selectchassisnumber?key='+${key}}" method="post">
+    <div class="dropdown">
+        <div value="">Vælg bil</div>
+        <div class="dropdown-content">
+            <form action="#" th:object="${car}" method="post">
+            <select th:field="*{chassisNumber}">
+                <option  th:each="cars: ${availablecars}"
+                         th:text="${cars.color}+ ',' + ${cars.model}+',' + ${cars.chassisNumber}"
+                         th:value="${cars.chassisNumber}">
+                </option>
+            </select>
+        </div>
+    </div>
     <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil feltet" /></p>
     <a href="/"><button class="goto_button">
         Hjem

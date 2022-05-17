@@ -2,6 +2,7 @@ package com.example.bilabonnement_examproject.controllers;
 
 
 import com.example.bilabonnement_examproject.models.AdvanceAgreementModel;
+import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.repositories.AdvanceAgreementRepo;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.repositories.DamageRepo;
@@ -27,6 +28,7 @@ public class AdvanceAgreementController {
     private AdvanceAgreementRepo advanceAgreementRepo = new AdvanceAgreementRepo();
     private LocationRepo locationRepo = new LocationRepo();
 
+    /*
     @GetMapping("/caridagreement")
     public String carIdForm() {
         return "advance-agreement-carid";
@@ -47,11 +49,14 @@ public class AdvanceAgreementController {
         return result;
     }
 
+     */
+
+
     @GetMapping("/registeradvanceagreement")
     public String registerAdvanceAgreementFormShow(Model model,
-             @RequestParam(value = "carid") String carId) {
+             @RequestParam(value = "chassisnumber") String chassisNumber) {
         model.addAttribute("advanceagreement", new AdvanceAgreementModel());
-        model.addAttribute("carid",carId);
+        model.addAttribute("chassisnumber",chassisNumber);
         model.addAttribute("locations",locationRepo.getAllEntities());
         return "register-advance-agreement";
     }
@@ -61,15 +66,16 @@ public class AdvanceAgreementController {
     public String registerAdvanceAgreementFormSubmit(@ModelAttribute AdvanceAgreementModel advanceAgreement,
                                                   Model model,
                                                   RedirectAttributes attributes,
-                                                     @RequestParam(value = "carid") String carId) {
+                                                     @RequestParam(value = "chassisnumber") String chassisNumber) {
         String result = "";
         model.addAttribute("advanceagreement", advanceAgreement);
-        model.addAttribute("damagesforcar", damageService.showAllDamagesForCar(carId));
-        advanceAgreement.setChassisNumber(carId);
-        advanceAgreement.setRefusalPrice(damageService.getTotalRefusalPrice(carId));
+        model.addAttribute("damagesforcar", damageService.showAllDamagesForCar(chassisNumber));
+        advanceAgreement.setChassisNumber(chassisNumber);
+        int extendKilometersPrice = (int) (advanceAgreement.getExtendKilometer()*0.75);
+        advanceAgreement.setRefusalPrice(damageService.getTotalRefusalPrice(chassisNumber)+extendKilometersPrice);
         if (advanceAgreement.getTerms().isEmpty()) {
             attributes.addFlashAttribute("errormessage", "Alle felter skal være udfyldt!");
-            result = "redirect:/registeradvanceagreement?carid="+carId;
+            result = "redirect:/registeradvanceagreement?chassisnumber="+chassisNumber;
         } else {
             advanceAgreementRepo.createEntity(advanceAgreement);
             result = "register-advance-agreement-result";

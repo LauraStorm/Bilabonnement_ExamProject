@@ -51,8 +51,7 @@ public class DamageRepo implements CRUDInterface<DamageReportModel, Integer> {
     public boolean createEntity(DamageReportModel entity) {
         Connection conn = DatabaseConnectionManager.getConnection();
         try {
-            PreparedStatement stmt = conn.prepareStatement("insert into defects (defect_description, price, cars_chassis_number) values " +
-                    "(?,?,?)");
+            PreparedStatement stmt = conn.prepareStatement("insert into defects (defect_description, price, cars_chassis_number) values (?,?,?)");
             stmt.setString(1, entity.getDefectDescription());
             stmt.setInt(2, (int) entity.getPrice());
             stmt.setString(3, entity.getChassisNumber());

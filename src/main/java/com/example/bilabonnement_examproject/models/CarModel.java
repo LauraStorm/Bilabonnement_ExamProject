@@ -16,6 +16,16 @@ public class CarModel {
     private boolean isSold;
 
 
+    public CarModel(String chassisNumber, String model, String color) {
+        this.chassisNumber = chassisNumber;
+        this.model = model;
+        this.color = color;
+    }
+
+    public CarModel(String chassisNumber) {
+        this.chassisNumber = chassisNumber;
+    }
+
     public CarModel(String chassisNumber, String model, String color, boolean rented) {
         this.chassisNumber = chassisNumber;
         this.model = model;

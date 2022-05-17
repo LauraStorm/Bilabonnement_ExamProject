@@ -2,9 +2,11 @@ package com.example.bilabonnement_examproject.services;
 
 import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.DamageReportModel;
+import com.example.bilabonnement_examproject.models.LocationModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
+import net.bytebuddy.description.type.TypeList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +78,25 @@ public class CarService {
             return false;
 
         }
+    }
+
+    public ArrayList<CarModel> getAllUnsoldCars(){
+        ArrayList<CarModel> unsoldCarsList = new ArrayList<CarModel>();
+        for (CarModel cars:carRepo.getAllEntities()
+             ) {
+            if (!cars.isSold()){
+                unsoldCarsList.add(cars);
+            }
+        }
+        return unsoldCarsList;
+    }
+
+    public ArrayList<CarModel> fillCarListWithADummyOption(ArrayList<CarModel> carArray){
+        ArrayList<CarModel> carModelArrayListExtended = new ArrayList<CarModel>();
+        carModelArrayListExtended.add(new CarModel("Stelnummer","Model","Farve"));
+        carModelArrayListExtended.addAll(carArray);
+        return carModelArrayListExtended;
+
     }
 
 

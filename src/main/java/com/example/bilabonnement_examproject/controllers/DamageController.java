@@ -24,30 +24,33 @@ public class DamageController {
     private CarService carService = new CarService(new CarRepo());
     private DamageService damageService = new DamageService(new DamageRepo());
 
-    @GetMapping("/carid")
-    public String carIdForm() {
-        return "carid";
+    /*
+    @GetMapping("/selectchassisnumber")
+    public String carIdForm(Model model) {
+        model.addAttribute("availablecars",carService.getAllUnsoldCars());
+        model.addAttribute("car",new CarModel());
+        return "select-chassisnumber-of-cars";
     }
 
-    @PostMapping("/carid")
-    public String carIdSubmit(WebRequest formData, RedirectAttributes attributes) {
-        String result = "";
-        String carId = formData.getParameter("carid");
-        assert carId != null;
-        if (carService.isChassisNumberValid(carId)) {
-            result = "redirect:/damage?carid=" + carId;
+    @PostMapping("/selectchassisnumber")
+    public String carIdSubmit(RedirectAttributes attributes, Model model,
+                              @ModelAttribute CarModel car) {
+        model.addAttribute("car", car);
+        if (!car.getChassisNumber().isEmpty()) {
+            return  "redirect:/damage?chassisnumber="+car.getChassisNumber();
         } else {
-            attributes.addFlashAttribute("error","Stelnummeret findes ikke!");
-            result = "redirect:/carid";
+            attributes.addFlashAttribute("error","Vælg venligst en mulighed!");
+            return  "redirect:/selectchassisnumber";
         }
-        return result;
     }
+
+     */
 
     @GetMapping("/damage")
-    public String damageDataForm(Model model, @RequestParam
-            (value = "carid") String carId) {
-        model.addAttribute("carid", carId);
-        model.addAttribute("damagesforcar",damageService.showAllDamagesForCar(carId));
+    public String damageDataForm(Model model, @RequestParam (value = "chassisnumber")
+                                 String chassisNumber) {
+        model.addAttribute("damagesforcar",damageService.showAllDamagesForCar(chassisNumber));
+        model.addAttribute("chassisnumber", chassisNumber);
         model.addAttribute("damage", new DamageReportModel());
         return "damage";
     }
@@ -55,25 +58,25 @@ public class DamageController {
 
     @PostMapping("/damage")
     public String damageDataSubmit(@ModelAttribute DamageReportModel damage,
-                                   Model model,
-                                   @RequestParam(value = "carid") String carId,
+                                   Model model, @RequestParam (value = "chassisnumber")
+                                               String chassisNumber,
                                    RedirectAttributes attributes) {
         String result = "";
-        model.getAttribute("carid");
-        damage.setChassisNumber(carId);
         model.addAttribute("damage", damage);
+        damage.setChassisNumber(chassisNumber);
         if (damage.getDefectDescription().isEmpty()) {
             attributes.addFlashAttribute("error","Der mangler en beskrivelse!");
-            result = "redirect:/damage?carid=" + carId;
+            result = "redirect:/damage?chassisnumber=" + chassisNumber;
         } else if (damage.getPrice() == 0.0){
             attributes.addFlashAttribute("error","Der mangler en pris!");
-            result = "redirect:/damage?carid=" + carId;
+            result = "redirect:/damage?chassisnumber=" + chassisNumber;
         } else {
             damageService.createDamageReport(damage);
             result = "result-damage";
         }
         return result;
     }
+
 
     @GetMapping("/getreturncarpage")
     public String getReturnCarPage(){

@@ -5,7 +5,9 @@ import com.example.bilabonnement_examproject.services.CarService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,39 @@ import java.util.List;
 
 @Controller
 public class CarController {
+    private CarService carService = new CarService(new CarRepo());
+
+    @GetMapping("/selectchassisnumber")
+    public String carIdForm(Model model, @RequestParam(value = "key") int key) {
+        model.addAttribute("key",key);
+        model.addAttribute("availablecars",carService.fillCarListWithADummyOption(carService.getAllUnsoldCars()));
+        model.addAttribute("car",new CarModel());
+        return "select-chassisnumber-of-cars";
+    }
+
+    @PostMapping("/selectchassisnumber")
+    public String carIdSubmit(RedirectAttributes attributes, Model model,
+                              @ModelAttribute CarModel car, @RequestParam(value = "key") int key) {
+        model.addAttribute("car", car);
+        if (!car.getChassisNumber().equals("Stelnummer")) {
+        switch (key) {
+            case 1: {
+                return "redirect:/damage?chassisnumber=" + car.getChassisNumber();
+            }
+            case 2: {
+                return "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber();
+            }
+            default: {
+                attributes.addFlashAttribute("error", "Noget gik galt!");
+                return "redirect:/selectchassisnumber?key="+key;
+            }
+        }
+        } else {
+            attributes.addFlashAttribute("error","Vælg venligst en mulighed!");
+            return "redirect:/selectchassisnumber?key="+key;
+        }
+    }
+
 
     @GetMapping("/register-car")
     public String getCarDetails(){
