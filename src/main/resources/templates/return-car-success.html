@@ -24,10 +24,10 @@
         </tr>
 
         <tr>
-            <td th:text="${car.chassisNumber}"></td>
-            <td th:text="${car.model}"></td>
-            <td th:text="${car.color}"></td>
-            <td th:text="${car.rented}"></td>
+            <td th:text="${car.getChassisNumber}"></td>
+            <td th:text="${car.getModel}"></td>
+            <td th:text="${car.getColor}"></td>
+            <td th:text="${car.isRentedToString(car.isRented)}"></td>
         </tr>
 
     </table>
