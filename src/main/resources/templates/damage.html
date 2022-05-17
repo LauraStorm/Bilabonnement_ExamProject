@@ -18,6 +18,7 @@
 
 <div class="whiteboard">
     <div class="receipt">
+        <div class="tabel">
         <h1>Nuværende skader:</h1>
     <table>
         <thead>
@@ -33,7 +34,6 @@
         </tr>
         </tbody>
     </table>
-    <div class="tabel">
 <h1>Tilføj skade:</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
         <p th:name="carid" th:value="${carid}"></p>
@@ -46,7 +46,6 @@
     </button>
     </a>
 </form>
-</div>
 </div>
 </div>
 </body>
