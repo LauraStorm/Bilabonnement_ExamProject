@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <title>Bil kvittering</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+
+
+</head>
+
+<body>
+<br>
+
+
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
+
+<div class="whiteboard">
+    <div class="tabel">
+        <h1>Bilen er nu oprettet</h1>
+        <section>
+            <table>
+                <tr>
+                    <th>Vognummer</th>
+                    <th>Stelnummer</th>
+                    <th>Mærke</th>
+                    <th>Model</th>
+                    <th>Udstyrsniveau</th>
+                    <th>Stålpris</th>
+                    <th>Reg.afgift</th>
+                    <th>CO2-udledning</th>
+                </tr>
+                <tr>
+                    <td><p th:text="${car.wagonNumber}"></p></td>
+                    <td><p th:text="${car.chassisNumber}"></p></td>
+                    <td><p th:text="${car.manufacturer}"></p></td>
+                    <td><p th:text="${car.model}"></p></td>
+                    <td><p th:text="${car.equipmentLevel}"></p></td>
+                    <td><p th:text="${car.steelPrice}"></p></td>
+                    <td><p th:text="${car.registrationFee}"></p></td>
+                    <td><p th:text="${car.carbonEmission}"></p></td>
+                </tr>
+            </table>
+            <a th:href="registernewcartofleet">
+                <button class="goto_button">
+                    Ny Bil
+                </button></a>
+            <a href="/"><button class="goto_button">
+                Hjem
+            </button>
+            </a>
+
+        </section>
+    </div>
+</body>
+
+<br>
+</div>
+<!--Side navigator -->
+</html>

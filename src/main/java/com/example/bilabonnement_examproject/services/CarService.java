@@ -67,5 +67,16 @@ public class CarService {
             return "nej";
         }
     }
+
+    public boolean addNewToFleet(CarModel car) {
+        try {
+            carRepo.createEntity(car);
+            return true;
+        } catch (Exception exception) {
+            System.out.println("Something went wrong with inserting!");
+            return false;
+
+        }
+    }
 }
 

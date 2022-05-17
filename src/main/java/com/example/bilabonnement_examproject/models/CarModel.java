@@ -4,8 +4,14 @@ import com.example.bilabonnement_examproject.services.CarService;
 
 public class CarModel {
     private String chassisNumber;
+    private int wagonNumber;
+    private String manufacturer;
     private String model;
     private String color;
+    private String equipmentLevel;
+    private double steelPrice;
+    private double registrationFee;
+    private double carbonEmission;
     private boolean isRented;
 
 
@@ -57,6 +63,53 @@ public class CarModel {
         this.isRented = isRented;
     }
 
+    public int getWagonNumber() {
+        return wagonNumber;
+    }
+
+    public void setWagonNumber(int wagonNumber) {
+        this.wagonNumber = wagonNumber;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getEquipmentLevel() {
+        return equipmentLevel;
+    }
+
+    public void setEquipmentLevel(String equipmentLevel) {
+        this.equipmentLevel = equipmentLevel;
+    }
+
+    public double getSteelPrice() {
+        return steelPrice;
+    }
+
+    public void setSteelPrice(double steelPrice) {
+        this.steelPrice = steelPrice;
+    }
+
+    public double getRegistrationFee() {
+        return registrationFee;
+    }
+
+    public void setRegistrationFee(double registrationFee) {
+        this.registrationFee = registrationFee;
+    }
+
+    public double getCarbonEmission() {
+        return carbonEmission;
+    }
+
+    public void setCarbonEmission(double carbonEmission) {
+        this.carbonEmission = carbonEmission;
+    }
 
     @Override
     public String toString() {

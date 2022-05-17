@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <title>Nyindkøbt bil registrering</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+
+
+</head>
+
+<body>
+<br>
+
+
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
+
+<div class="whiteboard">
+    <div class="tabel">
+        <h1>Registrerings formular</h1>
+        <div th:text="${errormessage}" th:if="${errormessage}" style="color: red"></div>
+        <div class="form-purchase-car">
+        <form action="#" th:action="@{/registernewcartofleet}" th:object="${car}" method="post">
+            <p>Vognnummer:    <input type="text" th:field="*{wagonNumber}" /></p>
+            <p>Stelnummer:    <input type="text" th:field="*{chassisNumber}"/></p>
+            <p>Mærke:         <input type="text" th:field="*{manufacturer}"/></p>
+            <p>Model:         <input type="text" th:field="*{model}"/></p>
+            <p>Udstyrsniveau: <input type="text" th:field="*{equipmentLevel}"/></p>
+            <p>Stålpris:      <input type="text" th:field="*{steelPrice}"/></p>
+            <p>Reg. afgift:   <input type="text" th:field="*{registrationFee}"/></p>
+            <p>CO2-udledning: <input type="text" th:field="*{carbonEmission}"/></p>
+            <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil felterne" /></p>
+            <a href="/"><button class="goto_button">
+                Hjem
+            </button>
+            </a>
+        </form>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <title>Forhåndssalg af bil</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+
+
+</head>
+
+<body>
+<br>
+
+
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
+
+<div class="whiteboard">
+    <div class="tabel">
+        <h1>Forhåndsaftalen er nu oprettet</h1>
+        <section>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Vilkår</th>
+                    <th>Kørte kilometer</th>
+                    <th>Afslag</th>
+                    <th>Overkørte kilometer pris</th>
+                    <th>Afslag total pris</th>
+                    <th>Købspris</th>
+                    <th>Afhentningssted</th>
+                </tr>
+                <tr>
+                    <td><p th:text="${advanceagreement.id}"></p></td>
+                    <td><p th:text="${advanceagreement.terms}"></p></td>
+                    <td><p th:text="${advanceagreement.kilometersDriven}"></p></td>
+                    <td><p th:text="${advanceagreement.refusalHashMap}"></p></td>
+                    <td><p th:text="${advanceagreement.extendKilometerPrice}"></p></td>
+                    <td><p th:text="${advanceagreement.purchasePrice}"></p></td>
+                    <td><p th:text="${advanceagreement.pickUpLocation}"></p></td>
+                    <table>
+                        <tr>
+                            <th>Skade</th>
+                            <th>Pris</th>
+                        </tr>
+                    </table>
+                    <td><p th:text="${advanceagreement.purchasePrice}"></p></td>
+                    <td><p th:text="${advanceagreement.pickUpLocation}"></p></td>
+                </tr>
+            </table>
+            <a th:href="registeradvanceagreement">
+                <button class="goto_button">
+                    Ny aftale
+                </button></a>
+            <a href="/"><button class="goto_button">
+                Hjem
+            </button>
+            </a>
+
+        </section>
+    </div>
+</body>
+
+<br>
+</div>
+<!--Side navigator -->
+</html>
