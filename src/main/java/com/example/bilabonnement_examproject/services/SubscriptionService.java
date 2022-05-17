@@ -148,7 +148,7 @@ public class SubscriptionService {
             if (aCar.isRented()== true){
 
                 for (SubscriptionModel aSubscription : allSubscriptions) {
-                    if(aCar.getChassisNumber() == aSubscription.getChassisNumber()){
+                    if(aCar.getChassisNumber().equals(aSubscription.getChassisNumber())){
 
                         //antal mdr. * total pris pr. mdr.
                         int leasingLengthInMonth = aSubscription.getLength();
@@ -178,52 +178,54 @@ public class SubscriptionService {
         //pickup day
         LocalDate pickupDate;
 
-        for (int i = 0; i < allRentedCars.size(); i++) {
-            for (int j = 0; j < allSubscriptions.size(); j++) {
-                if (allRentedCars.get(i).getChassisNumber() == allSubscriptions.get(j).getChassisNumber()){
 
-                }
-            }
-        }
 
         int totalSum = 0;
         for (SubscriptionModel aSubscription :allSubscriptions) {
-            String [] pickup = aSubscription.getPickupDate().split("-");
+            String[] pickup = aSubscription.getPickupDate().split("-");
             //pickup day
             int pickupYear = Integer.parseInt(pickup[0]);
             int pickupMonth = Integer.parseInt(pickup[1]);
             int pickupDay = Integer.parseInt(pickup[2]);
-            pickupDate = LocalDate.of(pickupYear,pickupMonth,pickupDay);
+            pickupDate = LocalDate.of(pickupYear, pickupMonth, pickupDay);
             //Delivery
-            String [] delivery = aSubscription.getDeliveryDate().split("-");
+            String[] delivery = aSubscription.getDeliveryDate().split("-");
             int deliveryYear = Integer.parseInt(delivery[0]);
             int deliveryMonth = Integer.parseInt(delivery[1]);
             int deliveryDay = Integer.parseInt(delivery[2]);
-            LocalDate deliveryDate = LocalDate.of(deliveryYear,deliveryMonth,deliveryDay);
+            LocalDate deliveryDate = LocalDate.of(deliveryYear, deliveryMonth, deliveryDay);
 
-            //HVIS pick up er før d.d. og delivery er efter d.d.
-            if (pickupDate.isBefore(todaysDate) && deliveryDate.isAfter(todaysDate)){
-                nowleasing.add(aSubscription);
+            //ny forloop
+            for (int i = 0; i < allRentedCars.size(); i++) {
 
-                Period periodBetweenDates = Period.between(pickupDate,todaysDate);
-                System.out.println("period: " + periodBetweenDates);
-                System.out.println("month: " +periodBetweenDates.getMonths());
+                //HVIS pick up er før d.d. og delivery er efter d.d.
+                //ny condetion chassis == chassis
+                if (pickupDate.isBefore(todaysDate) && deliveryDate.isAfter(todaysDate) && aSubscription.getChassisNumber().equals(allRentedCars.get(i).getChassisNumber())) {
+                    nowleasing.add(aSubscription);
 
-                int totalMonth = 0;
-                if (periodBetweenDates.getYears() <= 1 ){
-                    totalMonth += 12 * periodBetweenDates.getYears();
+                    System.out.println(aSubscription);
+
+                    Period periodBetweenDates = Period.between(pickupDate, todaysDate);
+                    System.out.println("period: " + periodBetweenDates);
+                    System.out.println("month: " + periodBetweenDates.getMonths());
+
+                    int totalMonth = 0;
+                    if (periodBetweenDates.getYears() <= 1) {
+                        totalMonth += 12 * periodBetweenDates.getYears();
+                    }
+                    if (periodBetweenDates.getMonths() != 0) {
+                        totalMonth += periodBetweenDates.getMonths();
+                    }
+
+                    if (periodBetweenDates.getMonths() == 0 && periodBetweenDates.getDays() > 0) {
+                        totalMonth += 1;
+                    }
+
+                    int sum = totalMonth * aSubscription.getTotalPriceMd();
+                    totalSum = totalSum + sum;
                 }
-                if (periodBetweenDates.getMonths() != 0){
-                    totalMonth += periodBetweenDates.getMonths();
-                }
-
-                if (periodBetweenDates.getMonths() == 0 && periodBetweenDates.getDays() > 0 ){
-                    totalMonth += 1;
-                }
-
-                int sum = totalMonth * aSubscription.getTotalPriceMd();
-                totalSum = totalSum + sum;
-            }
+                //ny slut scope fra forloop
+          }
         }
         System.out.println("size: " +nowleasing.size());
         System.out.println("totalSum: " +totalSum);
