@@ -2,24 +2,33 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Startside</title>
-    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+    <title>Login</title>
     <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
 
 </head>
 
 <body>
 
-<nav>
-    <th:block th:replace="fragments/navigator :: nav"></th:block>
-</nav>
+    <div class="login">
+        <h1 id="loginH1">Indtast login oplysninger</h1>
+        <div class="form">
+            <p class="loginerror" th:text="${error}" th:if="${error}" style="color:red"></p>
+        </div>
 
-<div class="whiteboard">
+        <form action="/" method="post" class="form">
 
-    <div class="tabel">
-        <h1 id="welcome">VELKOMMEN</h1>
+            <p class="loginP">Brugernavn</p>
+            <input class="inputform" type="text" name="username">
+            <br>
+            <p class="loginP">Kode</p>
+            <input class="inputform" type="password" name="password">
+            <br>
+            <br>
+            <input class="loginInput" type="submit" value="Login">
+
+        </form>
     </div>
-</div>
+
 
 </body>
 </html>
