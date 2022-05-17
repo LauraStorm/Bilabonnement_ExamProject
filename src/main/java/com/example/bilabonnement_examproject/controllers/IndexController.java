@@ -13,6 +13,13 @@ import java.sql.SQLException;
 @Controller
 public class IndexController {
 
+    @GetMapping("/")
+    public String getloginPage(){
+        return "index";
+    }
+
+
+/*
     @GetMapping("/login")
     public String loginpage(){
         return "login";
@@ -31,6 +38,8 @@ public class IndexController {
     public String getHomePage(){
         return "homepage";
     }
+
+ */
 
 
 

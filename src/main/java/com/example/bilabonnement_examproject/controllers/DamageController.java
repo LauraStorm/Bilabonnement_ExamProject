@@ -105,8 +105,8 @@ public class DamageController {
             carRepo.changeRentedStatus(chassisNumberInput);
             result = "redirect:/returncarsuccesspage";
 
-        model.addAttribute("car", carRepo.getSingleEntity(chassisNumberInput));
-       result = "redirect:/returncarsuccesspage";
+            model.addAttribute("car", carRepo.getSingleEntity(chassisNumberInput));
+            result = "redirect:/returncarsuccesspage";
         }
 
         return result;
