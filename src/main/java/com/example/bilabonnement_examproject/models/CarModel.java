@@ -13,6 +13,7 @@ public class CarModel {
     private double registrationFee;
     private double carbonEmission;
     private boolean isRented;
+    private boolean isSold;
 
 
     public CarModel(String chassisNumber, String model, String color, boolean rented) {
@@ -63,6 +64,14 @@ public class CarModel {
         this.isRented = isRented;
     }
 
+    public boolean isSold() {
+        return isSold;
+    }
+
+    public void setSold(boolean sold) {
+        isSold = sold;
+    }
+
     public int getWagonNumber() {
         return wagonNumber;
     }
@@ -110,6 +119,8 @@ public class CarModel {
     public void setCarbonEmission(double carbonEmission) {
         this.carbonEmission = carbonEmission;
     }
+
+
 
     @Override
     public String toString() {

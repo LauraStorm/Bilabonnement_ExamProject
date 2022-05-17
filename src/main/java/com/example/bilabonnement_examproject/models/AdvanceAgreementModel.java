@@ -7,11 +7,11 @@ public class AdvanceAgreementModel {
     private int id;
     private String chassisNumber;
     private String terms;
-    private double kilometersDriven;
-    private double extendKilometerPrice;
-    private double refusalTotalPrice;
-    private Double purchasePrice;
-    private String pickUpLocation;
+    private int kilometersDriven;
+    private int extendKilometer;
+    private double refusalPrice;
+    private int purchasePrice;
+    private int locationId;
 
     public String getChassisNumber() {
         return chassisNumber;
@@ -41,40 +41,44 @@ public class AdvanceAgreementModel {
         return kilometersDriven;
     }
 
-    public void setKilometersDriven(double kilometersDriven) {
+    public void setKilometersDriven(int kilometersDriven) {
         this.kilometersDriven = kilometersDriven;
     }
 
-    public double getExtendKilometerPrice() {
-        return extendKilometerPrice;
+    public int getExtendKilometer() {
+        return extendKilometer;
     }
 
-    public void setExtendKilometerPrice(double extendKilometerPrice) {
-        this.extendKilometerPrice = extendKilometerPrice;
+    public void setExtendKilometer(int extendKilometer) {
+        this.extendKilometer = extendKilometer;
     }
 
-    public double getRefusalTotalPrice() {
-        return refusalTotalPrice;
-    }
 
-    public void setRefusalTotalPrice(double refusalTotalPrice) {
-        this.refusalTotalPrice = refusalTotalPrice;
-    }
-
-    public Double getPurchasePrice() {
+    public int getPurchasePrice() {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(Double purchasePrice) {
+
+
+
+    public double getRefusalPrice() {
+        return refusalPrice;
+    }
+
+    public void setRefusalPrice(double refusalPrice) {
+        this.refusalPrice = refusalPrice;
+    }
+
+    public void setPurchasePrice(int purchasePrice) {
         this.purchasePrice = purchasePrice;
     }
 
-    public String getPickUpLocation() {
-        return pickUpLocation;
+    public int getLocationId() {
+        return locationId;
     }
 
-    public void setPickUpLocation(String pickUpLocation) {
-        this.pickUpLocation = pickUpLocation;
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
     }
 
     public void setId() {
