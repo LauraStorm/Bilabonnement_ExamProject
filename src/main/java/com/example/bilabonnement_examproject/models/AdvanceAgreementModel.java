@@ -9,9 +9,24 @@ public class AdvanceAgreementModel {
     private String terms;
     private int kilometersDriven;
     private int extendKilometer;
-    private double refusalPrice;
+    private int refusalPrice;
     private int purchasePrice;
     private int locationId;
+
+    public AdvanceAgreementModel() {
+    }
+
+    public AdvanceAgreementModel(int id, String chassisNumber, String terms, int kilometersDriven,
+                                 int extendKilometer, int refusalPrice, int purchasePrice, int locationId) {
+        this.id = id;
+        this.chassisNumber = chassisNumber;
+        this.terms = terms;
+        this.kilometersDriven = kilometersDriven;
+        this.extendKilometer = extendKilometer;
+        this.refusalPrice = refusalPrice;
+        this.purchasePrice = purchasePrice;
+        this.locationId = locationId;
+    }
 
     public String getChassisNumber() {
         return chassisNumber;
@@ -37,7 +52,7 @@ public class AdvanceAgreementModel {
         this.terms = terms;
     }
 
-    public double getKilometersDriven() {
+    public int getKilometersDriven() {
         return kilometersDriven;
     }
 
@@ -58,14 +73,11 @@ public class AdvanceAgreementModel {
         return purchasePrice;
     }
 
-
-
-
-    public double getRefusalPrice() {
+    public int getRefusalPrice() {
         return refusalPrice;
     }
 
-    public void setRefusalPrice(double refusalPrice) {
+    public void setRefusalPrice(int refusalPrice) {
         this.refusalPrice = refusalPrice;
     }
 
