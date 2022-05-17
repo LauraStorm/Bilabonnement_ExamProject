@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Nyindkøbt bil registrering</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<br>
+
 
 
 <nav>
@@ -27,6 +27,7 @@
             <p>Stelnummer:    <input type="text" th:field="*{chassisNumber}"/></p>
             <p>Mærke:         <input type="text" th:field="*{manufacturer}"/></p>
             <p>Model:         <input type="text" th:field="*{model}"/></p>
+            <p>Farve:         <input type="text" th:field="*{color}"/></p>
             <p>Udstyrsniveau: <input type="text" th:field="*{equipmentLevel}"/></p>
             <p>Stålpris:      <input type="text" th:field="*{steelPrice}"/></p>
             <p>Reg. afgift:   <input type="text" th:field="*{registrationFee}"/></p>

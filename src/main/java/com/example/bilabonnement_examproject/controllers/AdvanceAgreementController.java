@@ -2,8 +2,10 @@ package com.example.bilabonnement_examproject.controllers;
 
 
 import com.example.bilabonnement_examproject.models.AdvanceAgreementModel;
+import com.example.bilabonnement_examproject.repositories.AdvanceAgreementRepo;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.repositories.DamageRepo;
+import com.example.bilabonnement_examproject.repositories.LocationRepo;
 import com.example.bilabonnement_examproject.services.CarService;
 import com.example.bilabonnement_examproject.services.DamageService;
 import org.springframework.stereotype.Controller;
@@ -15,10 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Objects;
+
 @Controller
 public class AdvanceAgreementController {
     private CarService carService = new CarService(new CarRepo());
+    private CarRepo carRepo = new CarRepo();
     private DamageService damageService = new DamageService(new DamageRepo());
+    private AdvanceAgreementRepo advanceAgreementRepo = new AdvanceAgreementRepo();
+    private LocationRepo locationRepo = new LocationRepo();
 
     @GetMapping("/caridagreement")
     public String carIdForm() {
@@ -31,7 +38,7 @@ public class AdvanceAgreementController {
         String result = "";
         String carId = formData.getParameter("carid");
         assert carId != null;
-        if (carService.isChassisNumberValid(carId)) {
+        if (Objects.equals(carRepo.getSingleEntity(carId).getChassisNumber(), carId)) {
             result = "redirect:/registeradvanceagreement?carid=" + carId;
         } else {
             attributes.addFlashAttribute("error","Stelnummeret findes ikke!");
@@ -45,6 +52,7 @@ public class AdvanceAgreementController {
              @RequestParam(value = "carid") String carId) {
         model.addAttribute("advanceagreement", new AdvanceAgreementModel());
         model.addAttribute("carid",carId);
+        model.addAttribute("locations",locationRepo.getAllEntities());
         return "register-advance-agreement";
     }
 
@@ -58,10 +66,12 @@ public class AdvanceAgreementController {
         model.addAttribute("advanceagreement", advanceAgreement);
         model.addAttribute("damagesforcar", damageService.showAllDamagesForCar(carId));
         advanceAgreement.setChassisNumber(carId);
+        advanceAgreement.setRefusalPrice(damageService.getTotalRefusalPrice(carId));
         if (advanceAgreement.getTerms().isEmpty()) {
             attributes.addFlashAttribute("errormessage", "Alle felter skal være udfyldt!");
             result = "redirect:/registeradvanceagreement?carid="+carId;
         } else {
+            advanceAgreementRepo.createEntity(advanceAgreement);
             result = "register-advance-agreement-result";
         }
         return result;

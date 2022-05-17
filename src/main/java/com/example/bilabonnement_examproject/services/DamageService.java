@@ -41,4 +41,15 @@ public class DamageService {
         }
         return damageList;
     }
+
+    public int getTotalRefusalPrice(String chassisNumber){
+        int sum = 0;
+        for (DamageReportModel damages:damageRepo.getAllEntities()
+             ) {
+            if (Objects.equals(damages.getChassisNumber(), chassisNumber)){
+                sum += damages.getPrice();
+            }
+        }
+        return sum;
+    }
 }

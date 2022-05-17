@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Forhåndsaftale</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -26,7 +26,19 @@
             <p>Vilkår: <input type="text" th:field="*{terms}" /></p>
             <p>Kørte kilometer: <input type="text" th:field="*{kilometersDriven}"/></p>
             <p>Købsprisen: <input type="text" th:field="*{purchasePrice}"/></p>
-            <p>Afhentningssted: <input type="text" th:field="*{pickUpLocation}"/></p>
+            <p>Overkørte kilometer: <input type="text" th:field="*{extendKilometer}"/></p>
+            <div class="dropdown">
+
+                <div value="">Vælg afhentning</div>
+                <div class="dropdown-content">
+                    <select th:field="*{locationId}">
+                <option  th:each="location: ${locations}"
+                th:text="${location.city}+',' + ${location.address}"
+                         th:value="${location.id}">
+                </option>
+                    </select>
+            </div>
+    </div>
            <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil felterne" /></p>
             <a href="homepage"><button class="goto_button">
                 Hjem

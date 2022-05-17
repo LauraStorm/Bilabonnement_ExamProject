@@ -24,8 +24,7 @@ public class CarService {
         CarRepo carRepo = new CarRepo();
 
         boolean isValid = false;
-        if (chassisNumber.length() == 17 && !chassisNumber.matches("[a-zA-Z]+")
-                && chassisNumber.matches("[0-9]+")) {
+        if (chassisNumber.length() == 17 && chassisNumber.matches("[0-9]+")) {
 
                 if (!carRepo.getSingleEntity(chassisNumber).isRented()) {
                     isValid = true;
@@ -78,5 +77,7 @@ public class CarService {
 
         }
     }
+
+
 }
 
