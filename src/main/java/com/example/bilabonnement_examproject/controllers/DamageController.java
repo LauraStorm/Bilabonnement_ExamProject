@@ -45,6 +45,7 @@ public class DamageController {
     public String damageDataForm(Model model, @RequestParam
             (value = "carid") String carId) {
         model.addAttribute("carid", carId);
+        model.addAttribute("damagesforcar",damageService.showAllDamagesForCar(carId));
         model.addAttribute("damage", new DamageReportModel());
         return "damage";
     }
@@ -71,6 +72,8 @@ public class DamageController {
         }
         return result;
     }
+
+
 
     @GetMapping("/getreturncarpage")
     public String getReturnCarPage(){
