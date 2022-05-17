@@ -7,6 +7,7 @@ import com.example.bilabonnement_examproject.repositories.CarRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DamageService {
     private CRUDInterface<DamageReportModel, Integer> damageRepo;
