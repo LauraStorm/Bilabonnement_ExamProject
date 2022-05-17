@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Stelnummer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{style.css}" type="text/css">
+
+</head>
+<body>
+<nav>
+    <th:block th:replace="fragments/navigator :: nav"></th:block>
+</nav>
+<br>
+
+
+<div class="whiteboard">
+    <div class="tabel">
+<h1>Opret en forhåndsaftale for en bil</h1>
+        <div th:text="${error}" th:if="${error}" style="color: red"></div>
+        <form action="#" th:action="@{/caridagrement}" method="post">
+    <p>Stelnummer: <input name="carid" type="number"/></p>
+    <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil feltet" /></p>
+    <a href="/"><button class="goto_button">
+        Hjem
+    </button>
+    </a>
+</form>
+</a>
+    </div>
+</div>
+</body>
+
+
+
+
+</html>

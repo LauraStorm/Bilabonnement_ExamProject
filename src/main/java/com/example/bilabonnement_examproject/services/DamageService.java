@@ -1,11 +1,12 @@
 package com.example.bilabonnement_examproject.services;
 
+import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
-import com.example.bilabonnement_examproject.repositories.DamageRepo;
-import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
+import com.example.bilabonnement_examproject.repositories.CarRepo;
 
-import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DamageService {
     private CRUDInterface<DamageReportModel, Integer> damageRepo;
@@ -26,5 +27,17 @@ public class DamageService {
         } else {
             return false;
         }
+    }
+
+    public List<DamageReportModel> showAllDamagesForCar(String chassisNumber){
+        ArrayList<DamageReportModel> damageList = new ArrayList<DamageReportModel>();
+        for (DamageReportModel damages:damageRepo.getAllEntities()
+             ) {
+            if (Objects.equals(damages.getChassisNumber(), chassisNumber)){
+                assert false;
+                damageList.add(damages);
+            }
+        }
+        return damageList;
     }
 }
