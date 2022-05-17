@@ -16,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class DamageController {
@@ -81,19 +83,33 @@ public class DamageController {
     }
 
     @PostMapping("/returncarpage")
-    public String returnCarPage(WebRequest dataFromForm, Model model){
+    public String returnCarPage(WebRequest dataFromForm, RedirectAttributes attributes, Model model) {
         CarRepo carRepo = new CarRepo();
         CarService carService = new CarService();
+        String result = "";
 
         String chassisNumberInput = dataFromForm.getParameter("chassis-number-input");
-        carService.isChassisNumberValid(chassisNumberInput);
-        carRepo.changeRentedStatus(chassisNumberInput);
 
-        model.addAttribute("car", carRepo.getSingleEntity(chassisNumberInput));
+        if (!carRepo.getSingleEntity(chassisNumberInput).isRented()) {
+            attributes.addFlashAttribute("error", "Denne bil har ikke været udlejet!");
+            result = "redirect:/getreturncarpage";
 
-        return "redirect:/returncarsuccesspage";
+        } else if (chassisNumberInput.isEmpty() || chassisNumberInput.length() != 17) {
+            attributes.addFlashAttribute("error", "Udfyld valid stelnummer!");
+            result = "redirect:/getreturncarpage";
+
+        } else {
+            model.addAttribute("car", carRepo.getSingleEntity(chassisNumberInput));
+            carService.isChassisNumberValid(chassisNumberInput);
+            carRepo.changeRentedStatus(chassisNumberInput);
+            result = "redirect:/returncarsuccesspage";
+
+        }
+
+        return result;
+
     }
-
+    
     @GetMapping("/returncarsuccesspage")
     public String returnCarSuccessPage(@ModelAttribute CarModel car, Model model) {
         model.addAttribute("car", car);

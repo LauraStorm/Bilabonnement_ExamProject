@@ -1,14 +1,12 @@
 package com.example.bilabonnement_examproject.services;
 
+import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
-import com.example.bilabonnement_examproject.repositories.DamageRepo;
-import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
+import com.example.bilabonnement_examproject.repositories.CarRepo;
 
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class DamageService {
     private CRUDInterface<DamageReportModel, Integer> damageRepo;
