@@ -48,8 +48,38 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Intege
 
     @Override
         public SubscriptionModel getSingleEntity(Integer id) {
+        Connection conn = DatabaseConnectionManager.getConnection();
+        SubscriptionModel subscription = null;
 
-        return null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM subscriptions WHERE id=?");
+            stmt.setInt(1,id);
+            ResultSet rs = stmt.executeQuery();
+
+            rs.next();
+            int subscriptionId = rs.getInt("id");
+            boolean selfrisk = rs.getBoolean("selfrisk");
+            boolean delivery_insurance = rs.getBoolean("delivery_insurance");
+            int total_price = rs.getInt("total_price_pr_md");
+            int length = rs.getInt("length");
+            String subType = rs.getString("subscription_type");
+            String chassis = rs.getString("cars_chassis_number");
+            int locationID = rs.getInt("locations_id");
+            int renterID = rs.getInt("renters_id");
+            String pickup = rs.getString("pickup_date");
+            String deliveryDate = rs.getString("delivery_date");
+
+            subscription = new SubscriptionModel(subscriptionId,selfrisk,delivery_insurance,total_price,length,subType,chassis,locationID,renterID,pickup,deliveryDate);
+            System.out.println(subscription);
+            return subscription;
+
+        } catch (SQLException e) {
+            System.out.println("subscription not found");
+            e.printStackTrace();
+            return null;
+        }
+
+
     }
 
     @Override

@@ -231,6 +231,49 @@ public class SubscriptionService {
         return totalSum;
     }
 
+    public boolean isDeliveryDatePassedTodaysDate (String deliveryDate){
+        //Delivery date
+        String [] delivery = deliveryDate.split("-");
+        int deliveryYear = Integer.parseInt(delivery[0]);
+        int deliveryMonth = Integer.parseInt(delivery[1]);
+        int deliveryDay = Integer.parseInt(delivery[2]);
+        LocalDate endDate = LocalDate.of(deliveryYear,deliveryMonth,deliveryDay);
+        //Todays date
+        LocalDate todaysDate = LocalDate.now();
+
+        if (endDate.isAfter(todaysDate) || endDate.isEqual(todaysDate)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public List<SubscriptionModel> onGoingSubscription (){
+        List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
+
+        ArrayList<SubscriptionModel> onGoingSubscriptions = new ArrayList<SubscriptionModel>();
+
+        for (SubscriptionModel aSupscription : allSubscriptions) {
+            //Delivery date
+            String [] delivery = aSupscription.getDeliveryDate().split("-");
+            int deliveryYear = Integer.parseInt(delivery[0]);
+            int deliveryMonth = Integer.parseInt(delivery[1]);
+            int deliveryDay = Integer.parseInt(delivery[2]);
+            LocalDate deliveryDate = LocalDate.of(deliveryYear,deliveryMonth,deliveryDay);
+            //Todays date
+            LocalDate todaysDate = LocalDate.now();
+            if(deliveryDate.isAfter(todaysDate)){
+                System.out.println("delivery Date: " + deliveryDate + " today: " + todaysDate);
+                System.out.println(deliveryDate.isAfter(todaysDate));
+                System.out.println(aSupscription);
+                onGoingSubscriptions.add(aSupscription);
+            }
+        }
+        return onGoingSubscriptions;
+    }
+
+
+
     public int getExpectedSumFromTodayUntilDeliveryDate (){
         int totalLeasePrice = getTotalPriceForAllRentedCars();
         int currentTotalPriceStatus = getCurrentTotalPriceStatus();

@@ -1,6 +1,18 @@
-
+*{
+    font-family: Montserrat, sans-serif;
+    background-color: #fff;
+}
+#welcome{
+    display: flex;
+    color: #0d0d0d24;
+    padding-top: 10%;
+    font-size: 100px;
+    margin-left: 75px;
+    margin-right: 100px;
+}
 h1{
     display: flex;
+
 }
 /*
 input {

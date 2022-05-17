@@ -78,7 +78,7 @@ public class DamageController {
     }
 
     @PostMapping("/returncarpage")
-    public String returnCarPage(WebRequest dataFromForm, Model model){
+    public String returnCarPage(WebRequest dataFromForm, Model model, HttpSession session){
         CarRepo carRepo = new CarRepo();
         CarService carService = new CarService();
 
@@ -87,13 +87,15 @@ public class DamageController {
         carRepo.changeRentedStatus(chassisNumberInput);
 
         model.addAttribute("car", carRepo.getSingleEntity(chassisNumberInput));
-
+        session.setAttribute("returnCar",carRepo.getSingleEntity(chassisNumberInput));
         return "redirect:/returncarsuccesspage";
     }
 
     @GetMapping("/returncarsuccesspage")
-    public String returnCarSuccessPage(@ModelAttribute CarModel car, Model model) {
-        model.addAttribute("car", car);
+    public String returnCarSuccessPage(@ModelAttribute CarModel car, Model model,HttpSession session) {
+        CarModel returncar = (CarModel) session.getAttribute("returnCar");
+
+        model.addAttribute("car",returncar);
         return "return-car-success";
     }
 }

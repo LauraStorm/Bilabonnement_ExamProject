@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SubscriptionServiceTest {
 
     @Test
-    void getTotalPriceForAllRentedCars() {
+    void totalSum () {
         //ARRANGE
         CRUDInterface<SubscriptionModel,Integer> allSubscriptions = new SubscriptionRepoTest();
         CRUDInterface<CarModel,String> allCars = new CarRepoTestLaura();
