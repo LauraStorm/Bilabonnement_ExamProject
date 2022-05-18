@@ -26,22 +26,18 @@
                 <td><p th:text="${damage.defectDescription}"></p></td>
                 <td><p th:text="${damage.price}"></p></td>
             </tr>
-        </table>
-        </form>
-    </div>
+</table>
+</form>
+        <a th:href="'/damage?chassisnumber='+ ${damage.getChassisNumber()}">
+            <button class="goto_button">
+                Ny skade
+            </button></a>
+        <a href="/selectchassisnumber?key=1"><button class="goto_button">
+            Ny bil
+        </button>
+        </a>
 </div>
-<a th:href="'/damage?chassisnumber='+ ${damage.getChassisNumber()}">
-    <button class="goto_button">
-    Ny skade
-</button></a>
-<a href="/selectchassisnumber?key=1"><button class="goto_button">
-    Ny bil
-</button>
-</a>
-<a href="homepage"><button class="goto_button">
-    Hjem
-</button>
-</a>
+</div>
 
     </div>
 </div>
