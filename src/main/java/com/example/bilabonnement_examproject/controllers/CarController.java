@@ -33,13 +33,13 @@ public class CarController {
         if (!car.getChassisNumber().equals("Stelnummer")) {
             switch (key) {
                 case 1: {
-                    result = "redirect:/damage?chassisnumber=" + car.getChassisNumber();
+                    return  "redirect:/damage?chassisnumber=" + car.getChassisNumber();
                 }
                 case 2: {
-                    result = "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber();
+                   return "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber();
                 }
                 case 3: {
-                    result = "redirect:/returncarsuccesspage?chassisnumber=" + car.getChassisNumber();
+                    return  "redirect:/returncarsuccesspage?chassisnumber=" + car.getChassisNumber();
                 }
                 default: {
                     attributes.addFlashAttribute("error", "Noget gik galt!");
@@ -48,9 +48,10 @@ public class CarController {
             }
         } else {
             switch (key) {
+                case 1:
                 case 2: {
                     attributes.addFlashAttribute("error", "Vælg venligst en mulighed!");
-                    result = "redirect:/selectchassisnumber?key=" + key;
+                   return  "redirect:/selectchassisnumber?key=" + key;
                 }
                 case 3: {
                     attributes.addFlashAttribute("error", "Vælg venligst en mulighed!");
