@@ -37,6 +37,9 @@ public class CarController {
             case 2: {
                 return "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber();
             }
+            case 3:{
+                return "redirect:/returncarsuccesspage?chassisnumber=" + car.getChassisNumber();
+            }
             default: {
                 attributes.addFlashAttribute("error", "Noget gik galt!");
                 return "redirect:/selectchassisnumber?key="+key;

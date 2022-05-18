@@ -20,20 +20,18 @@
         <th>Stelnummer</th>
         <th>Model</th>
         <th>Farve</th>
-        <th>Lejet</th>
         </tr>
 
         <tr>
-            <td th:text="${car.getChassisNumber}"></td>
-            <td th:text="${car.getModel}"></td>
-            <td th:text="${car.getColor}"></td>
-            <td th:text="${car.isRentedToString(car.isRented)}"></td>
+            <td th:text="${car.chassisNumber}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.color}"></td>
         </tr>
 
     </table>
     </form>
 
-    <a href="homepage"> <button class="goto_button"> Hjem</button></a>
+    <a href="homepage"> <button class="gotofront"> Hjem</button></a>
 
     </div>
 </div>

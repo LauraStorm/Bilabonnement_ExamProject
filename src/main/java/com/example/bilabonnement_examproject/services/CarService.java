@@ -82,7 +82,6 @@ public class CarService {
     }
 
     public ArrayList<CarModel> getAllUnsoldCars(){
-        CarRepo carRepo = new CarRepo();
         ArrayList<CarModel> unsoldCarsList = new ArrayList<CarModel>();
         for (CarModel cars:carRepo.getAllEntities()
              ) {

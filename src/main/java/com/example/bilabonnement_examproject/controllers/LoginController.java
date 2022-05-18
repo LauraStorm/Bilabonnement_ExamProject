@@ -22,7 +22,7 @@ public class LoginController {
     @PostMapping("/")
     public String getLoginInfo (WebRequest dataFromForm, HttpSession session, RedirectAttributes errorMessage){
         LoginService loginService = new LoginService();
-        session.invalidate();
+       // session.invalidate();
         //Gem data
         String username = dataFromForm.getParameter("username");
         String password = dataFromForm.getParameter("password");
