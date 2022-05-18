@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alle biler</title>
+    <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+
+</head>
+<body>
+    <nav>
+        <th:block th:replace="fragments/navigator :: nav"></th:block>
+    </nav>
+    <div class="whiteboard">
+        <div class="receipt">
+            <h1>Alle ledige biler</h1>
+            <form action="">
+                <table>
+                    <tr>
+                        <th>Stelnummer</th>
+                        <th>Model</th>
+                        <th>Farve</th>
+
+                    </tr>
+                    <tr th:name="availableCars" th:each="aCar : ${availableCars}">
+
+                        <td th:text="${aCar.getChassisNumber}"></td>
+                        <td th:text="${aCar.getModel}"></td>
+                        <td th:text="${aCar.getColor}"></td>
+                    </tr>
+                </table>
+            </form>
+            <a href="homepage">
+                <button class="buttom">Forside</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

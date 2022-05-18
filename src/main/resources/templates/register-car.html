@@ -18,7 +18,7 @@
 
 
     <div class="tabel">
-    <h1>Registrer ny lejeaftale</h1>
+        <h1>Registrer ny lejeaftale</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
         <form action="/get-chassis-number" method="post">
             <br>
@@ -26,8 +26,9 @@
             Stel nummer
             <br>
             <input type="number" name="chassis-number">
-            <input type="submit">
+            <input type="submit" class="buttom">
         </form>
+
     </div>
 
 

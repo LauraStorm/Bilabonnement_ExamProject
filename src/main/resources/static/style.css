@@ -14,16 +14,6 @@ h1{
     display: flex;
 
 }
-/*
-input {
-    display: flex;
-    justify-content: center;
-    margin-left: 600px;
-
-}
-
- */
-
 
 .choose-chassis-number-damage{
     display: flex;
@@ -140,6 +130,18 @@ th, td {
 .loginerror{
     background-color: #f2f2f2;
     font-size: 150%;
+}
+
+.buttom{
+    width: 20%;
+    font-size: 130%;
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.buttom:hover{
+    background-color: #f2f2f2;
 }
 
 

@@ -2,32 +2,33 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Udlejede Biler</title>
-    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
+    <title>Alle biler</title>
     <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
+    <link rel="stylesheet" th:href="@{style.css}"  type="text/css">
 
 </head>
 <body>
 <nav>
     <th:block th:replace="fragments/navigator :: nav"></th:block>
 </nav>
+
 <div class="whiteboard">
     <div class="receipt">
-        <h1>Alle udlejede biler</h1>
+        <h1>Alle biler</h1>
         <form action="">
             <table>
                 <tr>
                     <th>Stelnummer</th>
                     <th>Model</th>
-                    <th>Farve</th>
                     <th>Udlejet</th>
+                    <th>Solgt</th>
                 </tr>
-                <tr th:name="rentedCars" th:each="rentedCars : ${rentedCars}">
+                <tr th:name="allCars" th:each="aCar : ${allCars}">
 
-                <td th:text="${rentedCars.getChassisNumber}"></td>
-                <td th:text="${rentedCars.getModel}"></td>
-                <td th:text="${rentedCars.getColor}"></td>
-                <td th:text="${rentedCars.isRentedToString(rentedCars.isRented)}"></td>
+                    <td th:text="${aCar.getChassisNumber}"></td>
+                    <td th:text="${aCar.getModel}"></td>
+                    <td th:text="${aCar.isRentedToString(aCar.isRented)}"></td>
+                    <td th:text="${aCar.isSoldToString(aCar.isSold)}"></td>
 
                 </tr>
             </table>
@@ -37,5 +38,6 @@
         </a>
     </div>
 </div>
+
 </body>
 </html>

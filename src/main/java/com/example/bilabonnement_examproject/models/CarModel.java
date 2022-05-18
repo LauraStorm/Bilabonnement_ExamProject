@@ -2,7 +2,7 @@ package com.example.bilabonnement_examproject.models;
 
 import com.example.bilabonnement_examproject.services.CarService;
 
-public class CarModel {
+public class CarModel implements Comparable<CarModel>{
     private String chassisNumber;
     private int wagonNumber;
     private String manufacturer;
@@ -78,6 +78,11 @@ public class CarModel {
         return isSold;
     }
 
+    public String isSoldToString (boolean isSold){
+        CarService carService = new CarService();
+        return carService.convertBooleanTermsToString(isSold);
+    }
+
     public void setSold(boolean sold) {
         isSold = sold;
     }
@@ -141,6 +146,19 @@ public class CarModel {
                 ", color='" + color + '\'' +
                 ", isRented=" + carService.convertBooleanTermsToString(isRented) +
                 '}';
+    }
+
+
+    @Override
+    public int compareTo(CarModel aCar) {
+        if (this.isRented == aCar.isRented()){
+            return 1;
+        } else if (this.isRented != aCar.isRented()){
+            return -1;
+        } else {
+            return 0;
+        }
+
     }
 }
 

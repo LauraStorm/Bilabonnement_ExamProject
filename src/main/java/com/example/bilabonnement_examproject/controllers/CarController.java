@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -93,6 +94,28 @@ public class CarController {
         car.addAttribute("rentedCars", rentedCars);
 
         return "view-leased-cars";
+    }
+
+    @GetMapping("/all-cars")
+    public String getAllCars (Model car){
+        CarRepo carRepo = new CarRepo();
+        List<CarModel> allCars = carRepo.getAllEntities();
+        Collections.sort(allCars);                             //Sortere - Se compareTo Metode i CarModel class
+
+        car.addAttribute("allCars",allCars);
+        return "view-all-cars";
+    }
+
+    @GetMapping("/available-cars")
+    public String getAvailableCars(Model car, RedirectAttributes errorMessage){
+        CarService carService = new CarService();
+        CarRepo carRepo = new CarRepo();
+        List<CarModel> allCars = carRepo.getAllEntities();
+
+        List<CarModel> allAvailableCars = carService.getUnrentedCars(allCars);
+
+        car.addAttribute("availableCars",allAvailableCars);
+        return "view-available-cars";
     }
 
 }

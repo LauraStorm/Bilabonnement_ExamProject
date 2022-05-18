@@ -13,31 +13,28 @@
 </nav>
 
 
-
 <div class="whiteboard">
     <div class="tabel">
-<h1>Find den bil du vil registrere skader på</h1>
+        <h1>Find den bil du vil registrere skader på</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
-<form action="#" th:action="@{'/selectchassisnumber?key='+${key}}" method="post">
-    <div class="">
-        <div value="">Vælg bil</div>
-        <div class="">
-            <form action="#" th:object="${car}" method="post">
-            <select th:field="*{chassisNumber}">
-                <option  th:each="cars: ${availablecars}"
-                         th:text="${cars.color}+ ',' + ${cars.model}+',' + ${cars.chassisNumber}"
-                         th:value="${cars.chassisNumber}">
-                </option>
-            </select>
-        </div>
-    </div>
-    <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil feltet" /></p>
-    <a href="homepage"><button class="goto_button">
-        Hjem
-    </button>
-    </a>
-</form>
-</a>
+        <form action="#" th:action="@{'/selectchassisnumber?key='+${key}}" method="post">
+            <div class="">
+                <div value="">Vælg bil</div>
+                <div class="">
+                    <form action="#" th:object="${car}" method="post">
+                    <select th:field="*{chassisNumber}">
+                        <option  th:each="cars: ${availablecars}"
+                                 th:text="${cars.color}+ ',' + ${cars.model}+',' + ${cars.chassisNumber}"
+                                 th:value="${cars.chassisNumber}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <p><input type="submit" value="Gem" class="buttom"/> <input type="reset" value="Nulstil feltet" class="buttom" /></p>
+            <a href="homepage">
+                <button class="buttom">Hjem</button>
+            </a>
+        </form>
     </div>
 </div>
 </body>
