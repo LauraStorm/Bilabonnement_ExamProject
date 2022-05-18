@@ -15,10 +15,9 @@
 
 <div class="whiteboard">
     <div class="receipt">
-    <div class="tabel">
-<h1>Skades kvittering</h1>
-<section>
-        <table>
+        <h1>Skades kvittering</h1>
+        <form class="receipt-form">
+            <table class="skema">
             <tr>
                 <th>Beskrivelse</th>
                 <th>Pris</th>
@@ -28,6 +27,9 @@
                 <td><p th:text="${damage.price}"></p></td>
             </tr>
         </table>
+        </form>
+    </div>
+</div>
 <a th:href="'/damage?chassisnumber='+ ${damage.getChassisNumber()}">
     <button class="goto_button">
     Ny skade
@@ -41,9 +43,7 @@
 </button>
 </a>
 
-</section>
     </div>
-</div>
 </div>
 
 </body>

@@ -18,9 +18,9 @@
 
 <div class="whiteboard">
     <div class="receipt">
-        <div class="tabel">
-        <h1>Nuværende skader:</h1>
-    <table>
+        <h1>Bilens nuværende skader</h1>
+        <form class="receipt-form">
+            <table class="skema">
         <thead>
         <tr>
             <th> Skade </th>
@@ -29,11 +29,12 @@
         </thead>
         <tbody>
        <tr th:each="damages : ${damagesforcar}">
-            <td><span th:text="${damages.defectDescription}"> Skade </span></td>
-            <td><span th:text="${damages.price}"> Pris </span></td>
+            <td><p th:text="${damages.defectDescription}"> Skade </p></td>
+            <td><p th:text="${damages.price}"> Pris </p></td>
         </tr>
         </tbody>
     </table>
+        </form>
 <h1>Tilføj skade:</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
 <form action="#" th:action="@{'/damage?chassisnumber='+${chassisnumber}}" th:object="${damage}" method="post">
@@ -45,6 +46,7 @@
                 Hjem
             </button>
             </a>
+</div>
 </div>
 </div>
 </body>
