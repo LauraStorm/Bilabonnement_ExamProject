@@ -1,9 +1,6 @@
 package com.example.bilabonnement_examproject.services;
-
-import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
-import com.example.bilabonnement_examproject.repositories.CarRepo;
 
 import java.util.ArrayList;
 import java.util.List;

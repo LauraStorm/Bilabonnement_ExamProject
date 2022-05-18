@@ -23,7 +23,7 @@
             <div value="">Vælg afhentning</div>
             <div class="">
                 <select th:field="*{id}">
-                    <option selected="selected"  th:each="location: ${locations}"
+                    <option th:each="location: ${locations}"
                              th:text="${location.city}+',' + ${location.address}"
                              th:value="${location.id}">
                     </option>
@@ -36,6 +36,10 @@
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('ny-lejeaftale').style.backgroundColor='white';
+</script>
 
 </body>
 </html>
