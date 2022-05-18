@@ -28,28 +28,39 @@ public class CarController {
     @PostMapping("/selectchassisnumber")
     public String carIdSubmit(RedirectAttributes attributes, Model model,
                               @ModelAttribute CarModel car, @RequestParam(value = "key") int key) {
+        String result = "";
         model.addAttribute("car", car);
         if (!car.getChassisNumber().equals("Stelnummer")) {
-        switch (key) {
-            case 1: {
-                return "redirect:/damage?chassisnumber=" + car.getChassisNumber();
+            switch (key) {
+                case 1: {
+                    result = "redirect:/damage?chassisnumber=" + car.getChassisNumber();
+                }
+                case 2: {
+                    result = "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber();
+                }
+                case 3: {
+                    result = "redirect:/returncarsuccesspage?chassisnumber=" + car.getChassisNumber();
+                }
+                default: {
+                    attributes.addFlashAttribute("error", "Noget gik galt!");
+                    result = "redirect:/selectchassisnumber?key=" + key;
+                }
             }
-            case 2: {
-                return "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber();
-            }
-            case 3:{
-                return "redirect:/returncarsuccesspage?chassisnumber=" + car.getChassisNumber();
-            }
-            default: {
-                attributes.addFlashAttribute("error", "Noget gik galt!");
-                return "redirect:/selectchassisnumber?key="+key;
-            }
-        }
         } else {
-            attributes.addFlashAttribute("error","Vælg venligst en mulighed!");
-            return "redirect:/selectchassisnumber?key="+key;
+            switch (key) {
+                case 2: {
+                    attributes.addFlashAttribute("error", "Vælg venligst en mulighed!");
+                    result = "redirect:/selectchassisnumber?key=" + key;
+                }
+                case 3: {
+                    attributes.addFlashAttribute("error", "Vælg venligst en mulighed!");
+                    result = "redirect:/selectchassisnumberreturn?key=" + key;
+                }
+            }
         }
+        return result;
     }
+
 
 
     @GetMapping("/register-car")

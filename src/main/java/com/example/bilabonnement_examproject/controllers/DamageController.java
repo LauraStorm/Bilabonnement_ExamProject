@@ -99,8 +99,6 @@ public class DamageController {
         model.addAttribute("key",key);
         model.addAttribute("availablecars",carService.fillCarListWithADummyOption(carService.getRentedCarsToReturn()));
         model.addAttribute("car",new CarModel());
-
-
         return "select-chassisnumber-of-cars-return";
     }
 
