@@ -91,6 +91,18 @@ public class CarService {
         return unsoldCarsList;
     }
 
+    public ArrayList<CarModel> getRentedCarsToReturn(){
+        ArrayList<CarModel> rentedCarsList = new ArrayList<CarModel>();
+
+        for (CarModel rentedCar : carRepo.getAllEntities()) {
+            if (rentedCar.isRented()){
+                rentedCarsList.add(rentedCar);
+            }
+        }
+
+        return rentedCarsList;
+    }
+
     public ArrayList<CarModel> fillCarListWithADummyOption(ArrayList<CarModel> carArray){
         ArrayList<CarModel> carModelArrayListExtended = new ArrayList<CarModel>();
         carModelArrayListExtended.add(new CarModel("Stelnummer","Model","Farve"));
