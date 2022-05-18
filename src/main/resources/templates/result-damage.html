@@ -15,31 +15,30 @@
 
 <div class="whiteboard">
     <div class="receipt">
-        <div class="tabel">
-            <h1>Skades kvittering</h1>
-            <section>
-                <table>
-                    <tr>
-                        <th>Beskrivelse</th>
-                        <th>Pris</th>
-                    </tr>
-                    <tr>
-                        <td><p th:text="${damage.defectDescription}"></p></td>
-                        <td><p th:text="${damage.price}"></p></td>
-                    </tr>
-                </table>
-                <a th:href="'/damage?chassisnumber='+ ${damage.getChassisNumber()}">
-                     <button class="buttom"> Ny skade</button>
-                </a>
-                <a href="/selectchassisnumber?key=1">
-                    <button class="goto_button">Ny bil</button>
-                </a>
-                <a href="homepage">
-                    <button class="buttom"> Hjem</button>
-                </a>
+        <h1>Skades kvittering</h1>
+        <form class="receipt-form">
+            <table class="skema">
+            <tr>
+                <th>Beskrivelse</th>
+                <th>Pris</th>
+            </tr>
+            <tr>
+                <td><p th:text="${damage.defectDescription}"></p></td>
+                <td><p th:text="${damage.price}"></p></td>
+            </tr>
+</table>
+</form>
+        <a th:href="'/damage?chassisnumber='+ ${damage.getChassisNumber()}">
+            <button class="buttom">
+                Ny skade
+            </button></a>
+        <a href="/selectchassisnumber?key=1"><button class="buttom">
+            Ny bil
+        </button>
+        </a>
+</div>
+</div>
 
-             </section>
-        </div>
     </div>
 </div>
 

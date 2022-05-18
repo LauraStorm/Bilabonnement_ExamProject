@@ -11,44 +11,44 @@
 
 <br>
 <!--Side navigator -->
+
 <nav>
     <th:block th:replace="fragments/navigator :: nav"></th:block>
 </nav>
 
 <div class="whiteboard">
     <div class="receipt">
-        <div class="tabel">
-            <h1>Nuværende skader:</h1>
-            <table>
-                <thead>
-                <tr>
-                    <th> Skade </th>
-                    <th> Pris </th>
-                </tr>
-                </thead>
-                <tbody>
-               <tr th:each="damages : ${damagesforcar}">
-                    <td><span th:text="${damages.defectDescription}"> Skade </span></td>
-                    <td><span th:text="${damages.price}"> Pris </span></td>
-                </tr>
-                </tbody>
-            </table>
-            <h1>Tilføj skade:</h1>
-            <div th:text="${error}" th:if="${error}" style="color: red"></div>
-            <form action="#" th:action="@{'/damage?chassisnumber='+${chassisnumber}}" th:object="${damage}" method="post">
-                <p>Beskrivelse: <input type="text" th:field="*{defectDescription}" /></p>
-                <p>Pris: <input type="text" th:field="*{price}"/></p>
-                <p>
-                    <input type="submit" value="Gem" class="buttom"/>
-                    <input type="reset" value="Nulstil felterne" class="buttom" />
-                </p>
-            </form>
-                <a href="/">
-                    <button class="buttom">Hjem</button>
-                </a>
-        </div>
-    </div>
+        <h1>Bilens nuværende skader</h1>
+        <form class="receipt-form">
+            <table class="skema">
+        <thead>
+        <tr>
+            <th> Skade </th>
+            <th> Pris </th>
+        </tr>
+        </thead>
+        <tbody>
+       <tr th:each="damages : ${damagesforcar}">
+            <td><p th:text="${damages.defectDescription}"> Skade </p></td>
+            <td><p th:text="${damages.price}"> Pris </p></td>
+        </tr>
+        </tbody>
+    </table>
+        </form>
+<h1>Tilføj skade:</h1>
+        <div th:text="${error}" th:if="${error}" style="color: red"></div>
+<form action="#" th:action="@{'/damage?chassisnumber='+${chassisnumber}}" th:object="${damage}" method="post">
+    <p>Beskrivelse: <input type="text" th:field="*{defectDescription}" /></p>
+    <p>Pris: <input type="text" th:field="*{price}"/></p>
+    <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil felterne" /></p>
+</form>
+            <a href="homepage">
+                <button class="buttom">
+                Hjem
+                 </button>
+            </a>
 </div>
-
+</div>
+</div>
 </body>
 </html>
