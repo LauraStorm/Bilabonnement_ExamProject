@@ -103,7 +103,6 @@ public class CarService {
     }
 
 
-
     public ArrayList<CarModel> getAllUnrentedCars(){
         CarRepo carRepo = new CarRepo();
         ArrayList<CarModel> unrentedCars = new ArrayList<CarModel>();

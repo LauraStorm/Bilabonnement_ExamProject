@@ -81,50 +81,74 @@ public class SubscriptionService {
         return sum;
     }
 
-    public int getExpectedRevenueForCurrentLeases(){  //lau & simon
+    public int getExpectedRevenueForCurrentSubs(){  //lau & simon
+        SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
         ArrayList<CarModel> allRentedCars = carService.getAllRentedCars();
         ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
+        ArrayList<SubscriptionModel> uniqueSubscriptions = new ArrayList<SubscriptionModel>();
+        HashMap<String,Integer> hashSetChassisNumbersAndID = new HashMap<String,Integer>();
 
+
+        for (SubscriptionModel subscriptionsForHash:allSubscriptions
+             ) {
+            hashSetChassisNumbersAndID.put(subscriptionsForHash.getChassisNumber(),subscriptionsForHash.getId());
+        }
         int expectedRevenue = 0;
 
-        for (CarModel car:allRentedCars) {
-                for (SubscriptionModel subscription : allSubscriptions) {
-                    if(car.getChassisNumber().equals(subscription.getChassisNumber())){
-                        //antal mdr. * total pris pr. mdr.
-                        int leasingLengthInMonthFromToday = expectedTimeSpanPickUpAndEndMonths(subscription.getPickupDate(),
-                                subscription.getLength());
-                        int pricePrMonth = subscription.getTotalPriceMd();
-                        expectedRevenue += (pricePrMonth * leasingLengthInMonthFromToday);
-                    }
+            for (CarModel rentedCars:allRentedCars) {
+                if (hashSetChassisNumbersAndID.containsKey(rentedCars.getChassisNumber()))
+                {
+                  SubscriptionModel subToGetPrice = subscriptionRepo.getSingleEntity(hashSetChassisNumbersAndID.
+                          get(rentedCars.getChassisNumber()));
+                int daysUntilPickUpDate = expectedTimeSpanPickUpAndEndDays(
+                        subToGetPrice.getPickupDate(), 0);
+                if (daysUntilPickUpDate > 0) {
+                    //antal mdr. * total pris pr. mdr.
+                    int leasingLengthInMonthFromToday = expectedTimeSpanPickUpAndEndMonths(subToGetPrice.getPickupDate(),
+                            subToGetPrice.getLength());
+                    int pricePrMonth = subToGetPrice.getTotalPriceMd();
+                    expectedRevenue += (pricePrMonth * leasingLengthInMonthFromToday);
                 }
+            }
+                        }
+        System.out.println(expectedRevenue);
+        return expectedRevenue;
+    }
 
 
+    public int getTotalRevenueFromCurrentSubs(){  //lau & simon
+        SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
+        ArrayList<CarModel> allRentedCars = carService.getAllRentedCars();
+        ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
+        ArrayList<SubscriptionModel> uniqueSubscriptions = new ArrayList<SubscriptionModel>();
+        HashMap<String,Integer> hashSetChassisNumbersAndID = new HashMap<String,Integer>();
+
+
+        for (SubscriptionModel subscriptionsForHash:allSubscriptions
+        ) {
+            hashSetChassisNumbersAndID.put(subscriptionsForHash.getChassisNumber(),subscriptionsForHash.getId());
+        }
+        int expectedRevenue = 0;
+
+        for (CarModel rentedCars:allRentedCars) {
+            if (hashSetChassisNumbersAndID.containsKey(rentedCars.getChassisNumber()))
+            {
+                SubscriptionModel subToGetPrice = subscriptionRepo.getSingleEntity(hashSetChassisNumbersAndID.
+                        get(rentedCars.getChassisNumber()));
+                int daysUntilPickUpDate = expectedTimeSpanPickUpAndEndDays(
+                        subToGetPrice.getPickupDate(), 0);
+                if (daysUntilPickUpDate > 0) {
+                    //antal mdr. * total pris pr. mdr.
+                    int totalMonthLength = subToGetPrice.getLength();
+                    int pricePrMonth = subToGetPrice.getTotalPriceMd();
+                    expectedRevenue += (pricePrMonth * totalMonthLength);
+                }
+            }
         }
         System.out.println(expectedRevenue);
         return expectedRevenue;
     }
-    public int getAlreadyEarnedRevenueFromCurrentLeases(){  //lau & simon
-        ArrayList<CarModel> allRentedCars = carService.getAllRentedCars();
-        ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
 
-        int earnedRevenue = 0;
-
-        for (CarModel car:allRentedCars) {
-            for (SubscriptionModel subscription : allSubscriptions) {
-                if(car.getChassisNumber().equals(subscription.getChassisNumber())){
-                    //antal mdr. * total pris pr. mdr.
-                    int totalLeasingLength = subscription.getLength();
-                    int pricePrMonth = subscription.getTotalPriceMd();
-                    earnedRevenue += ((pricePrMonth * totalLeasingLength) -
-                            getExpectedRevenueForCurrentLeases());
-                }
-            }
-
-
-        }
-        System.out.println(earnedRevenue);
-        return earnedRevenue;
-    }
 
 
     //år-månede-dag -> xxxx-xx-xx
