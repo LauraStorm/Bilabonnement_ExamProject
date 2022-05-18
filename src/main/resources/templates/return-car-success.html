@@ -13,22 +13,20 @@
 
 <div class="whiteboard">
     <div class="receipt">
-        <h3>Bilen blev succesfuldt opdateret</h3>
+    <h3>Bilen blev succesfuldt opdateret</h3>
         <form class="receipt-form">
             <table class="skema">
-                <tr>
-                <th>Stelnummer</th>
-                <th>Model</th>
-                <th>Farve</th>
-                <th>Lejet</th>
-                </tr>
+        <tr>
+        <th>Stelnummer</th>
+        <th>Model</th>
+        <th>Farve</th>
+        </tr>
 
-                <tr>
-                    <td th:text="${car.getChassisNumber}"></td>
-                    <td th:text="${car.getModel}"></td>
-                    <td th:text="${car.getColor}"></td>
-                    <td th:text="${car.isRentedToString(car.isRented)}"></td>
-                </tr>
+        <tr>
+            <td th:text="${car.chassisNumber}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.color}"></td>
+        </tr>
 
             </table>
         </form>

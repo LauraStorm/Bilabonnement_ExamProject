@@ -57,13 +57,15 @@ public class DamageController {
     }
 
 
-    @GetMapping("/getreturncarpage")
+    @GetMapping("/returncarpage")
     public String getReturnCarPage(){
         return "return-car";
     }
 
     @PostMapping("/returncarpage")
-    public String returnCarPage(WebRequest dataFromForm, RedirectAttributes attributes, Model model, HttpSession session) {
+    public String returnCarPage(WebRequest dataFromForm, RedirectAttributes attributes, Model model, HttpSession session,
+                                @RequestParam (value = "chassisnumber")
+                                        String chassisNumber) {
         CarRepo carRepo = new CarRepo();
         CarService carService = new CarService();
         String result = "";
@@ -92,9 +94,21 @@ public class DamageController {
 
     }
 
+    @GetMapping("/selectchassisnumberreturn")
+    public String selectReturnedCar(Model model, @RequestParam(value = "key") int key) {
+        model.addAttribute("key",key);
+        model.addAttribute("availablecars",carService.fillCarListWithADummyOption(carService.getRentedCarsToReturn()));
+        model.addAttribute("car",new CarModel());
+        return "select-chassisnumber-of-cars-return";
+    }
+
     @GetMapping("/returncarsuccesspage")
-    public String returnCarSuccessPage(Model model, HttpSession session) {
-        CarModel returnCar = (CarModel) session.getAttribute("returncar");
+    public String returnCarSuccessPage(Model model,@ModelAttribute CarModel car
+                                       ,HttpSession session,
+                                       @RequestParam (value = "chassisnumber")
+                                               String chassisNumber) {
+        CarRepo carRepo = new CarRepo();
+        CarModel returnCar = carRepo.changeRentedStatus(chassisNumber);
         model.addAttribute("car", returnCar);
         return "return-car-success";
     }

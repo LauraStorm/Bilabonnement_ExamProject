@@ -12,7 +12,8 @@ public class FinanceController {
     @GetMapping("/finance")
     public String showFinances(Model model){
         SubscriptionService subscriptionService = new SubscriptionService();
-        model.addAttribute("sumcurrentlease",subscriptionService.getTotalPriceForAllRentedCars());
+        model.addAttribute("sumcurrentlease",subscriptionService.getExpectedRevenueForCurrentLeases());
+        model.addAttribute("alreadyearned",subscriptionService.getAlreadyEarnedRevenueFromCurrentLeases());
         return "finance-page";
     }
 }

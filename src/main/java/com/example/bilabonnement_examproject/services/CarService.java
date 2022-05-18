@@ -10,6 +10,7 @@ import net.bytebuddy.description.type.TypeList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CarService {
     private CRUDInterface<CarModel,Integer> carRepo;
@@ -90,6 +91,64 @@ public class CarService {
         }
         return unsoldCarsList;
     }
+
+    public ArrayList<CarModel> getRentedCarsToReturn(){
+        ArrayList<CarModel> rentedCarsList = new ArrayList<CarModel>();
+        for (CarModel cars:carRepo.getAllEntities()) {
+            if (cars.isRented()){
+                rentedCarsList.add(cars);
+            }
+        }
+        return rentedCarsList;
+    }
+
+
+
+    public ArrayList<CarModel> getAllUnrentedCars(){
+        CarRepo carRepo = new CarRepo();
+        ArrayList<CarModel> unrentedCars = new ArrayList<CarModel>();
+        for (CarModel cars:carRepo.getAllEntities()
+        ) {
+            if (!cars.isRented()){
+                unrentedCars.add(cars);
+            }
+        }
+        return unrentedCars;
+    }
+
+    public ArrayList<CarModel> getAllRentedCars(){
+        CarRepo carRepo = new CarRepo();
+        ArrayList<CarModel> rentedCars = new ArrayList<CarModel>();
+        for (CarModel cars:carRepo.getAllEntities()
+        ) {
+            if (cars.isRented()){
+                rentedCars.add(cars);
+            }
+        }
+        return rentedCars;
+    }
+
+    public boolean isCarUnrented(String chassisNumber) {
+        CarRepo carRepo = new CarRepo();
+        boolean isCarUnrented = false;
+        ArrayList<CarModel> unrentedCars = new ArrayList<CarModel>();
+        for (CarModel cars : carRepo.getAllEntities()
+        ) {
+            if (!cars.isRented()) {
+                unrentedCars.add(cars);
+                for (CarModel carsUn : unrentedCars
+                ) {
+                    if (Objects.equals(carsUn.getChassisNumber(), chassisNumber)) {
+                        isCarUnrented =  true;
+                    } else {
+                        isCarUnrented =  false;
+                    }
+                }
+            }
+        }
+        return isCarUnrented;
+    }
+
 
     public ArrayList<CarModel> fillCarListWithADummyOption(ArrayList<CarModel> carArray){
         ArrayList<CarModel> carModelArrayListExtended = new ArrayList<CarModel>();

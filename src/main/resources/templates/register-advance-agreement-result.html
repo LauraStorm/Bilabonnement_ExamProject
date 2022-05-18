@@ -19,55 +19,57 @@
 
 <div class="whiteboard">
     <div class="receipt">
-        <div class="tabel">
-            <h1>Forhåndsaftalen er nu oprettet</h1>
-            <section>
-                <table>
-                    <tr>
-                        <th>Aftale id</th>
-                        <th>Vilkår</th>
-                        <th>Kørte kilometer</th>
-                        <th>Overkørte kilometer pris</th>
-                        <th>Afslag total pris</th>
-                        <th>Købspris</th>
-                        <th>Afhentningssted</th>
-                    </tr>
-                    <tr>
-                        <td><p th:text="${advanceagreement.id}"></p></td>
-                        <td><p th:text="${advanceagreement.terms}"></p></td>
-                        <td><p th:text="${advanceagreement.kilometersDriven}"></p></td>
-                        <td><p th:text="${advanceagreement.extendKilometer}"></p></td>
-                        <td><p th:text="${advanceagreement.refusalPrice}"></p></td>
-                        <td><p th:text="${advanceagreement.purchasePrice}"></p></td>
-                        <td><p th:text="${advanceagreement.locationId}"></p></td>
-                    </tr>
-                </table>
-                <table>
-                    <thead>
-                    <tr>
-                        <th> Skade </th>
-                        <th> Pris </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="damages : ${damagesforcar}">
-                        <td><span th:text="${damages.defectDescription}"> Skade </span></td>
-                        <td><span th:text="${damages.price}"> Pris </span></td>
-                    </tr>
-                    </tbody>
-                </table>
-                <a href="/selectchassisnumber?key=2">
-                    <button class="buttom" >
-                        Ny aftale
-                    </button></a>
-                <a href="homepage">
-                    <button class="buttom">Hjem</button>
-                </a>
+    <div class="tabel">
+        <div class="receipt">
+        <h1>Forhåndsaftalen er nu oprettet</h1>
+        <section>
+            <table>
+                <tr>
+                    <th>Aftale id</th>
+                    <th>Vilkår</th>
+                    <th>Kørte kilometer</th>
+                    <th>Overkørte kilometer pris</th>
+                    <th>Afslag total pris</th>
+                    <th>Købspris</th>
+                    <th>Afhentningssted</th>
+                </tr>
+                <tr>
+                    <td><p th:text="${advanceagreement.id}"></p></td>
+                    <td><p th:text="${advanceagreement.terms}"></p></td>
+                    <td><p th:text="${advanceagreement.kilometersDriven}"></p></td>
+                    <td><p th:text="${advanceagreement.extendKilometer}"></p></td>
+                    <td><p th:text="${advanceagreement.refusalPrice}"></p></td>
+                    <td><p th:text="${advanceagreement.purchasePrice}"></p></td>
+                    <td><p th:text="${advanceagreement.locationId}"></p></td>
+                </tr>
+            </table>
+            <table>
+                <thead>
+                <tr>
+                    <th> Skade </th>
+                    <th> Pris </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="damages : ${damagesforcar}">
+                    <td><span th:text="${damages.defectDescription}"> Skade </span></td>
+                    <td><span th:text="${damages.price}"> Pris </span></td>
+                </tr>
+                </tbody>
+            </table>
+            <a href="/selectchassisnumber?key=2">
+                <button class="buttom">
+                    Ny aftale
+                </button></a>
+            <a href="homepage">
+                <button class="buttom">Hjem</button>
+            </a>
 
-            </section>
+        </section>
         </div>
     </div>
-</div>
+    </div>
+    </div>
 </body>
 
 <br>
