@@ -92,6 +92,18 @@ public class CarService {
         return unsoldCarsList;
     }
 
+    public ArrayList<CarModel> getRentedCarsToReturn(){
+        ArrayList<CarModel> rentedCarsList = new ArrayList<CarModel>();
+        for (CarModel cars:carRepo.getAllEntities()) {
+            if (cars.isRented()){
+                rentedCarsList.add(cars);
+            }
+        }
+        return rentedCarsList;
+    }
+
+
+
     public ArrayList<CarModel> getAllUnrentedCars(){
         CarRepo carRepo = new CarRepo();
         ArrayList<CarModel> unrentedCars = new ArrayList<CarModel>();
