@@ -18,10 +18,10 @@
         <h1>Registrer lokation</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
         <form action="#" th:action="@{/register-location}" th:object="${location}" method="post">
-        <div class="dropdown">
+        <div class="">
 
             <div value="">Vælg afhentning</div>
-            <div class="dropdown-content">
+            <div class="">
                 <select th:field="*{id}">
                     <option selected="selected"  th:each="location: ${locations}"
                              th:text="${location.city}+',' + ${location.address}"

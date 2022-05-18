@@ -28,28 +28,6 @@ public class AdvanceAgreementController {
     private AdvanceAgreementRepo advanceAgreementRepo = new AdvanceAgreementRepo();
     private LocationRepo locationRepo = new LocationRepo();
 
-    /*
-    @GetMapping("/caridagreement")
-    public String carIdForm() {
-        return "advance-agreement-carid";
-    }
-
-    @PostMapping("/caridagrement")
-    public String carIdSubmit(WebRequest formData,
-                              RedirectAttributes attributes) {
-        String result = "";
-        String carId = formData.getParameter("carid");
-        assert carId != null;
-        if (Objects.equals(carRepo.getSingleEntity(carId).getChassisNumber(), carId)) {
-            result = "redirect:/registeradvanceagreement?carid=" + carId;
-        } else {
-            attributes.addFlashAttribute("error","Stelnummeret findes ikke!");
-            result = "redirect:/caridagreement";
-        }
-        return result;
-    }
-
-     */
 
 
     @GetMapping("/registeradvanceagreement")

@@ -19,9 +19,9 @@
 <h1>Find den bil du vil registrere skader på</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
 <form action="#" th:action="@{'/selectchassisnumber?key='+${key}}" method="post">
-    <div class="dropdown">
+    <div class="">
         <div value="">Vælg bil</div>
-        <div class="dropdown-content">
+        <div class="">
             <form action="#" th:object="${car}" method="post">
             <select th:field="*{chassisNumber}">
                 <option  th:each="cars: ${availablecars}"

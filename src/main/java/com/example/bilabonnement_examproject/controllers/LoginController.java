@@ -22,7 +22,7 @@ public class LoginController {
     @PostMapping("/")
     public String getLoginInfo (WebRequest dataFromForm, HttpSession session, RedirectAttributes errorMessage){
         LoginService loginService = new LoginService();
-
+        session.invalidate();
         //Gem data
         String username = dataFromForm.getParameter("username");
         String password = dataFromForm.getParameter("password");
@@ -30,8 +30,11 @@ public class LoginController {
         //tjek valid
         boolean isLoginValid = loginService.isLoginValid(username,password);
 
+
+
         if (isLoginValid == true){
             //Return "homepage" if true
+            session.setAttribute("password", password);
             return "redirect:/homepage";
         } else {
             //Return redirect: index + besked

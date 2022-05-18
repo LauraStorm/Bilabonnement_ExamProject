@@ -40,13 +40,13 @@ public class LoginRepo implements CRUDInterface<LoginModel,Integer>{
     }
 
     @Override
-    public LoginModel getSingleEntity(Integer integer) {
+    public LoginModel getSingleEntity(Integer key) {
         Connection conn = DatabaseConnectionManager.getConnection();
         LoginModel login = null;
 
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM login WHERE id=?");
-            stmt.setInt(1,integer);
+            stmt.setInt(1,key);
 
             ResultSet rs = stmt.executeQuery();
             rs.next();

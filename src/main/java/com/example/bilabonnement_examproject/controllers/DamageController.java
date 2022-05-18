@@ -24,27 +24,6 @@ public class DamageController {
     private CarService carService = new CarService(new CarRepo());
     private DamageService damageService = new DamageService(new DamageRepo());
 
-    /*
-    @GetMapping("/selectchassisnumber")
-    public String carIdForm(Model model) {
-        model.addAttribute("availablecars",carService.getAllUnsoldCars());
-        model.addAttribute("car",new CarModel());
-        return "select-chassisnumber-of-cars";
-    }
-
-    @PostMapping("/selectchassisnumber")
-    public String carIdSubmit(RedirectAttributes attributes, Model model,
-                              @ModelAttribute CarModel car) {
-        model.addAttribute("car", car);
-        if (!car.getChassisNumber().isEmpty()) {
-            return  "redirect:/damage?chassisnumber="+car.getChassisNumber();
-        } else {
-            attributes.addFlashAttribute("error","Vælg venligst en mulighed!");
-            return  "redirect:/selectchassisnumber";
-        }
-    }
-
-     */
 
     @GetMapping("/damage")
     public String damageDataForm(Model model, @RequestParam (value = "chassisnumber")
