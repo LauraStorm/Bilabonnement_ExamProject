@@ -100,8 +100,8 @@ public class SubscriptionService {
                 {
                   SubscriptionModel subToGetPrice = subscriptionRepo.getSingleEntity(hashSetChassisNumbersAndID.
                           get(rentedCars.getChassisNumber()));
-                int daysUntilPickUpDate = expectedTimeSpanPickUpAndEndDays(
-                        subToGetPrice.getPickupDate(), 0);
+                    int daysUntilPickUpDate = expectedTimeSpanPickUpAndEndDays(
+                            subToGetPrice.getPickupDate(), 0);
                 if (daysUntilPickUpDate > 0) {
                     //antal mdr. * total pris pr. mdr.
                     int leasingLengthInMonthFromToday = expectedTimeSpanPickUpAndEndMonths(subToGetPrice.getPickupDate(),
@@ -137,7 +137,7 @@ public class SubscriptionService {
                         get(rentedCars.getChassisNumber()));
                 int daysUntilPickUpDate = expectedTimeSpanPickUpAndEndDays(
                         subToGetPrice.getPickupDate(), 0);
-                if (daysUntilPickUpDate > 0) {
+                if (daysUntilPickUpDate < 0) {
                     //antal mdr. * total pris pr. mdr.
                     int totalMonthLength = subToGetPrice.getLength();
                     int pricePrMonth = subToGetPrice.getTotalPriceMd();
