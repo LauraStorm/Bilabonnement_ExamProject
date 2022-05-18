@@ -15,6 +15,7 @@ import java.util.*;
 public class SubscriptionService {
     private CRUDInterface subscriptionRepo = new SubscriptionRepo();
     private CRUDInterface carRepo = new CarRepo();
+    private CarService carService = new CarService();
 
     public SubscriptionService (CRUDInterface<SubscriptionModel,Integer> subscriptionRepository, CRUDInterface<CarModel,String> carRepository){
         this.subscriptionRepo =subscriptionRepository;
@@ -23,6 +24,11 @@ public class SubscriptionService {
 
     public SubscriptionService (){
 
+    }
+
+    public ArrayList<SubscriptionModel> getAllSubscriptions(){
+        ArrayList<SubscriptionModel> subscriptionModels = new ArrayList<SubscriptionModel>(subscriptionRepo.getAllEntities());
+        return subscriptionModels;
     }
 
     public String StringTooBooleanTerms(String input){
@@ -63,8 +69,8 @@ public class SubscriptionService {
 
                      */
 
-                    int spanMonths = expectedTimeSpanPickUpAndEnd(
-                            currentSubscription.getPickupDate(),currentSubscription.getLength()).getMonths();
+                    int spanMonths = expectedTimeSpanPickUpAndEndMonths(
+                            currentSubscription.getPickupDate(),currentSubscription.getLength());
 
                     sum += currentSubscription.getTotalPriceMd()*spanMonths;
                 }
@@ -75,6 +81,50 @@ public class SubscriptionService {
         return sum;
     }
 
+    public int getExpectedRevenueForCurrentLeases(){  //lau & simon
+        ArrayList<CarModel> allRentedCars = carService.getAllRentedCars();
+        ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
+
+        int expectedRevenue = 0;
+
+        for (CarModel car:allRentedCars) {
+                for (SubscriptionModel subscription : allSubscriptions) {
+                    if(car.getChassisNumber().equals(subscription.getChassisNumber())){
+                        //antal mdr. * total pris pr. mdr.
+                        int leasingLengthInMonthFromToday = expectedTimeSpanPickUpAndEndMonths(subscription.getPickupDate(),
+                                subscription.getLength());
+                        int pricePrMonth = subscription.getTotalPriceMd();
+                        expectedRevenue += (pricePrMonth * leasingLengthInMonthFromToday);
+                    }
+                }
+
+
+        }
+        System.out.println(expectedRevenue);
+        return expectedRevenue;
+    }
+    public int getAlreadyEarnedRevenueFromCurrentLeases(){  //lau & simon
+        ArrayList<CarModel> allRentedCars = carService.getAllRentedCars();
+        ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
+
+        int earnedRevenue = 0;
+
+        for (CarModel car:allRentedCars) {
+            for (SubscriptionModel subscription : allSubscriptions) {
+                if(car.getChassisNumber().equals(subscription.getChassisNumber())){
+                    //antal mdr. * total pris pr. mdr.
+                    int totalLeasingLength = subscription.getLength();
+                    int pricePrMonth = subscription.getTotalPriceMd();
+                    earnedRevenue += ((pricePrMonth * totalLeasingLength) -
+                            getExpectedRevenueForCurrentLeases());
+                }
+            }
+
+
+        }
+        System.out.println(earnedRevenue);
+        return earnedRevenue;
+    }
 
 
     //år-månede-dag -> xxxx-xx-xx
@@ -111,7 +161,7 @@ public class SubscriptionService {
         return deliveryDate;
     }
 
-    public Period expectedTimeSpanPickUpAndEnd(String pickUpDate, int leaseLength){
+    public int expectedTimeSpanPickUpAndEndMonths(String pickUpDate, int leaseLength){
         HashMap<Integer,Month> monthHashMap = new HashMap<Integer,Month>();
         monthHashMap.put(1,Month.JANUARY);
         monthHashMap.put(2,Month.FEBRUARY);
@@ -134,27 +184,50 @@ public class SubscriptionService {
         System.out.println("Until end of the lease: " + today.until(endOfLease));
         System.out.println("Until end of lease (chrono): " + today.until(endOfLease, ChronoUnit.DAYS));
 
-        return today.until(endOfLease);
+        return (int) today.until(endOfLease,ChronoUnit.MONTHS);
+    }
+    public int expectedTimeSpanPickUpAndEndDays(String pickUpDate, int leaseLength){
+        HashMap<Integer,Month> monthHashMap = new HashMap<Integer,Month>();
+        monthHashMap.put(1,Month.JANUARY);
+        monthHashMap.put(2,Month.FEBRUARY);
+        monthHashMap.put(3,Month.MARCH);
+        monthHashMap.put(4,Month.APRIL);
+        monthHashMap.put(5,Month.MAY);
+        monthHashMap.put(6,Month.JUNE);
+        monthHashMap.put(7,Month.JULY);
+        monthHashMap.put(8,Month.AUGUST);
+        monthHashMap.put(9,Month.SEPTEMBER);
+        monthHashMap.put(10,Month.OCTOBER);
+        monthHashMap.put(11,Month.NOVEMBER);
+        monthHashMap.put(12,Month.DECEMBER);
+        String[] pickUpDateArray = pickUpDate.split("-");
+        LocalDate today = LocalDate.now();
+        LocalDate endOfLease = LocalDate.of(Integer.parseInt(pickUpDateArray[0]),
+                        monthHashMap.get(Integer.parseInt(pickUpDateArray[1])), Integer.parseInt(pickUpDateArray[2]))
+                .plusMonths(leaseLength);
+
+        System.out.println("Until end of the lease: " + today.until(endOfLease));
+        System.out.println("Until end of lease (chrono): " + today.until(endOfLease, ChronoUnit.DAYS));
+
+        return (int) today.until(endOfLease,ChronoUnit.DAYS);
     }
 
 
     public int getTotalPriceForAllRentedCars(){  //lau
-        List<CarModel> allCars = carRepo.getAllEntities();
-        List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
+        ArrayList<CarModel> allRentedCars = carService.getAllRentedCars();
+        ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
 
         int totalPriceForAllRentedCars = 0;
 
-        for (CarModel aCar:allCars) {
-            if (aCar.isRented()== true){
-
-                for (SubscriptionModel aSubscription : allSubscriptions) {
-                    if(aCar.getChassisNumber().equals(aSubscription.getChassisNumber())){
-
+        for (CarModel car:allRentedCars) {
+            if (car.isRented()){
+                for (SubscriptionModel subscription : allSubscriptions) {
+                    if(car.getChassisNumber().equals(subscription.getChassisNumber())){
                         //antal mdr. * total pris pr. mdr.
-                        int leasingLengthInMonth = aSubscription.getLength();
-                        int pricePrMonth = aSubscription.getTotalPriceMd();
+                        int leasingLengthInMonth = subscription.getLength();
+                        int pricePrMonth = subscription.getTotalPriceMd();
                         totalPriceForAllRentedCars = totalPriceForAllRentedCars + leasingLengthInMonth * pricePrMonth;
-                        System.out.println(aSubscription);
+                        System.out.println(subscription);
                         System.out.println(totalPriceForAllRentedCars);
                     }
                 }

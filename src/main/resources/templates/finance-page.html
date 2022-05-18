@@ -17,7 +17,12 @@
 <div class="whiteboard">
     <div class="tabel">
         <h1>Den forventede fortjeneste af nuværende lejeaftaler</h1>
+        Den forventede indtjening af på nuværende lejeaftaler:
         <p th:text="${sumcurrentlease}"></p>
+        Allerede indtjent på nuværende lejeaftaler:
+        <p th:text="${alreadyearned}"></p>
+        Total indtjening på nuværende lejeaftaler:
+        <p th:text="${alreadyearned}+${sumcurrentlease}"></p>
     </div>
 </div>
 </body>
