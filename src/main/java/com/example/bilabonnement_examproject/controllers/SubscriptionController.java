@@ -54,7 +54,7 @@ public class SubscriptionController {
 
             subscriptionModel = new SubscriptionModel(Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(selfrisk)),
                     Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(deliveryInsurance)), Integer.parseInt(totalPrice),
-                    Integer.parseInt(lenght), subscriptionService.findType(subscriptionType), chassisNumber,
+                    Integer.parseInt(lenght), subscriptionService.findType(lenght), chassisNumber,
                     Integer.parseInt(locationId), Integer.parseInt(rentersId),
                     pickupDate, subscriptionService.getDeliveryDate(pickupDate, Integer.parseInt(lenght)));
 
