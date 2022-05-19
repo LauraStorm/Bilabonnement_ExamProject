@@ -21,22 +21,27 @@
         <div th:text="${errormessage}" th:if="${errormessage}" style="color: red"></div>
         <div class="form-purchase-car">
             <form action="#" th:action="@{/registernewcartofleet}" th:object="${car}" method="post">
-                <p>Vognnummer:    <input type="text" th:field="*{wagonNumber}" /></p>
-                <p>Stelnummer:    <input type="text" th:field="*{chassisNumber}"/></p>
-                <p>Mærke:         <input type="text" th:field="*{manufacturer}"/></p>
-                <p>Model:         <input type="text" th:field="*{model}"/></p>
-                <p>Farve:         <input type="text" th:field="*{color}"/></p>
-                <p>Udstyrsniveau: <input type="text" th:field="*{equipmentLevel}"/></p>
-                <p>Stålpris:      <input type="text" th:field="*{steelPrice}"/></p>
-                <p>Reg. afgift:   <input type="text" th:field="*{registrationFee}"/></p>
-                <p>CO2-udledning: <input type="text" th:field="*{carbonEmission}"/></p>
-                <p>
-                    <input type="submit" value="Gem" />
-                    <input type="reset" value="Nulstil felterne" />
-                </p>
-                <a href="homepage">
-                    <button class="buttom">Hjem</button>
-                </a>
+                <p>Vognnummer</p>
+                <input type="text" th:field="*{wagonNumber}" class="inputstyle" />
+                <p>Stelnummer</p>
+                <input type="text" th:field="*{chassisNumber}" class="inputstyle"/> <br>
+                <p>Mærke</p>
+                <input type="text" th:field="*{manufacturer}" class="inputstyle"/> <br>
+                <p>Model</p>
+                <input type="text" th:field="*{model}" class="inputstyle"/><br>
+                <p>Farve</p>
+                <input type="text" th:field="*{color}"class="inputstyle"/> <br>
+                <p>Udstyrsniveau</p>
+                <input type="text" th:field="*{equipmentLevel}"class="inputstyle"/> <br>
+                <p>Stålpris</p>
+                <input type="text" th:field="*{steelPrice}"class="inputstyle"/> <br>
+                <p>Reg. afgift</p>
+                <input type="text" th:field="*{registrationFee}" class="inputstyle"/> <br>
+                <p>CO2-udledning</p>
+                <input type="text" th:field="*{carbonEmission}" class="inputstyle"/><br>
+
+                <input type="submit" value="Gem" class="buttom"/>
+                <input type="reset" value="Nulstil felterne" class="buttom"/>
             </form>
         </div>
     </div>

@@ -19,10 +19,11 @@
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
 <form action="#" th:action="@{'/selectchassisnumber?key='+${key}}" method="post">
     <div class="">
-        <div value="">Vælg bil</div>
+        <div class="labelType" value="">Vælg bil</div>
+        <br>
         <div class="">
             <form action="#" th:object="${car}" method="post">
-            <select th:field="*{chassisNumber}">
+            <select th:field="*{chassisNumber}" class="inputstyledrop">
                 <option  th:each="cars: ${availablecars}"
                          th:text="${cars.color}+ ',' + ${cars.model}+',' + ${cars.chassisNumber}"
                          th:value="${cars.chassisNumber}">
@@ -30,11 +31,11 @@
             </select>
         </div>
     </div>
-    <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil feltet" /></p>
-    <a href="homepage"><button class="goto_button">
-        Hjem
-    </button>
-    </a>
+    <p>
+        <input type="submit" value="Gem" class="buttom" />
+        <input type="reset" value="Nulstil feltet" class="buttom"/>
+    </p>
+
 </form>
 </a>
     </div>

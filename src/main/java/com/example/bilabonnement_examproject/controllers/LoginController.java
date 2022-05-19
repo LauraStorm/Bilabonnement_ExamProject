@@ -31,8 +31,6 @@ public class LoginController {
         //tjek valid
         boolean isLoginValid = loginService.isLoginValid(username,password);
 
-
-
         if (isLoginValid == true){
             //Return "homepage" if true
             session.setAttribute("password", password);
@@ -47,7 +45,7 @@ public class LoginController {
     }
 
     @GetMapping("/homepage")
-    public String getHomePage(){
+    public String getHomePage(HttpSession session){
         return "homepage";
     }
 }

@@ -18,29 +18,25 @@
     <h1>Registrer abonnement</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
         <form action="get-subscription-information" method="post">
-            Selvrisiko
-            <br>
-            <input type="radio" id="ja" value="ja" name="selfrisk">
+            <p class="labelType">Selvrisiko</p>
+            <input  type="radio" id="ja" value="ja" name="selfrisk">
             <label for="ja">Ja</label>
             <input type="radio" id="nej" value="nej" name="selfrisk">
             <label for="nej">Nej</label>
+
             <br>
-            <br>
-            Afhentnings forsikring
-            <br>
+            <p class="labelType">Afhentnings forsikring</p>
             <input type="radio" id="ja1" value="ja" name="deliveryInsurance">
             <label for="ja1">Ja</label>
             <input type="radio" id="nej1" value="nej" name="deliveryInsurance">
             <label for="nej1">Nej</label>
             <br>
+
+            <p class="labelType">Total pris</p>
+            <input class="inputstyle" type="number" name="totalPrice">
             <br>
-            Total pris
-            <br>
-            <input type="number" name="totalPrice">
-            <br>
-            <br>
-            Lejeperiode
-            <br>
+
+            <p class="labelType">Lejeperiode</p>
             <input type="radio" name="lenght" id="3" value="3">
             <label for="3">3 Måneder</label>
 
@@ -59,12 +55,10 @@
             <input type="radio" name="lenght" id="36" value="36">
             <label for="36">36 Måneder</label>
             <br>
-            <br>
 
-            Startdato/Udlejningsdato
-            <br>
-            <input type="date" name="pickupDate">
-            <br>
+
+            <p class="labelType">Startdato/Udlejningsdato</p>
+            <input type="date" name="pickupDate" class="inputstyle">
             <br>
             <input type="submit" class="buttom">
         </form>

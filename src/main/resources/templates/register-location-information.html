@@ -20,9 +20,9 @@
         <form action="#" th:action="@{/register-location}" th:object="${location}" method="post">
         <div class="">
 
-            <div value="">Vælg afhentning</div>
+            <div class="labelType" value="">Vælg afhentning</div>
             <div class="">
-                <select th:field="*{id}">
+                <select th:field="*{id}" class="inputstyledrop">
                     <option selected="selected"  th:each="location: ${locations}"
                              th:text="${location.city}+',' + ${location.address}"
                              th:value="${location.id}">

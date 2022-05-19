@@ -22,10 +22,12 @@
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
         <form action="/get-chassis-number" method="post">
             <br>
+
+            <label class="labelType">Stel nummer</label>
             <br>
-            Stel nummer
             <br>
-            <input type="number" name="chassis-number">
+            <input type="number" name="chassis-number" class="inputstyle">
+            <br>
             <input type="submit" class="buttom">
         </form>
 

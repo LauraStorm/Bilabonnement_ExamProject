@@ -18,8 +18,8 @@
 <h1>Opret en forhåndsaftale for en bil</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
         <form action="#" th:action="@{/caridagrement}" method="post">
-    <p>Stelnummer: <input name="carid" type="number"/></p>
-    <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil feltet" /></p>
+    <p>Stelnummer: <input name="carid" type="number" class="inputstyle"/></p>
+    <p><input type="submit" value="Gem" class="buttom"/> <input type="reset" value="Nulstil feltet" class="buttom" /></p>
     <a href="/"><button class="goto_button">
         Hjem
     </button>
