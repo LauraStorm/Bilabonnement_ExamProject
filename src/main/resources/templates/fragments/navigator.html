@@ -23,27 +23,27 @@
 
             <div class="nav-valg ">
                 <h3>Dataregistrering</h3>
-                <a href="registernewcartofleet">Registrer indkøbt bil</a>
-                <a href="register-car">Registrer ny lejeaftale</a>
-                <a href="selectchassisnumber?key=2">Registrer ny forhåndsaftale</a>
+                <a id="indkøb-bil" href="registernewcartofleet">Registrer indkøbt bil</a>
+                <a id="ny-lejeaftale" href="register-car">Registrer ny lejeaftale</a>
+                <a id="forhåndsaftale" href="selectchassisnumber?key=2">Registrer ny forhåndsaftale</a>
             </div>
 
             <br>
 
             <div class="nav-valg">
                 <h3>Skade & Udbedring</h3>
-                <a href="selectchassisnumberreturn?key=3">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
-                <a href="selectchassisnumber?key=1">Registrer fejl og mangler</a>
+                <a id="registrer-bil-modtaget" href="selectchassisnumberreturn?key=3">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
+                <a onclick="myFunction()" id="fejl-og-mangler" href="selectchassisnumber?key=1">Registrer fejl og mangler</a>
             </div>
 
             <br>
 
             <div class="nav-valg">
                 <h3>Forretningsudviklere</h3>
-                <a href="all-cars">Vis oversigt over Alle biler</a>
-                <a href="rented-cars">Vis oversigt over udlejede biler</a>
-                <a href="available-cars">Vis oversigt over ledige biler</a>
-                <a href="finance">Vis pris på udlejede biler</a>
+                <a id="all-cars" href="all-cars">Vis oversigt over Alle biler</a>
+                <a id="rented-cars" href="rented-cars">Vis oversigt over udlejede biler</a>
+                <a id="available-cars" href="available-cars">Vis oversigt over ledige biler</a>
+                <a id="finance" href="finance">Vis pris på udlejede biler</a>
             </div>
 
             <div class="nav-valg">
@@ -62,6 +62,12 @@
 
     </section>
 </nav>
+
+<script>
+    function myFunction() {
+        document.getElementById('fejl-og-mangler').style.backgroundColor = 'red';
+    }
+</script>
 
 </body>
 </html>

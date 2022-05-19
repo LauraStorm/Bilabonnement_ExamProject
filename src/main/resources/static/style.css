@@ -41,7 +41,6 @@ h1{
     margin-left: 300px;
     padding-top: 100px;
     padding-bottom: 5px;
-
 }
 
 .receipt{
@@ -51,7 +50,6 @@ h1{
     flex-direction: column;
     justify-content: flex-start;
 }
-
 
 table{
     border-collapse: collapse;

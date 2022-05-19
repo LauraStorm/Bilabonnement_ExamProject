@@ -85,7 +85,7 @@ public class CarController {
 
             //hvis chassis number er valid og bilen er updatet bliver man sendt videre
             session.setAttribute("chassisSession", chassisNumberFromForm);
-            boolean isUpdated = carRepo.updateEntity(chassisNumberFromForm);
+            carRepo.updateEntity(chassisNumberFromForm); // opdaterer rented status til "true"
             result = "redirect:/create-renter-information";
 
         } else if(chassisNumberFromForm.length() != 17) {

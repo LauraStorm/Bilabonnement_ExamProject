@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Stelnummer</title>
+    <title>Omsætning leje</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{fragment.css}"  type="text/css">
     <link rel="stylesheet" th:href="@{style.css}" type="text/css">
@@ -20,22 +20,28 @@
             <form class="receipt-form">
                 <table class="skema">
         <tr>
-            <th>Forventet</th>
-            <th>Allerede indtjent</th>
+            <th>Allerede indtjent
+            </th>
+            <th>Forventet
+            </th>
             <th>Total</th>
         </tr>
         <tr>
+            <td> <p th:text="${totalrevenue}-${sumcurrentlease}"></p></td>
             <td> <p th:text="${sumcurrentlease}"></p></td>
-            <td> <p th:text="${alreadyearned}"></p></td>
-            <td> <p th:text="${alreadyearned}+${sumcurrentlease}"></p></td>
+            <td> <p th:text="${totalrevenue}"></p></td>
         </tr>
         </table>
             </form>
     </div>
+</div>
+
     </div>
 </body>
 
-
+<script>
+    document.getElementById('finance').style.backgroundColor='white';
+</script>
 
 
 </html>
