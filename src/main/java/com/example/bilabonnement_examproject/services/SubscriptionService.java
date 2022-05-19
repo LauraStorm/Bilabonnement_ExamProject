@@ -210,6 +210,7 @@ public class SubscriptionService {
 
         return (int) today.until(endOfLease,ChronoUnit.MONTHS);
     }
+
     public int expectedTimeSpanPickUpAndEndDays(String pickUpDate, int leaseLength){
         HashMap<Integer,Month> monthHashMap = new HashMap<Integer,Month>();
         monthHashMap.put(1,Month.JANUARY);

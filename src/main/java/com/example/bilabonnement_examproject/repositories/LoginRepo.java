@@ -25,9 +25,8 @@ public class LoginRepo implements CRUDInterface<LoginModel,Integer>{
                 int id = rs.getInt("id");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
-                int deptID = rs.getInt("departments_id");
 
-                LoginModel login = new LoginModel(id,username,password,deptID);
+                LoginModel login = new LoginModel(id,username,password);
                 allLogin.add(login);
             }
             System.out.println("All login found");
@@ -54,9 +53,8 @@ public class LoginRepo implements CRUDInterface<LoginModel,Integer>{
             int id = rs.getInt("id");
             String username = rs.getString("username");
             String password = rs.getString("password");
-            int deptID = rs.getInt("departments_id");
 
-            login = new LoginModel(id,username,password,deptID);
+            login = new LoginModel(id,username,password);
             System.out.println("Login found");
             return login;
 

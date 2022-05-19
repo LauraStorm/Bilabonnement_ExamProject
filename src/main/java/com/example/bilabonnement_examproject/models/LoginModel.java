@@ -4,13 +4,11 @@ public class LoginModel {
     private int id;
     private String username;
     private String password;
-    private int departmentId;
 
-    public LoginModel(int id, String username, String password, int departmentId) {
+    public LoginModel(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.departmentId = departmentId;
     }
 
     public int getId() {
@@ -37,13 +35,6 @@ public class LoginModel {
         this.password = password;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
-    }
 
     @Override
     public String toString() {
@@ -51,7 +42,6 @@ public class LoginModel {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", departmentId=" + departmentId +
                 '}';
     }
 }
