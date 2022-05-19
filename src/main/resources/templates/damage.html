@@ -18,6 +18,7 @@
 
 <div class="whiteboard">
     <div class="receipt">
+
         <h1>Bilens nuværende skader</h1>
         <form class="receipt-form">
             <table class="skema">
@@ -29,8 +30,8 @@
         </thead>
         <tbody>
        <tr th:each="damages : ${damagesforcar}">
-            <td><p th:text="${damages.defectDescription}"> Skade </p></td>
-            <td><p th:text="${damages.price}"> Pris </p></td>
+            <td th:text="${damages.defectDescription}"> Skade </td>
+            <td th:text="${damages.price}"> Pris </td>
         </tr>
         </tbody>
     </table>
@@ -38,15 +39,18 @@
 <h1>Tilføj skade:</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
 <form action="#" th:action="@{'/damage?chassisnumber='+${chassisnumber}}" th:object="${damage}" method="post">
-    <p>Beskrivelse: <input type="text" th:field="*{defectDescription}" /></p>
-    <p>Pris: <input type="text" th:field="*{price}"/></p>
-    <p><input type="submit" value="Gem" /> <input type="reset" value="Nulstil felterne" /></p>
+
+    <p>Beskrivelse: </p>
+    <input class="inputstyle" type="text" th:field="*{defectDescription}" />
+    <p>Pris: </p>
+    <input class="inputstyle" type="text" th:field="*{price}"/>
+
+    <p>
+        <input type="submit" value="Gem" class="buttom"/>
+        <input type="reset" value="Nulstil felterne"  class="buttom"/>
+    </p>
 </form>
-            <a href="homepage">
-                <button class="buttom">
-                Hjem
-                 </button>
-            </a>
+
 </div>
 </div>
 </div>

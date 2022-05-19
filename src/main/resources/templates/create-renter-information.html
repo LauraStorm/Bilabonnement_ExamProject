@@ -13,48 +13,57 @@
 </nav>
 <div class="whiteboard">
     <div class="tabel">
-    <h1>Registrer bruger info</h1>
+        <h1>Registrer bruger info</h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
         <form action="/get-renter-information" method="post">
-            Fornavn
+            <label class="labelType" for="firstName">Fornavn</label>
             <br>
-            <input type="text" name="firstName">
+            <input class="inputstyle" type="text" name="firstName" id="firstName">
             <br>
-            Efternavn
             <br>
-            <input type="text" name="lastName">
+            <label class="labelType" for="lastName">Efternavn</label>
             <br>
-            Adresse
+            <input class="inputstyle" type="text" name="lastName" id="lastName">
             <br>
-            <input type="text" name="address">
             <br>
-            Postnummer
+            <label class="labelType" for="address">Adresse</label>
             <br>
-            <input type="number" name="postcode">
+            <input class="inputstyle" type="text" name="address" id="address">
             <br>
-            By
             <br>
-            <input type="text" name="city">
+            <label class="labelType" for="postcode">Postnummer</label>
             <br>
-            Email
+            <input class="inputstyle" type="number" name="postcode" id="postcode">
             <br>
-            <input type="email" name="email">
             <br>
-            Telefon nummer
+            <label class="labelType" for="city">By</label>
             <br>
-            <input type="number" name="tlf">
+            <input class="inputstyle" type="text" name="city" id="city">
             <br>
-            CPR-nummer
             <br>
-            <input type="text" name="cpr" placeholder="XXXXXX-XXXX">
+            <label class="labelType" for="email">Email</label>
             <br>
-            Reg.nr
+            <input class="inputstyle" type="email" name="email" id="email">
             <br>
-            <input type="number" name="regNumber" PLACEHOLDER="XXXX">
             <br>
-            Konto nummer
+            <label class="labelType" for="tlf">Telefon nummer</label>
             <br>
-            <input type="number" name="accountNumber" PLACEHOLDER="XXXXXXXXXX">
+            <input class="inputstyle" type="number" name="tlf" id="tlf">
+            <br>
+            <br>
+            <label class="labelType" for="cpr">CPR-nummer</label>
+            <br>
+            <input class="inputstyle" type="text" name="cpr" placeholder="XXXXXX-XXXX" id="cpr">
+            <br>
+            <br>
+            <label class="labelType" for="regNumber">Reg.nr</label>
+            <br>
+            <input class="inputstyle" type="number" name="regNumber" PLACEHOLDER="XXXX" id="regNumber">
+            <br>
+            <br>
+            <label class="labelType" for="accountNumber">Konto nummer</label>
+            <br>
+            <input class="inputstyle" type="number" name="accountNumber" PLACEHOLDER="XXXXXXXXXX" id="accountNumber">
             <br>
             <input type="submit" class="buttom">
         </form>

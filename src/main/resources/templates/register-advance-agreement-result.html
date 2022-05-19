@@ -18,8 +18,8 @@
 </nav>
 
 <div class="whiteboard">
-    <div class="receipt">
-    <div class="tabel">
+
+
         <div class="receipt">
         <h1>Forhåndsaftalen er nu oprettet</h1>
         <section>
@@ -34,13 +34,13 @@
                     <th>Afhentningssted</th>
                 </tr>
                 <tr>
-                    <td><p th:text="${advanceagreement.id}"></p></td>
-                    <td><p th:text="${advanceagreement.terms}"></p></td>
-                    <td><p th:text="${advanceagreement.kilometersDriven}"></p></td>
-                    <td><p th:text="${advanceagreement.extendKilometer}"></p></td>
-                    <td><p th:text="${advanceagreement.refusalPrice}"></p></td>
-                    <td><p th:text="${advanceagreement.purchasePrice}"></p></td>
-                    <td><p th:text="${advanceagreement.locationId}"></p></td>
+                    <td th:text="${advanceagreement.id}"></td>
+                    <td th:text="${advanceagreement.terms}"></td>
+                    <td th:text="${advanceagreement.kilometersDriven}"></td>
+                    <td th:text="${advanceagreement.extendKilometer}"></td>
+                    <td th:text="${advanceagreement.refusalPrice}"></td>
+                    <td th:text="${advanceagreement.purchasePrice}"></td>
+                    <td th:text="${advanceagreement.locationId}"></td>
                 </tr>
             </table>
             <table>
@@ -68,8 +68,7 @@
         </section>
         </div>
     </div>
-    </div>
-    </div>
+
 
 <script>
     document.getElementById('forhåndsaftale').style.backgroundColor='white';

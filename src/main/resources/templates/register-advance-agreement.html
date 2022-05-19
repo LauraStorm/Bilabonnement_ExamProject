@@ -23,15 +23,22 @@
         <p th:name="carid" th:value="${carid}"></p>
         <div th:text="${errormessage}" th:if="${errormessage}" style="color: red"></div>
         <form action="#" th:action="@{'/registeradvanceagreement?chassisnumber='+${chassisnumber}}" th:object="${advanceagreement}" method="post">
-            <p>Vilkår: <input type="text" th:field="*{terms}" /></p>
-            <p>Kørte kilometer: <input type="text" th:field="*{kilometersDriven}"/></p>
-            <p>Købsprisen: <input type="text" th:field="*{purchasePrice}"/></p>
-            <p>Overkørte kilometer: <input type="text" th:field="*{extendKilometer}"/></p>
+            <label class="labelType">Vilkår:</label> <br>
+            <input type="text" th:field="*{terms}" class="inputstyle"/> <br> <br>
+
+            <label class="labelType">Kørte kilometer:</label> <br>
+            <input type="text" th:field="*{kilometersDriven}" class="inputstyle"/> <br><br>
+
+            <label class="labelType">Købsprisen:</label> <br>
+            <input type="text" th:field="*{purchasePrice}" class="inputstyle"/> <br><br>
+
+            <label class="labelType">Overkørte kilometer: </label> <br>
+            <input type="text" th:field="*{extendKilometer}" class="inputstyle"/> <br><br>
             <div class="">
 
-                <div value="">Vælg afhentning</div>
+                <div value="" class="labelType">Vælg afhentning</div>
                 <div class="">
-                    <select th:field="*{locationId}">
+                    <select th:field="*{locationId}" class="inputstyledrop">
                         <option  th:each="location: ${locations}"
                              th:text="${location.city}+',' + ${location.address}"
                                  th:value="${location.id}">
@@ -42,9 +49,7 @@
             <p>
                 <input type="submit" value="Gem" class="buttom" />
                 <input type="reset" value="Nulstil felterne" class="buttom"/></p>
-                <a href="homepage">
-                    <button class="buttom"> Hjem</button>
-                </a>
+
         </form>
     </div>
 </div>
