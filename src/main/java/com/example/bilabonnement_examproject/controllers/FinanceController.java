@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.*;
+
 @Controller
 public class FinanceController {
 
@@ -14,6 +16,7 @@ public class FinanceController {
         SubscriptionService subscriptionService = new SubscriptionService();
         model.addAttribute("sumcurrentlease",subscriptionService.getExpectedRevenueForCurrentSubs());
         model.addAttribute("totalrevenue",subscriptionService.getTotalRevenueFromCurrentSubs());
+        //model.addAttribute("mostmanufacturer",;
         return "finance-page";
     }
 }

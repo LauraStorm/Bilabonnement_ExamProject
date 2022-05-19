@@ -10,6 +10,7 @@ import java.util.List;
 public class CarRepoTest implements CRUDInterface<CarModel, String> {
     private ArrayList<CarModel> carModelArrayList = new ArrayList<CarModel>(
             Arrays.asList(
+                    /*
             new CarModel("52931102953019407", "Opel Crossland Sport 110 HK", "Yellow", true),
             new CarModel("52938102853019408", "Peugeot 3008 Allure Pack 130 HK AUT", "Black", false),
             new CarModel("52738102953019402", "Peugeot 2008 Allure PACK 130 HK LTD.", "Orange", true),
@@ -19,7 +20,9 @@ public class CarRepoTest implements CRUDInterface<CarModel, String> {
             new CarModel("52938152953019400", "Ny Peugeot 208 Active Pack 75 HK", "Green", true),
             new CarModel("52938105953010406", "Ny C3 Le Mans PureTech 83 HK", "White", true),
             new CarModel("52938162953019402", "Citroën Grand C4 Spacetourer COOL 130 HK", "Red", true))
-            );
+
+                     */
+            ));
 
     @Override
     public List<CarModel> getAllEntities() {

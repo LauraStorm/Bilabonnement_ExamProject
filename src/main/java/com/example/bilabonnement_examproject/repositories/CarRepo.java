@@ -13,30 +13,34 @@ import java.util.List;
 public class CarRepo implements CRUDInterface<CarModel, String>{
     @Override
     public List<CarModel> getAllEntities() {
-        ArrayList<CarModel> allCars = new ArrayList<CarModel>();
-
+        ArrayList<CarModel> carList = new ArrayList<CarModel>();
+        String getAllCarsSqlStmt = "SELECT * FROM cars";
         try {
             Connection conn = DatabaseConnectionManager.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM cars");
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()){
-                String chassisNumber = rs.getString("chassis_number");
-                String model = rs.getString("model");
-                String color = rs.getString("color");
-                boolean rented = rs.getBoolean("rented");
-
-                CarModel car = new CarModel(chassisNumber,model,color,rented);
-                allCars.add(car);
+            PreparedStatement pstmt = conn.prepareStatement(getAllCarsSqlStmt);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    int wagonNumber = rs.getInt("wagon_number");
+                    String chassisNumber = rs.getString("chassis_number");
+                    String manufacturer = rs.getString("manufacturer");
+                    String color = rs.getString("color");
+                    String model = rs.getString("model");
+                    boolean isRented = rs.getBoolean("rented");
+                    boolean isSold = rs.getBoolean("sold");
+                    String equipmentLevel = rs.getString("equipment_level");
+                    double steelPrice = rs.getDouble("steel_price");
+                    double registrationFee = rs.getDouble("registration_fee");
+                    double carbonEmission = rs.getDouble("carbon_emission");
+                    assert false;
+                    carList.add(new CarModel(chassisNumber,wagonNumber,manufacturer,model,color,equipmentLevel,
+                            steelPrice,registrationFee,carbonEmission,isRented,isSold));
+                }
             }
-            System.out.println("All cars is found");
-
-        } catch (SQLException e) {
-            System.out.println("something went wrong with finding all cars");
-            e.printStackTrace();
+        } catch (SQLException sqlException) {
+            System.out.println("Something went wrong!");
         }
-
-        return allCars;
+        return carList;
     }
 
     @Override
@@ -49,15 +53,21 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM cars WHERE chassis_number=?");
             stmt.setString(1,id);
             ResultSet rs = stmt.executeQuery();
-
-
             rs.next();
+            int wagonNumber = rs.getInt("wagon_number");
             String chassisNumber = rs.getString("chassis_number");
-            String model = rs.getString("model");
+            String manufacturer = rs.getString("manufacturer");
             String color = rs.getString("color");
+            String model = rs.getString("model");
             boolean isRented = rs.getBoolean("rented");
-
-            car = new CarModel(chassisNumber, model, color, isRented);
+            boolean isSold = rs.getBoolean("sold");
+            String equipmentLevel = rs.getString("equipment_level");
+            double steelPrice = rs.getDouble("steel_price");
+            double registrationFee = rs.getDouble("registration_fee");
+            double carbonEmission = rs.getDouble("carbon_emission");
+            assert false;
+            car = new CarModel(chassisNumber,wagonNumber,manufacturer,model,color,equipmentLevel,
+                    steelPrice,registrationFee,carbonEmission,isRented,isSold);
             System.out.println(car);
             return car;
 

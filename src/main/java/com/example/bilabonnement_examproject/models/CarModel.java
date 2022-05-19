@@ -26,11 +26,19 @@ public class CarModel implements Comparable<CarModel>{
         this.chassisNumber = chassisNumber;
     }
 
-    public CarModel(String chassisNumber, String model, String color, boolean rented) {
+    public CarModel(String chassisNumber, int wagonNumber, String manufacturer, String model, String color, String equipmentLevel,
+                    double steelPrice, double registrationFee, double carbonEmission, boolean isRented, boolean isSold) {
         this.chassisNumber = chassisNumber;
+        this.wagonNumber = wagonNumber;
+        this.manufacturer = manufacturer;
         this.model = model;
         this.color = color;
-        this.isRented = rented;
+        this.equipmentLevel = equipmentLevel;
+        this.steelPrice = steelPrice;
+        this.registrationFee = registrationFee;
+        this.carbonEmission = carbonEmission;
+        this.isRented = isRented;
+        this.isSold = isSold;
     }
 
     public CarModel(){

@@ -1,3 +1,4 @@
+/*
 package repository;
 
 import com.example.bilabonnement_examproject.models.CarModel;
@@ -37,3 +38,5 @@ public class CarRepoTestLaura implements CRUDInterface<CarModel,String> {
         return false;
     }
 }
+
+ */

@@ -16,26 +16,46 @@
 
 <div class="whiteboard">
     <div class="receipt">
-        <h1>Indtjeningen på nuværende lejeaftaler</h1>
+        <h1>Samlet indtjening</h1>
             <form class="receipt-form">
                 <table class="skema">
         <tr>
-            <th>Allerede indtjent
-            </th>
-            <th>Forventet
-            </th>
-            <th>Total</th>
+            <th>Nuværende lejeaftaler</th>
         </tr>
         <tr>
-            <td> <p th:text="${totalrevenue}-${sumcurrentlease}"></p></td>
-            <td> <p th:text="${sumcurrentlease}"></p></td>
-            <td> <p th:text="${totalrevenue}"></p></td>
+            <td th:text="${totalrevenue}"></td>
         </tr>
         </table>
             </form>
     </div>
-</div>
-
+    <div class="receipt">
+        <h1>Modtaget indbetalinger</h1>
+        <form class="receipt-form">
+            <table class="skema">
+                <tr>
+                    <th>Nuværende lejeaftaler
+                    </th>
+                </tr>
+                <tr>
+                    <td  th:text="${totalrevenue}-${sumcurrentlease}"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="receipt">
+        <h1>Forventet indbetalinger</h1>
+        <form class="receipt-form">
+            <table class="skema">
+                <tr>
+                    <th>Nuværende lejeaftaler
+                    </th>
+                </tr>
+                <tr>
+                    <td th:text="${sumcurrentlease}"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
     </div>
 </body>
 

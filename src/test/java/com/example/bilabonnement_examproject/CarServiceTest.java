@@ -1,10 +1,11 @@
+
 package com.example.bilabonnement_examproject;
 
 import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
-import repository.CarRepoTest;
 import com.example.bilabonnement_examproject.services.CarService;
 import org.junit.jupiter.api.Test;
+import repository.CarRepoTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,7 +25,7 @@ public class CarServiceTest {
 
 
         //Arrange
-        CRUDInterface<CarModel,String> testRepo = new CarRepoTest();
+        CarRepoTest testRepo = new CarRepoTest();
         CarService carService = new CarService(testRepo);
         boolean expectedIsNotFound = false;
         boolean expectedIs18DigitsLong = false;
@@ -48,3 +49,5 @@ public class CarServiceTest {
         assertEquals(expectedIsLetter,isLetter);
     }
 }
+
+

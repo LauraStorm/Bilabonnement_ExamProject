@@ -102,7 +102,7 @@ public class SubscriptionService {
                           get(rentedCars.getChassisNumber()));
                     int daysUntilPickUpDate = expectedTimeSpanPickUpAndEndDays(
                             subToGetPrice.getPickupDate(), 0);
-                if (daysUntilPickUpDate > 0) {
+                if (daysUntilPickUpDate < 0) {
                     //antal mdr. * total pris pr. mdr.
                     int leasingLengthInMonthFromToday = expectedTimeSpanPickUpAndEndMonths(subToGetPrice.getPickupDate(),
                             subToGetPrice.getLength());
@@ -381,6 +381,33 @@ public class SubscriptionService {
 
         return expectedMoneyToReceive;
     }
+
+
+    /*
+    public HashMap<String,Integer> mosRentedCarManufacturer() {
+        ArrayList<CarModel> allCars = (ArrayList<CarModel>) carRepo.getAllEntities();
+        ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
+        HashMap<String, Integer> hashSetChassisNumbersAndID = new HashMap<String, Integer>();
+
+        HashMap<String, Integer> manufacturerMap = new HashMap<String, Integer>();
+        for (SubscriptionModel subscriptionsForHash : allSubscriptions
+        ) {
+            hashSetChassisNumbersAndID.put(subscriptionsForHash.getChassisNumber(), subscriptionsForHash.getId());
+        }
+        for (CarModel cars : allCars
+        ) {
+            if (hashSetChassisNumbersAndID.containsKey(cars.getChassisNumber())) {
+                if (manufacturerMap.values().contains(cars.getManufacturer())) {
+                    manufacturerMap.put(cars.getManufacturer(), manufacturerMap.get(cars.getManufacturer()) + 1);
+                } else {
+                    manufacturerMap.put(cars.getManufacturer(), 1);
+                }
+            }
+        }
+        return manufacturerMap;
+    }
+
+     */
 
 
 }
