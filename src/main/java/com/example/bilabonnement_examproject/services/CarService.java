@@ -7,13 +7,15 @@ import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
 import net.bytebuddy.description.type.TypeList;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class CarService {
-    private CRUDInterface<CarModel,Integer> carRepo;
+    private CRUDInterface<CarModel,String> carRepo;
 
     public CarService(CRUDInterface carRepo){
        this.carRepo = carRepo;
@@ -22,6 +24,71 @@ public class CarService {
     public CarService() {
 
     }
+
+    public String selectChassisNumberPost(CarModel car, int key, RedirectAttributes attributes){
+        String result = "";
+        if (!car.getChassisNumber().equals("Stelnummer")) {
+            switch (key) {
+                case 1: {
+                    return  "redirect:/damage?chassisnumber=" + car.getChassisNumber();
+                }
+                case 2: {
+                    return "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber();
+                }
+                case 3: {
+                    return  "redirect:/returncarsuccesspage?chassisnumber=" + car.getChassisNumber();
+                }
+                default: {
+                    attributes.addFlashAttribute("error", "Noget gik galt!");
+                    result = "redirect:/selectchassisnumber?key=" + key;
+                }
+            }
+        } else {
+            switch (key) {
+                case 1:
+                case 2: {
+                    attributes.addFlashAttribute("error", "Vælg venligst en mulighed!");
+                    return  "redirect:/selectchassisnumber?key=" + key;
+                }
+                case 3: {
+                    attributes.addFlashAttribute("error", "Vælg venligst en mulighed!");
+                    result = "redirect:/selectchassisnumberreturn?key=" + key;
+                }
+            }
+        }
+        return result;
+    }
+
+
+    public String getChassisNumberPost(String chassisNumberFromForm, RedirectAttributes attributes, HttpSession session){
+        String result = "";
+
+        // kan være en metode
+        String errorRented = "Bilen er udlejet";
+        String errorTypo = "Stelnummeret er forkert";
+
+
+        assert chassisNumberFromForm != null;
+        if (isChassisNumberValid(chassisNumberFromForm)) {
+
+            //hvis chassis number er valid og bilen er updatet bliver man sendt videre
+            session.setAttribute("chassisSession", chassisNumberFromForm);
+            carRepo.updateEntity(chassisNumberFromForm); // opdaterer rented status til "true"
+            result = "redirect:/create-renter-information";
+
+        } else if(chassisNumberFromForm.length() != 17) {
+            attributes.addFlashAttribute("error", errorTypo);//errormessage?
+            result = "redirect:/register-car";
+
+        } else {
+            attributes.addFlashAttribute("error", errorRented);//errormessage?
+            //hvis chassis number ikke er valid bliver useren på siden
+            result = "redirect:/register-car";
+        }
+        return result;
+    }
+
+
 
     public boolean isChassisNumberValid(String chassisNumber) {
         CarRepo carRepo = new CarRepo();

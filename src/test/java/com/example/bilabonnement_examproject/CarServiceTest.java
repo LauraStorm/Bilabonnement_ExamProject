@@ -5,10 +5,13 @@ import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 import com.example.bilabonnement_examproject.services.CarService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import repository.CarRepoTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@ExtendWith((MockitoExtension, class))
 public class CarServiceTest {
     private CRUDInterface<CarModel,Integer> carRepo;
 

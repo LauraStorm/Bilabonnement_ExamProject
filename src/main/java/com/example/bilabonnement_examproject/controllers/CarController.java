@@ -18,49 +18,22 @@ import java.util.List;
 public class CarController {
     private CarService carService = new CarService(new CarRepo());
 
-    @GetMapping("/selectchassisnumber")
-    public String carIdForm(Model model, @RequestParam(value = "key") int key) {
+
+	@GetMapping("/selectchassisnumber")
+    public String selectChassisNumbeShow(Model model, @RequestParam("key") int key) {
         model.addAttribute("key",key);
         model.addAttribute("availablecars",carService.fillCarListWithADummyOption(carService.getAllUnsoldCars()));
         model.addAttribute("car",new CarModel());
         return "select-chassisnumber-of-cars";
     }
 
-    @PostMapping("/selectchassisnumber")
-    public String carIdSubmit(RedirectAttributes attributes, Model model,
-                              @ModelAttribute CarModel car, @RequestParam(value = "key") int key) {
-        String result = "";
+
+	@PostMapping("/selectchassisnumber")
+    public String selectChassisNumberSubmit(RedirectAttributes attributes, Model model,
+                              @ModelAttribute CarModel car, @RequestParam("key") int key
+                                            ) {
         model.addAttribute("car", car);
-        if (!car.getChassisNumber().equals("Stelnummer")) {
-            switch (key) {
-                case 1: {
-                    return  "redirect:/damage?chassisnumber=" + car.getChassisNumber();
-                }
-                case 2: {
-                   return "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber();
-                }
-                case 3: {
-                    return  "redirect:/returncarsuccesspage?chassisnumber=" + car.getChassisNumber();
-                }
-                default: {
-                    attributes.addFlashAttribute("error", "Noget gik galt!");
-                    result = "redirect:/selectchassisnumber?key=" + key;
-                }
-            }
-        } else {
-            switch (key) {
-                case 1:
-                case 2: {
-                    attributes.addFlashAttribute("error", "Vælg venligst en mulighed!");
-                   return  "redirect:/selectchassisnumber?key=" + key;
-                }
-                case 3: {
-                    attributes.addFlashAttribute("error", "Vælg venligst en mulighed!");
-                    result = "redirect:/selectchassisnumberreturn?key=" + key;
-                }
-            }
-        }
-        return result;
+        return carService.selectChassisNumberPost(car,key,attributes);
     }
 
 
@@ -70,37 +43,14 @@ public class CarController {
         return "register-car";
     }
 
-    @PostMapping("/get-chassis-number")
+
+	@PostMapping("/get-chassis-number")
     public String getChassisNumber(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
-        String result = "";
-        CarRepo carRepo = new CarRepo();
-        CarService carService = new CarService();
         String chassisNumberFromForm = dataFromForm.getParameter("chassis-number");
-        String errorRented = "Bilen er udlejet";
-        String errorTypo = "Stelnummeret er forkert";
-
-
-        assert chassisNumberFromForm != null;
-        if (carService.isChassisNumberValid(chassisNumberFromForm)) {
-
-            //hvis chassis number er valid og bilen er updatet bliver man sendt videre
-            session.setAttribute("chassisSession", chassisNumberFromForm);
-            carRepo.updateEntity(chassisNumberFromForm); // opdaterer rented status til "true"
-            result = "redirect:/create-renter-information";
-
-        } else if(chassisNumberFromForm.length() != 17) {
-            attributes.addFlashAttribute("error", errorTypo);//errormessage?
-            result = "redirect:/register-car";
-
-        } else {
-            attributes.addFlashAttribute("error", errorRented);//errormessage?
-            //hvis chassis number ikke er valid bliver useren på siden
-            result = "redirect:/register-car";
-        }
-        return result;
+        return carService.getChassisNumberPost(chassisNumberFromForm,attributes,session);
     }
 
-    @GetMapping("/rented-cars")
+	@GetMapping("/rented-cars")
     public String getAllRentedCarsPage(Model car){
         CarRepo carRepo = new CarRepo();
         CarService carService = new CarService();
@@ -111,7 +61,8 @@ public class CarController {
         return "view-leased-cars";
     }
 
-    @GetMapping("/all-cars")
+
+	@GetMapping("/all-cars")
     public String getAllCars (Model car){
         CarRepo carRepo = new CarRepo();
         List<CarModel> allCars = carRepo.getAllEntities();
@@ -121,7 +72,8 @@ public class CarController {
         return "view-all-cars";
     }
 
-    @GetMapping("/available-cars")
+
+	@GetMapping("/available-cars")
     public String getAvailableCars(Model car, RedirectAttributes errorMessage){
         CarService carService = new CarService();
         CarRepo carRepo = new CarRepo();

@@ -25,7 +25,6 @@
         <section>
             <table>
                 <tr>
-                    <th>Aftale id</th>
                     <th>Vilkår</th>
                     <th>Kørte kilometer</th>
                     <th>Overkørte kilometer pris</th>
@@ -34,7 +33,6 @@
                     <th>Afhentningssted</th>
                 </tr>
                 <tr>
-                    <td th:text="${advanceagreement.id}"></td>
                     <td th:text="${advanceagreement.terms}"></td>
                     <td th:text="${advanceagreement.kilometersDriven}"></td>
                     <td th:text="${advanceagreement.extendKilometer}"></td>
@@ -52,8 +50,8 @@
                 </thead>
                 <tbody>
                 <tr th:each="damages : ${damagesforcar}">
-                    <td><span th:text="${damages.defectDescription}"> Skade </span></td>
-                    <td><span th:text="${damages.price}"> Pris </span></td>
+                    <td th:text="${damages.defectDescription}"> Skade </td>
+                    <td th:text="${damages.price}"> Pris </td>
                 </tr>
                 </tbody>
             </table>

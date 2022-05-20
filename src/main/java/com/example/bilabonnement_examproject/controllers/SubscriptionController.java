@@ -25,7 +25,8 @@ public class SubscriptionController {
         return "create-subscription-information";
     }
 
-    @PostMapping("/get-subscription-information")
+
+	@PostMapping("/get-subscription-information")
     public String getSubscriptionDetails(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
         SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
         SubscriptionService subscriptionService = new SubscriptionService();
@@ -66,7 +67,8 @@ public class SubscriptionController {
         }
     }
 
-    @GetMapping("/receipt")
+
+	@GetMapping("/receipt")
     public String getSubscriptionReceipt(HttpSession session, Model model){
         CarRepo carRepo = new CarRepo();
         CarModel carModel;
