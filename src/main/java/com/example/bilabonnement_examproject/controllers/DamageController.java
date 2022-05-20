@@ -108,7 +108,7 @@ public class DamageController {
                                        @RequestParam (value = "chassisnumber")
                                                String chassisNumber) {
         CarRepo carRepo = new CarRepo();
-        CarModel returnCar = carRepo.changeRentedStatus(chassisNumber);
+        boolean returnCar = carRepo.updateEntity(chassisNumber);
         model.addAttribute("car", returnCar);
         return "return-car-success";
     }
