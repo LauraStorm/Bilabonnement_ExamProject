@@ -13,14 +13,20 @@
 
 <div class="whiteboard">
     <div class="receipt">
-
+    <h3>Bilen blev succesfuldt opdateret</h3>
         <form class="receipt-form">
             <table class="skema">
         <tr>
-        <th>Bilen blev succesfuldt opdateret</th>
-
+        <th>Stelnummer</th>
+        <th>Model</th>
+        <th>Farve</th>
         </tr>
 
+        <tr>
+            <td th:text="${car.chassisNumber}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.color}"></td>
+        </tr>
 
             </table>
         </form>
