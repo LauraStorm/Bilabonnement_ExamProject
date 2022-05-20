@@ -224,6 +224,11 @@ public class CarService {
 
     }
 
+    public CarModel changeRentedStatus(CarModel car){
+        carRepo.updateEntity(car.getChassisNumber());
+        return carRepo.getSingleEntity(car.getChassisNumber());
+    }
+
 
 }
 

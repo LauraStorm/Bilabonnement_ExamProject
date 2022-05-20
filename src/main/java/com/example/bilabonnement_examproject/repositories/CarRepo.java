@@ -113,39 +113,25 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
 
         Connection conn = DatabaseConnectionManager.getConnection();
         CarModel car = getSingleEntity(key);
-        boolean returnValue = true;
 
-        //hvis bilen er fundet kan vi update isrented
-        if (car != null) {
+        boolean rentedStatus = true;
 
-            boolean changeIsRented = true;
-
-            if (car.isRented()) {
-                // hvis bilen er rented bliver tinyint sat 0/false              = bilen er afleveret
-                changeIsRented = false;
-            } else if (!car.isRented()) {
-                // hvis bilen ikke er rented bliver tinyint sat 1/true          = bilen er udlejet
-                changeIsRented = true;
-            } else {
-                returnValue = false;
-            }
+        if (car.isRented()){
+            rentedStatus = false;
+        }
 
             try {
                 PreparedStatement stmt = conn.prepareStatement("UPDATE cars SET rented=? WHERE chassis_number=?");
-                stmt.setBoolean(1, changeIsRented);
+                stmt.setBoolean(1, rentedStatus);
                 stmt.setString(2, car.getChassisNumber());
                 stmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.out.println("update fail");
             }
-            //hvis car er null kan vi ikke update isrented
-        }else if (car == null){
-            returnValue = false;
-        }
 
 
-        return returnValue;
+        return rentedStatus;
     }
 
     public CarModel changeRentedStatus(String chassisNumber) {

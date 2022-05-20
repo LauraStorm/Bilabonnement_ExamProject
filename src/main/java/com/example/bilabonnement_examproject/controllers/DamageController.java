@@ -35,7 +35,6 @@ public class DamageController {
     }
 
 
-
 	@PostMapping("/damage")
     public String damageDataSubmit(@ModelAttribute DamageReportModel damage,
                                    Model model, @RequestParam("chassisnumber")
@@ -62,6 +61,7 @@ public class DamageController {
     public String getReturnCarPage(){
         return "return-car";
     }
+
 
 	@PostMapping("/returncarpage")
     public String returnCarPage(WebRequest dataFromForm, RedirectAttributes attributes, Model model, HttpSession session,
@@ -95,26 +95,17 @@ public class DamageController {
 
     }
 
-    /**
-	 * 
-	 * @param model
-	 * @param key
-	 */
+
 	@GetMapping("/selectchassisnumberreturn")
     public String selectReturnedCar(Model model, @RequestParam("key") int key) {
         model.addAttribute("key",key);
-        model.addAttribute("availablecars",carService.fillCarListWithADummyOption(carService.getRentedCarsToReturn()));
+        model.addAttribute("availablecars",carService.fillCarListWithADummyOption(
+                carService.getRentedCarsToReturn()));
         model.addAttribute("car",new CarModel());
         return "select-chassisnumber-of-cars-return";
     }
 
-    /**
-	 * 
-	 * @param model
-	 * @param car
-	 * @param session
-	 * @param chassisNumber
-	 */
+
 	@GetMapping("/returncarsuccesspage")
     public String returnCarSuccessPage(Model model,@ModelAttribute CarModel car
                                        ,HttpSession session,
