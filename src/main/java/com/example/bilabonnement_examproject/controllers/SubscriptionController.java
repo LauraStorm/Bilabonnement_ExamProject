@@ -51,6 +51,7 @@ public class SubscriptionController {
 
 
         } else {
+            System.out.println("længden er " + lenght + "typen er " + subscriptionService.findType(lenght));
 
             subscriptionModel = new SubscriptionModel(Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(selfrisk)),
                     Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(deliveryInsurance)), Integer.parseInt(totalPrice),

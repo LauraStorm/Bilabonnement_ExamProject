@@ -46,6 +46,7 @@ public class SubscriptionService {
 
     public String findType (String length){
         String type = "";
+
         if (length.equals("4")){
             type = "limited";
         } else {
