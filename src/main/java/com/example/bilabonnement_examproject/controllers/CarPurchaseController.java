@@ -15,14 +15,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class CarPurchaseController {
     private CarService carService = new CarService(new CarRepo());
 
-    @GetMapping("/registernewcartofleet")
+
+	@GetMapping("/registernewcartofleet")
     public String registerNewCarToFleetFormShow(Model model) {
         model.addAttribute("car", new CarModel());
         return "car-register-purchase";
     }
 
 
-    @PostMapping("/registernewcartofleet")
+
+	@PostMapping("/registernewcartofleet")
     public String registerNewCarToFleetFormSubmit(@ModelAttribute CarModel car,
                                    Model model,
                                    RedirectAttributes attributes) {

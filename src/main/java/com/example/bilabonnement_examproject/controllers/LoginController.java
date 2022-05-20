@@ -11,13 +11,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
-/*
-    @GetMapping("/")
-    public String getloginPage(){
-        return "index";
-    }
 
- */
 
     @PostMapping("/")
     public String getLoginInfo (WebRequest dataFromForm, HttpSession session, RedirectAttributes errorMessage){
@@ -44,7 +38,7 @@ public class LoginController {
 
     }
 
-    @GetMapping("/homepage")
+	@GetMapping("/homepage")
     public String getHomePage(HttpSession session){
         return "homepage";
     }

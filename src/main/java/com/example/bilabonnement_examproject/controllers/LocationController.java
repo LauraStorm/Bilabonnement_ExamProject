@@ -19,17 +19,14 @@ public class LocationController {
     private LocationRepo locationRepo = new LocationRepo();
     private LocationService locationService = new LocationService();
 
-    @GetMapping("/register-location")
+	@GetMapping("/register-location")
     public String getRegisterLocationPage(Model model){
-        ArrayList<LocationModel> locationModelsWithExtra = new ArrayList<LocationModel>();
-        locationModelsWithExtra.add(new LocationModel("Vælg adresse","Vælg by",-1,-1));
-        locationModelsWithExtra.addAll(locationRepo.getAllEntities());
         model.addAttribute("location",new LocationModel());
-        model.addAttribute("locations",locationModelsWithExtra);
+        model.addAttribute("locations", locationService.getSelectLocationListForView());
         return "register-location-information";
     }
 
-    @PostMapping("/register-location")
+	@PostMapping("/register-location")
     public String getLocationDetails(Model model, @ModelAttribute LocationModel location,
                                      WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
         String errorMessage = "Lokationen findes ikke";

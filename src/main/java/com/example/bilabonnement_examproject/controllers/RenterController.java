@@ -18,7 +18,8 @@ public class RenterController {
         return "create-renter-information";
     }
 
-    @PostMapping("/get-renter-information")
+
+	@PostMapping("/get-renter-information")
     public String getRenterDetails(WebRequest dataFromForm, HttpSession session,  RedirectAttributes attributes){
         RenterRepo renterRepo = new RenterRepo();
         RenterService renterService = new RenterService();

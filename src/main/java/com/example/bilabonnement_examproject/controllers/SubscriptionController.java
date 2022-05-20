@@ -25,7 +25,8 @@ public class SubscriptionController {
         return "create-subscription-information";
     }
 
-    @PostMapping("/get-subscription-information")
+
+	@PostMapping("/get-subscription-information")
     public String getSubscriptionDetails(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
         SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
         SubscriptionService subscriptionService = new SubscriptionService();
@@ -51,10 +52,11 @@ public class SubscriptionController {
 
 
         } else {
+            System.out.println("længden er " + lenght + "typen er " + subscriptionService.findType(lenght));
 
             subscriptionModel = new SubscriptionModel(Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(selfrisk)),
                     Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(deliveryInsurance)), Integer.parseInt(totalPrice),
-                    Integer.parseInt(lenght), subscriptionService.findType(subscriptionType), chassisNumber,
+                    Integer.parseInt(lenght), subscriptionService.findType(lenght), chassisNumber,
                     Integer.parseInt(locationId), Integer.parseInt(rentersId),
                     pickupDate, subscriptionService.getDeliveryDate(pickupDate, Integer.parseInt(lenght)));
 
@@ -66,7 +68,8 @@ public class SubscriptionController {
         }
     }
 
-    @GetMapping("/receipt")
+
+	@GetMapping("/receipt")
     public String getSubscriptionReceipt(HttpSession session, Model model){
         CarRepo carRepo = new CarRepo();
         CarModel carModel;

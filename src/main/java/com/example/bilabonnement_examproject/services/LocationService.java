@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationService {
+    LocationRepo locationRepo = new LocationRepo();
 
     //lav unit test
     public boolean isLocationValid(String city, String address, int postcode){
@@ -31,5 +32,12 @@ public class LocationService {
         } else {
             return true;
         }
+    }
+
+    public ArrayList<LocationModel> getSelectLocationListForView() {
+        ArrayList<LocationModel> locationModelsWithExtra = new ArrayList<LocationModel>();
+        locationModelsWithExtra.add(new LocationModel("Vælg adresse", "Vælg by", -1, -1));
+        locationModelsWithExtra.addAll(locationRepo.getAllEntities());
+        return locationModelsWithExtra;
     }
 }

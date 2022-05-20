@@ -11,7 +11,7 @@ import java.util.*;
 @Controller
 public class FinanceController {
 
-    @GetMapping("/finance")
+	@GetMapping("/finance")
     public String showFinances(Model model){
         SubscriptionService subscriptionService = new SubscriptionService();
         model.addAttribute("sumcurrentlease",subscriptionService.getExpectedRevenueForCurrentSubs());

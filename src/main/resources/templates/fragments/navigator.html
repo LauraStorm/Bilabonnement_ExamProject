@@ -14,8 +14,8 @@
 
         <nav class="side-nav">
 
-            <div class="nav-valg ">
-                <a id="homelogo" href="homepage">
+            <div class="homepage ">
+                <a href="homepage">
                     <img id="home"  src="pictures/homethree.png">
                 </a>
             </div>
@@ -33,7 +33,9 @@
             <div class="nav-valg">
                 <h3>Skade & Udbedring</h3>
                 <a id="registrer-bil-modtaget" href="selectchassisnumberreturn?key=3">Registrer bil modtaget retur</a>  <!-- Mangler INDSÆT href-->
-                <a onclick="myFunction()" id="fejl-og-mangler" href="selectchassisnumber?key=1">Registrer fejl og mangler</a>
+
+                <a id="fejl-og-mangler" href="selectchassisnumber?key=1">Registrer fejl og mangler</a>
+
             </div>
 
             <br>
@@ -52,22 +54,20 @@
 
         </nav>
 
+        <section class="board">
+
+            <div class="logo">
+                <img id="logo" src="pictures/Logo-bilabonnement.png" alt="">
+            </div>
+
+        </section>
+
     </section>
 
-    <section class="board">
 
-        <div class="logo">
-            <img id="logo"  src="pictures/Logo-bilabonnement.png">
-        </div>
-
-    </section>
 </nav>
 
-<script>
-    function myFunction() {
-        document.getElementById('fejl-og-mangler').style.backgroundColor = 'red';
-    }
-</script>
+
 
 </body>
 </html>

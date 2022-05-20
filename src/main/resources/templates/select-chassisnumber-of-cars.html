@@ -39,18 +39,24 @@
 </div>
 
 <script>
-    /*
-    if (document.getElementById('fejl-og-mangler')){
-        document.getElementById('fejl-og-mangler').style.backgroundColor='white';
-    }else{
+
+    var forh = document.getElementById('forhåndsaftale');
+
+    forh.addEventListener("click", changeBaggroundColor());
+
+    function changeBaggroundColor(){
         document.getElementById('forhåndsaftale').style.backgroundColor='white';
     }
-*/
+
+    var fejl = document.getElementById('fejl-og-mangler');
+
+    fejl.addEventListener("click", changeBaggroundColor1());
+
+    function changeBaggroundColor1(){
+        document.getElementById('fejl-og-mangler').style.backgroundColor='white';
+
+    }
+
 </script>
-
 </body>
-
-
-
-
 </html>
