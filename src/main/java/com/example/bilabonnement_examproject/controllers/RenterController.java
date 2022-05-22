@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class RenterController {
+    private RenterService renterService = new RenterService();
 
     @GetMapping("/create-renter-information")
     public String getCreateRenterPage(){
@@ -20,48 +21,7 @@ public class RenterController {
 
 
 	@PostMapping("/get-renter-information")
-    public String getRenterDetails(WebRequest dataFromForm, HttpSession session,  RedirectAttributes attributes){
-        RenterRepo renterRepo = new RenterRepo();
-        RenterService renterService = new RenterService();
-        RenterModel renterModel = null;
-        String errorMessage = "Invalid bruger data";
-
-        String firstName = dataFromForm.getParameter("firstName");
-        String lastName = dataFromForm.getParameter("lastName");
-        String address = dataFromForm.getParameter("address");
-        String postcode = dataFromForm.getParameter("postcode");
-        String city = dataFromForm.getParameter("city");
-        String email = dataFromForm.getParameter("email");
-        String tlf = dataFromForm.getParameter("tlf");
-        String cpr = dataFromForm.getParameter("cpr");
-        String regNumber = dataFromForm.getParameter("regNumber");
-        String accountNumber = dataFromForm.getParameter("accountNumber");
-
-        if (regNumber ==""){
-            regNumber = "0";
-        }
-        //validere inputs og redirecter til næste side hvis de er valide ellers bliver
-        //man på siden
-        if (renterService.isAccountNumberValid(Integer.parseInt(regNumber), accountNumber) &&
-        renterService.isCprValid(cpr) && renterService.isEmailValid(email) &&
-        renterService.isPostCodeValid(Integer.parseInt(postcode)) &&
-        renterService.isRegNumberValid(Integer.parseInt(regNumber)) &&
-        renterService.isTlfValid(Integer.parseInt(tlf))){
-
-            renterModel = new RenterModel(firstName, lastName, address, Integer.parseInt(postcode),
-                    city, email, Integer.parseInt(tlf), cpr, Integer.parseInt(regNumber),
-                    accountNumber);
-
-            renterRepo.createEntity(renterModel);
-
-            int renterId = renterRepo.getRenterId(renterModel);
-
-            session.setAttribute("renterId", renterId);
-
-            return "redirect:/register-location";
-        } else {
-            attributes.addFlashAttribute("error", errorMessage);
-            return "redirect:/create-renter-information";
-        }
+    public String getRenterDetails(WebRequest dataFromForm, HttpSession session,  RedirectAttributes attributes) {
+        return renterService.renterServicePost(dataFromForm, session, attributes);
     }
 }

@@ -11,31 +11,12 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
+    private LoginService loginService = new LoginService();
 
 
     @PostMapping("/")
     public String getLoginInfo (WebRequest dataFromForm, HttpSession session, RedirectAttributes errorMessage){
-        LoginService loginService = new LoginService();
-        //session.invalidate();
-
-        //Gem data
-        String username = dataFromForm.getParameter("username");
-        String password = dataFromForm.getParameter("password");
-
-        //tjek valid
-        boolean isLoginValid = loginService.isLoginValid(username,password);
-
-        if (isLoginValid == true){
-            //Return "homepage" if true
-            session.setAttribute("password", password);
-            return "redirect:/homepage";
-        } else {
-            //Return redirect: index + besked
-            errorMessage.addFlashAttribute("error", "Brugernavn eller password er ikke gyldig");
-            System.out.println("Error message - Brugernavn eller password er ikke gyldig");
-            return "redirect:/";
-        }
-
+       return loginService.loginPage(dataFromForm,errorMessage,session);
     }
 
 	@GetMapping("/homepage")

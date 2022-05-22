@@ -15,7 +15,7 @@
 
 <div class="whiteboard">
     <div class="tabel">
-<h1>Find den bil du vil behandle</h1>
+        <h1 th:text="${header}"></h1>
         <div th:text="${error}" th:if="${error}" style="color: red"></div>
         <form action="#" th:action="@{'/selectchassisnumber?key='+${key}}" method="post">
             <div class="">
@@ -31,9 +31,7 @@
                     </select>
                 </div>
             </div>
-            <input type="submit" value="Gem" class="buttom"/>
-            <input type="reset" value="Nulstil feltet" class="buttom" />
-
+            <input type="submit" th:value="${actionname}" class="buttom"/>
         </form>
     </div>
 </div>

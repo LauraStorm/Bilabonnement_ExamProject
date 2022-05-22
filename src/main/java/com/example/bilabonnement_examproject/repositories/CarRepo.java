@@ -112,11 +112,15 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
     @Override
     public boolean updateEntity(CarModel entity) {
 
-        String updateCar = "UPDATE cars SET rented =? WHERE chassis_number =?";
+        String updateCar = "UPDATE cars SET rented =?, sold=?, registration_fee=?, color=?, steel_price=? WHERE chassis_number =?";
         try {
             PreparedStatement pstmt = DatabaseConnectionManager.getConnection().prepareStatement(updateCar);
             pstmt.setBoolean(1,entity.isRented());
-            pstmt.setString(2,entity.getChassisNumber());
+            pstmt.setBoolean(2,entity.isSold());
+            pstmt.setDouble(3,entity.getRegistrationFee());
+            pstmt.setString(4,entity.getColor());
+            pstmt.setDouble(5,entity.getSteelPrice());
+            pstmt.setString(6,entity.getChassisNumber());
             int i = pstmt.executeUpdate();
             System.out.println(i+ "records inserted");
             return true;

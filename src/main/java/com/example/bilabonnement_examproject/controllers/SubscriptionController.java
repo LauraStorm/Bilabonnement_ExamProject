@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class SubscriptionController {
+    private SubscriptionService subscriptionService = new SubscriptionService();
 
     @GetMapping("/create-subscription")
     public String getCreateSubscriptionPage(){
@@ -28,44 +29,7 @@ public class SubscriptionController {
 
 	@PostMapping("/get-subscription-information")
     public String getSubscriptionDetails(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
-        SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
-        SubscriptionService subscriptionService = new SubscriptionService();
-        SubscriptionModel subscriptionModel = null;
-        String errorMessage = "Alle felter skal udfyldes";
-
-        String locationId = String.valueOf(session.getAttribute("locationIdSession"));
-        String chassisNumber = String.valueOf(session.getAttribute("chassisSession"));
-        String rentersId = String.valueOf(session.getAttribute("renterId"));
-        String selfrisk = (dataFromForm.getParameter("selfrisk"));
-        String deliveryInsurance = (dataFromForm.getParameter("deliveryInsurance"));
-        String totalPrice = dataFromForm.getParameter("totalPrice");
-        String lenght = dataFromForm.getParameter("lenght");
-        String subscriptionType = lenght;
-        String pickupDate = dataFromForm.getParameter("pickupDate");
-        String deliveryDate = "";
-
-        if (selfrisk == null || deliveryInsurance == null || totalPrice == "" || lenght == ""
-        || subscriptionType ==  "" || pickupDate == "") {
-
-            attributes.addFlashAttribute("error", errorMessage);
-            return "redirect:/create-subscription";
-
-
-        } else {
-            System.out.println("længden er " + lenght + "typen er " + subscriptionService.findType(lenght));
-
-            subscriptionModel = new SubscriptionModel(Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(selfrisk)),
-                    Boolean.parseBoolean(subscriptionService.StringTooBooleanTerms(deliveryInsurance)), Integer.parseInt(totalPrice),
-                    Integer.parseInt(lenght), subscriptionService.findType(lenght), chassisNumber,
-                    Integer.parseInt(locationId), Integer.parseInt(rentersId),
-                    pickupDate, subscriptionService.getDeliveryDate(pickupDate, Integer.parseInt(lenght)));
-
-            subscriptionRepo.createEntity(subscriptionModel);
-
-            session.setAttribute("justCreatedSubscription", subscriptionModel);
-
-            return "redirect:/receipt";
-        }
+        return subscriptionService.subscriptionServicePost(dataFromForm,session,attributes);
     }
 
 

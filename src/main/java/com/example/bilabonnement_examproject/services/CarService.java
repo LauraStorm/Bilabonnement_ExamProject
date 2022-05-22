@@ -34,13 +34,13 @@ public class CarService {
                     return  "redirect:/damage?chassisnumber=" + car.getChassisNumber();
                 }
                 case 2: {
-                    return "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber();
+                    return "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber() + "&issold=false";
                 }
                 case 3: {
                     return  "redirect:/returncarsuccesspage?chassisnumber=" + car.getChassisNumber();
                 }
                 case 4:{
-                    return "redirect:/showagreement?chassisnumber=" + car.getChassisNumber();
+                    return "redirect:/registeradvanceagreement?chassisnumber=" + car.getChassisNumber() + "&issold=true";
                 }
                 default: {
                     attributes.addFlashAttribute("error", "Noget gik galt!");

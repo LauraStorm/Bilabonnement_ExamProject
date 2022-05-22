@@ -90,6 +90,8 @@ public class DamageController {
 	@GetMapping("/selectchassisnumberreturn")
     public String selectReturnedCar(Model model, @RequestParam("key") int key) {
         carService.selectCarToReturn(model,key);
+        model.addAttribute("header","Meld følgende biler returneret");
+        model.addAttribute("actionname","Modtag retur");
         model.addAttribute("car",new CarModel());
         return "select-chassisnumber-of-cars-return";
     }

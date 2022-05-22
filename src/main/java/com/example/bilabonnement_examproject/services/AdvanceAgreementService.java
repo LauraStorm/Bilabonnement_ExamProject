@@ -1,6 +1,7 @@
 package com.example.bilabonnement_examproject.services;
 
 import com.example.bilabonnement_examproject.models.AdvanceAgreementModel;
+import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.AdvanceAgreementRepo;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
@@ -13,6 +14,7 @@ import java.util.Objects;
 
 public class AdvanceAgreementService {
     private AdvanceAgreementRepo agreementRepo = new AdvanceAgreementRepo();
+    private CarRepo carRepo = new CarRepo();
     private DamageRepo damageRepo = new DamageRepo();
     private DamageService damageService = new DamageService(new DamageRepo());
     private LocationService locationService = new LocationService();
@@ -30,13 +32,22 @@ public class AdvanceAgreementService {
         return sum;
     }
 
-    public String getAdvanceAgreement(Model model, String chassisNumber) {
+    public String getAdvanceAgreement(Model model, String chassisNumber, boolean isSold) {
         AdvanceAgreementModel advanceAgreement = agreementRepo.getSingleEntity(chassisNumber);
+        CarModel car = carRepo.getSingleEntity(chassisNumber);
         if (Objects.equals(advanceAgreement.getChassisNumber(), chassisNumber)){
             model.addAttribute("advanceagreement", advanceAgreement);
             damageService.showDamagesForACar(model,chassisNumber);
-            model.addAttribute("car", new CarRepo().getSingleEntity(chassisNumber));
-            return "register-advance-agreement-result";
+            model.addAttribute("car", car);
+            if (isSold){
+                car.setSold(true);
+                carRepo.updateEntity(car);
+                model.addAttribute("header","Bilen er nu solgt");
+                return "register-advance-agreement-result";
+            } else {
+                model.addAttribute("header","Forhåndsaftale er nu oprettet");
+                return "register-advance-agreement-result";
+            }
         } else  {
                 model.addAttribute("chassisnumber", chassisNumber);
                 model.addAttribute("locations", locationService.getSelectLocationListForView());

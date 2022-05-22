@@ -5,7 +5,10 @@ import com.example.bilabonnement_examproject.models.SubscriptionModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.repositories.SubscriptionRepo;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
@@ -22,8 +25,49 @@ public class SubscriptionService {
         this.carRepo=carRepository;
     }
 
+
+
     public SubscriptionService (){
 
+    }
+
+    public String subscriptionServicePost(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
+        SubscriptionModel subscriptionModel = null;
+        String errorMessage = "Alle felter skal udfyldes";
+
+        String locationId = String.valueOf(session.getAttribute("locationIdSession"));
+        String chassisNumber = String.valueOf(session.getAttribute("chassisSession"));
+        String rentersId = String.valueOf(session.getAttribute("renterId"));
+        String selfrisk = (dataFromForm.getParameter("selfrisk"));
+        String deliveryInsurance = (dataFromForm.getParameter("deliveryInsurance"));
+        String totalPrice = dataFromForm.getParameter("totalPrice");
+        String lenght = dataFromForm.getParameter("lenght");
+        String subscriptionType = lenght;
+        String pickupDate = dataFromForm.getParameter("pickupDate");
+        String deliveryDate = "";
+
+        if (selfrisk == null || deliveryInsurance == null || totalPrice == "" || lenght == ""
+                || subscriptionType ==  "" || pickupDate == "") {
+
+            attributes.addFlashAttribute("error", errorMessage);
+            return "redirect:/create-subscription";
+
+
+        } else {
+            System.out.println("længden er " + lenght + "typen er " + findType(lenght));
+
+            subscriptionModel = new SubscriptionModel(Boolean.parseBoolean(StringTooBooleanTerms(selfrisk)),
+                    Boolean.parseBoolean(StringTooBooleanTerms(deliveryInsurance)), Integer.parseInt(totalPrice),
+                    Integer.parseInt(lenght), findType(lenght), chassisNumber,
+                    Integer.parseInt(locationId), Integer.parseInt(rentersId),
+                    pickupDate, getDeliveryDate(pickupDate, Integer.parseInt(lenght)));
+
+            subscriptionRepo.createEntity(subscriptionModel);
+
+            session.setAttribute("justCreatedSubscription", subscriptionModel);
+
+            return "redirect:/receipt";
+        }
     }
 
     public ArrayList<SubscriptionModel> getAllSubscriptions(){
