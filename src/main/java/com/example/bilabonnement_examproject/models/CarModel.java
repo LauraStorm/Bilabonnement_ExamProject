@@ -16,8 +16,9 @@ public class CarModel implements Comparable<CarModel>{
     private boolean isSold;
 
 
-    public CarModel(String chassisNumber, String model, String color) {
+    public CarModel(String chassisNumber, String color, String model, String manufacturer) {
         this.chassisNumber = chassisNumber;
+        this.manufacturer = manufacturer;
         this.model = model;
         this.color = color;
     }

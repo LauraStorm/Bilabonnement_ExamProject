@@ -28,7 +28,7 @@ public class CarService {
 
     public String selectChassisNumberPost(CarModel car, int key, RedirectAttributes attributes){
         String result = "";
-        if (!car.getChassisNumber().equals("Stelnummer")) {
+        if (!car.getChassisNumber().equals("Vælg: Stelnummer") && !car.isSold()) {
             switch (key) {
                 case 1: {
                     return  "redirect:/damage?chassisnumber=" + car.getChassisNumber();
@@ -50,6 +50,7 @@ public class CarService {
         } else {
             switch (key) {
                 case 1:
+                case 4:
                 case 2: {
                     attributes.addFlashAttribute("error", "Vælg venligst en mulighed!");
                     return  "redirect:/selectchassisnumber?key=" + key;
@@ -254,7 +255,7 @@ public class CarService {
 
     public ArrayList<CarModel> fillCarListWithADummyOption(ArrayList<CarModel> carArray){
         ArrayList<CarModel> carModelArrayListExtended = new ArrayList<CarModel>();
-        carModelArrayListExtended.add(new CarModel("Stelnummer","Model","Farve"));
+        carModelArrayListExtended.add(new CarModel("Vælg: Stelnummer","Farve","Model","Mærke"));
         carModelArrayListExtended.addAll(carArray);
         return carModelArrayListExtended;
 
