@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Alle biler</title>
@@ -19,6 +19,7 @@
             <table>
                 <tr>
                     <th>Stelnummer</th>
+                    <th>Mærke</th>
                     <th>Model</th>
                     <th>Udlejet</th>
                     <th>Solgt</th>
@@ -26,6 +27,7 @@
                 <tr th:name="allCars" th:each="aCar : ${allCars}">
 
                     <td th:text="${aCar.getChassisNumber}"></td>
+                    <td th:text="${aCar.getManufacturer}"></td>
                     <td th:text="${aCar.getModel}"></td>
                     <td th:text="${aCar.isRentedToString(aCar.isRented)}"></td>
                     <td th:text="${aCar.isSoldToString(aCar.isSold)}"></td>

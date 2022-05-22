@@ -3,6 +3,7 @@ package com.example.bilabonnement_examproject.services;
 import com.example.bilabonnement_examproject.models.AdvanceAgreementModel;
 import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.AdvanceAgreementRepo;
+import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.repositories.DamageRepo;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,11 +30,18 @@ public class AdvanceAgreementService {
         return sum;
     }
 
-    public String getAdvanceAgreement(Model model, String chassisNumber)
-    {
-        model.addAttribute("chassisnumber",chassisNumber);
-        model.addAttribute("locations",locationService.getSelectLocationListForView());
-        return "register-advance-agreement";
+    public String getAdvanceAgreement(Model model, String chassisNumber) {
+        AdvanceAgreementModel advanceAgreement = agreementRepo.getSingleEntity(chassisNumber);
+        if (Objects.equals(advanceAgreement.getChassisNumber(), chassisNumber)){
+            model.addAttribute("advanceagreement", advanceAgreement);
+            damageService.showDamagesForACar(model,chassisNumber);
+            model.addAttribute("car", new CarRepo().getSingleEntity(chassisNumber));
+            return "register-advance-agreement-result";
+        } else  {
+                model.addAttribute("chassisnumber", chassisNumber);
+                model.addAttribute("locations", locationService.getSelectLocationListForView());
+                return "register-advance-agreement";
+        }
     }
 
     public boolean createAgreement(AdvanceAgreementModel advanceAgreement, String chassisNumber) {
@@ -53,7 +61,8 @@ public class AdvanceAgreementService {
                                        String chassisNumber,
                                        Model model){
         String result = "";
-        model.addAttribute("damagesforcar", damageService.showAllDamagesForCar(chassisNumber));
+        model.addAttribute("car",new CarRepo().getSingleEntity(chassisNumber));
+        damageService.showDamagesForACar(model,chassisNumber);
         if (advanceAgreement.getTerms().isEmpty()) {
             attributes.addFlashAttribute("errormessage", "Alle felter skal være udfyldt!");
             result = "redirect:/registeradvanceagreement?chassisnumber="+chassisNumber;

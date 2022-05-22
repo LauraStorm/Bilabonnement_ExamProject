@@ -1,6 +1,7 @@
 package repository;
 
 import com.example.bilabonnement_examproject.models.DamageReportModel;
+import com.example.bilabonnement_examproject.models.SubscriptionModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DamageReportRepoTest implements CRUDInterface<DamageReportModel, Integer> {
-    private ArrayList<DamageReportModel> damageReportModelsList  = new ArrayList<DamageReportModel>(
+    private ArrayList<DamageReportModel> damageReportModelsList = new ArrayList<DamageReportModel>(
             Arrays.asList(
                     new DamageReportModel(1, "Manglende Sidespejl", 799, "52938102853019408"),
                     new DamageReportModel(2, "Totalskadet forrude", 999, "52931102953019407"),
@@ -28,7 +29,7 @@ public class DamageReportRepoTest implements CRUDInterface<DamageReportModel, In
     @Override
     public DamageReportModel getSingleEntity(Integer id) {
         DamageReportModel fetchedDamage = null;
-        for (DamageReportModel damage:damageReportModelsList
+        for (DamageReportModel damage : damageReportModelsList
         ) {
             if (damage.getId() == id) {
                 fetchedDamage = damage;
@@ -48,9 +49,8 @@ public class DamageReportRepoTest implements CRUDInterface<DamageReportModel, In
         }
     }
 
-
     @Override
-    public boolean updateEntity(Integer key) {
+    public boolean updateEntity(DamageReportModel entity) {
         return false;
     }
 }

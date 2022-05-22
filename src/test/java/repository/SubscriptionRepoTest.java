@@ -35,7 +35,8 @@ public class SubscriptionRepoTest implements CRUDInterface <SubscriptionModel,In
     }
 
     @Override
-    public boolean updateEntity(Integer key) {
+    public boolean updateEntity(SubscriptionModel entity) {
         return false;
     }
 }
+

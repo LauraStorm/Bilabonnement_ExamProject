@@ -18,12 +18,14 @@
             <table class="skema">
         <tr>
         <th>Stelnummer</th>
+        <th>Mærke</th>
         <th>Model</th>
         <th>Farve</th>
         </tr>
 
         <tr>
             <td th:text="${car.chassisNumber}"></td>
+            <td th:text="${car.manufacturer}"></td>
             <td th:text="${car.model}"></td>
             <td th:text="${car.color}"></td>
         </tr>

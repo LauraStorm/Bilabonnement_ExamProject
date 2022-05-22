@@ -1,5 +1,7 @@
 package com.example.bilabonnement_examproject.repositories;
 
+import com.example.bilabonnement_examproject.models.CarModel;
+
 import java.util.List;
 
 public interface CRUDInterface <T, ID>{
@@ -14,6 +16,6 @@ public interface CRUDInterface <T, ID>{
     public boolean createEntity(T entity);
 
     //update entity
-    public boolean updateEntity(ID key);
+    public boolean updateEntity(T entity);
 
 }

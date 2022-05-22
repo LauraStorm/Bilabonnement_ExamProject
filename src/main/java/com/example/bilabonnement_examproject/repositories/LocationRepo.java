@@ -71,7 +71,7 @@ public class LocationRepo implements CRUDInterface<LocationModel, Integer>{
     }
 
     @Override
-    public boolean updateEntity(Integer key) {
+    public boolean updateEntity(LocationModel location) {
         return false;
     }
 

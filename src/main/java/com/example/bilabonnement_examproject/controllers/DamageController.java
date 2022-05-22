@@ -28,9 +28,9 @@ public class DamageController {
 	@GetMapping("/damage")
     public String damageDataForm(Model model, @RequestParam("chassisnumber")
                                  String chassisNumber) {
-        model.addAttribute("damagesforcar",damageService.showAllDamagesForCar(chassisNumber));
-        model.addAttribute("chassisnumber", chassisNumber);
+        model.addAttribute("chassisnumbercar",chassisNumber);
         model.addAttribute("damage", new DamageReportModel());
+        damageService.showDamagesForACar(model,chassisNumber);
         return "damage";
     }
 
@@ -38,29 +38,18 @@ public class DamageController {
 	@PostMapping("/damage")
     public String damageDataSubmit(@ModelAttribute DamageReportModel damage,
                                    Model model, @RequestParam("chassisnumber")
-                                               String chassisNumber,
-                                   RedirectAttributes attributes) {
-        String result = "";
+                                               String chassisNumber) {
         model.addAttribute("damage", damage);
-        damage.setChassisNumber(chassisNumber);
-        if (damage.getDefectDescription().isEmpty()) {
-            attributes.addFlashAttribute("error","Der mangler en beskrivelse!");
-            result = "redirect:/damage?chassisnumber=" + chassisNumber;
-        } else if (damage.getPrice() == 0.0){
-            attributes.addFlashAttribute("error","Der mangler en pris!");
-            result = "redirect:/damage?chassisnumber=" + chassisNumber;
-        } else {
-            damageService.createDamageReport(damage);
-            result = "result-damage";
-        }
-        return result;
+        return damageService.damageDataFormPost(damage,chassisNumber);
     }
 
 
+    /*
     @GetMapping("/returncarpage")
     public String getReturnCarPage(){
         return "return-car";
     }
+
 
 
 	@PostMapping("/returncarpage")
@@ -95,12 +84,12 @@ public class DamageController {
 
     }
 
+     */
+
 
 	@GetMapping("/selectchassisnumberreturn")
     public String selectReturnedCar(Model model, @RequestParam("key") int key) {
-        model.addAttribute("key",key);
-        model.addAttribute("availablecars",carService.fillCarListWithADummyOption(
-                carService.getRentedCarsToReturn()));
+        carService.selectCarToReturn(model,key);
         model.addAttribute("car",new CarModel());
         return "select-chassisnumber-of-cars-return";
     }
@@ -111,9 +100,6 @@ public class DamageController {
                                        ,HttpSession session,
                                        @RequestParam("chassisnumber")
                                                String chassisNumber) {
-        CarRepo carRepo = new CarRepo();
-        CarModel returnCar = carRepo.changeRentedStatus(chassisNumber);
-        model.addAttribute("car", returnCar);
-        return "return-car-success";
+        return carService.returnCarSuccesPage(chassisNumber,model);
     }
 }

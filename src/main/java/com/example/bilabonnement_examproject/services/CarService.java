@@ -7,6 +7,7 @@ import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.utility.DatabaseConnectionManager;
 import net.bytebuddy.description.type.TypeList;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -37,6 +38,9 @@ public class CarService {
                 }
                 case 3: {
                     return  "redirect:/returncarsuccesspage?chassisnumber=" + car.getChassisNumber();
+                }
+                case 4:{
+                    return "redirect:/showagreement?chassisnumber=" + car.getChassisNumber();
                 }
                 default: {
                     attributes.addFlashAttribute("error", "Noget gik galt!");
@@ -73,7 +77,9 @@ public class CarService {
 
             //hvis chassis number er valid og bilen er updatet bliver man sendt videre
             session.setAttribute("chassisSession", chassisNumberFromForm);
-            carRepo.updateEntity(chassisNumberFromForm); // opdaterer rented status til "true"
+            CarModel car = carRepo.getSingleEntity(chassisNumberFromForm);
+            car.setRented(true);
+            carRepo.updateEntity(car); // opdaterer rented status til "true"
             result = "redirect:/create-renter-information";
 
         } else if(chassisNumberFromForm.length() != 17) {
@@ -89,7 +95,37 @@ public class CarService {
     }
 
 
+    public String submitCarToFleetPost(CarModel car, RedirectAttributes attributes){
+        String result = "";
+        if (car.getChassisNumber().isEmpty() ||
+                car.getModel().isEmpty()) {
+            attributes.addFlashAttribute("errormessage", "Alle felter skal være udfyldt!");
+            result = "redirect:/registernewcartofleet";
+        } else {
+            addNewToFleet(car);
+            result = "car-register-purchase-result";
+        }
+        return result;
+    }
 
+
+    public void selectCarToReturn(Model model,int key){
+        model.addAttribute("key",key);
+        model.addAttribute("availablecars",fillCarListWithADummyOption(
+                getRentedCarsToReturn()));
+    }
+
+    public String returnCarSuccesPage(String chassisNumber, Model model){
+        CarModel car = carRepo.getSingleEntity(chassisNumber);
+        car.setRented(false);
+        carRepo.updateEntity(car);
+        model.addAttribute("car", car);
+        return "return-car-success";
+    }
+
+
+
+// TODO NUMBER AND CHAR CERTAIN PLACES
     public boolean isChassisNumberValid(String chassisNumber) {
         CarRepo carRepo = new CarRepo();
 
@@ -142,7 +178,7 @@ public class CarService {
             carRepo.createEntity(car);
             return true;
         } catch (Exception exception) {
-            System.out.println("Something went wrong with inserting!");
+            System.out.println("Something went wrong inserting!");
             return false;
 
         }
@@ -225,7 +261,7 @@ public class CarService {
     }
 
     public CarModel changeRentedStatus(CarModel car){
-        carRepo.updateEntity(car.getChassisNumber());
+        carRepo.updateEntity(car);
         return carRepo.getSingleEntity(car.getChassisNumber());
     }
 

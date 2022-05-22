@@ -28,16 +28,7 @@ public class CarPurchaseController {
     public String registerNewCarToFleetFormSubmit(@ModelAttribute CarModel car,
                                    Model model,
                                    RedirectAttributes attributes) {
-        String result = "";
         model.addAttribute("car", car);
-        if (car.getChassisNumber().isEmpty() ||
-        car.getModel().isEmpty()) {
-            attributes.addFlashAttribute("errormessage", "Alle felter skal være udfyldt!");
-            result = "redirect:/registernewcartofleet";
-        } else {
-            carService.addNewToFleet(car);
-            result = "car-register-purchase-result";
-        }
-        return result;
+     return carService.submitCarToFleetPost(car,attributes);
     }
 }

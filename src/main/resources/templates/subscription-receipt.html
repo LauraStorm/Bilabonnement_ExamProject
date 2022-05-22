@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Registrer Abonnement</title>
@@ -13,18 +13,20 @@
 <div class="whiteboard">
 
   <div class="receipt">
-    <h3>Oprettede lejeaftale</h3>
+    <h3>Oprettet lejeaftale</h3>
     <form class="receipt-form">
     <table class="skema">
       <p class="labelType">Udlejet Bil</p>
       <tr>
-        <th>Stel nummer</th>
+        <th>Stelnummer</th>
+        <th>Mærke</th>
         <th>Model</th>
         <th>Farve</th>
         <th>Status</th>
       </tr>
 
         <td th:text="${car.getChassisNumber}"></td>
+        <td th:text="${car.getManufacturer()}"></td>
         <td th:text="${car.getModel}"></td>
         <td th:text="${car.getColor}"></td>
         <td th:text="${car.isRentedToString(car.isRented)}"></td>

@@ -79,17 +79,20 @@ public class CarModel implements Comparable<CarModel>{
     }
 
     public void setRented(boolean rented) {
-        this.isRented = isRented;
+        isRented = rented;
     }
 
     public boolean isSold() {
         return isSold;
     }
 
+
     public String isSoldToString (boolean isSold){
         CarService carService = new CarService();
         return carService.convertBooleanTermsToString(isSold);
     }
+
+
 
     public void setSold(boolean sold) {
         isSold = sold;
@@ -143,20 +146,38 @@ public class CarModel implements Comparable<CarModel>{
         this.carbonEmission = carbonEmission;
     }
 
-
-
     @Override
     public String toString() {
-        CarService carService = new CarService();
         return "CarModel{" +
                 "chassisNumber='" + chassisNumber + '\'' +
+                ", wagonNumber=" + wagonNumber +
+                ", manufacturer='" + manufacturer + '\'' +
                 ", model='" + model + '\'' +
                 ", color='" + color + '\'' +
-                ", isRented=" + carService.convertBooleanTermsToString(isRented) +
+                ", equipmentLevel='" + equipmentLevel + '\'' +
+                ", steelPrice=" + steelPrice +
+                ", registrationFee=" + registrationFee +
+                ", carbonEmission=" + carbonEmission +
+                ", isRented=" + isRented +
+                ", isSold=" + isSold +
                 '}';
     }
 
+    /*
+        @Override
+        public String toString() {
+            CarService carService = new CarService();
+            return "CarModel{" +
+                    "chassisNumber='" + chassisNumber + '\'' +
+                    ", model='" + model + '\'' +
+                    ", color='" + color + '\'' +
+                    ", isRented=" + carService.convertBooleanTermsToString(isRented) +
+                    '}';
+        }
 
+
+
+     */
     @Override
     public int compareTo(CarModel aCar) {
         if (this.isRented == aCar.isRented()){

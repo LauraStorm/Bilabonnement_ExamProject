@@ -55,9 +55,7 @@ public class CarController {
         CarRepo carRepo = new CarRepo();
         CarService carService = new CarService();
         List<CarModel> rentedCars= carService.getRentedCars(carRepo.getAllEntities());
-
         car.addAttribute("rentedCars", rentedCars);
-
         return "view-leased-cars";
     }
 

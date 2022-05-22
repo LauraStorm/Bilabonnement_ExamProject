@@ -74,7 +74,7 @@ public class LoginRepo implements CRUDInterface<LoginModel,Integer>{
     }
 
     @Override
-    public boolean updateEntity(Integer key) {
+    public boolean updateEntity(LoginModel login) {
         return false;
     }
 }

@@ -5,6 +5,7 @@ import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.AdvanceAgreementRepo;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class DamageService {
+    private RedirectAttributes attributes;
     private CRUDInterface<DamageReportModel, Integer> damageRepo;
     private AdvanceAgreementRepo advanceAgreementRepo = new AdvanceAgreementRepo();
 
@@ -33,7 +35,7 @@ public class DamageService {
         }
     }
 
-    public List<DamageReportModel> showAllDamagesForCar(String chassisNumber){
+    public List<DamageReportModel> showDamagesForACar(Model model, String chassisNumber){
         ArrayList<DamageReportModel> damageList = new ArrayList<DamageReportModel>();
         for (DamageReportModel damages:damageRepo.getAllEntities()
              ) {
@@ -42,8 +44,27 @@ public class DamageService {
                 damageList.add(damages);
             }
         }
+        model.addAttribute("damagesforcar",damageList);
         return damageList;
     }
+
+    public String damageDataFormPost(DamageReportModel damage, String chassisNumber){
+        String result = "";
+        damage.setChassisNumber(chassisNumber);
+        if (damage.getDefectDescription().isEmpty()) {
+            attributes.addFlashAttribute("error","Der mangler en beskrivelse!");
+            result = "redirect:/damage?chassisnumber=" + chassisNumber;
+        } else if (damage.getPrice() == 0.0){
+            attributes.addFlashAttribute("error","Der mangler en pris!");
+            result = "redirect:/damage?chassisnumber=" + chassisNumber;
+        } else {
+            createDamageReport(damage);
+            result = "result-damage";
+        }
+        return result;
+    }
+
+
 
 
 }

@@ -23,23 +23,21 @@
         <div class="receipt">
         <h1>Forhåndsaftalen er nu oprettet</h1>
         <section>
-            <table>
+            <table class="skema">
                 <tr>
-                    <th>Vilkår</th>
-                    <th>Kørte kilometer</th>
-                    <th>Overkørte kilometer pris</th>
-                    <th>Afslag total pris</th>
-                    <th>Købspris</th>
-                    <th>Afhentningssted</th>
+                    <th>Stelnummer</th>
+                    <th>Mærke</th>
+                    <th>Model</th>
+                    <th>Farve</th>
                 </tr>
+
                 <tr>
-                    <td th:text="${advanceagreement.terms}"></td>
-                    <td th:text="${advanceagreement.kilometersDriven}"></td>
-                    <td th:text="${advanceagreement.extendKilometer}"></td>
-                    <td th:text="${advanceagreement.refusalPrice}"></td>
-                    <td th:text="${advanceagreement.purchasePrice}"></td>
-                    <td th:text="${advanceagreement.locationId}"></td>
+                    <td th:text="${car.chassisNumber}"></td>
+                    <td th:text="${car.manufacturer}"></td>
+                    <td th:text="${car.model}"></td>
+                    <td th:text="${car.color}"></td>
                 </tr>
+
             </table>
             <table>
                 <thead>
@@ -54,6 +52,25 @@
                     <td th:text="${damages.price}"> Pris </td>
                 </tr>
                 </tbody>
+            </table>
+            </form>
+            <table>
+                <tr>
+                    <th>Vilkår</th>
+                    <th>Afhentningssted</th>
+                    <th>Kørte kilometer</th>
+                    <th>Overkørte kilometer pris</th>
+                    <th>Afslag total pris</th>
+                    <th>Købspris</th>
+                </tr>
+                <tr>
+                    <td th:text="${advanceagreement.terms}"></td>
+                    <td th:text="${advanceagreement.locationId}"></td>
+                    <td th:text="${advanceagreement.kilometersDriven}"></td>
+                    <td th:text="${advanceagreement.extendKilometer}"></td>
+                    <td th:text="${advanceagreement.refusalPrice}"></td>
+                    <td th:text="${advanceagreement.purchasePrice}"></td>
+                </tr>
             </table>
             <a href="/selectchassisnumber?key=2">
                 <button class="buttom">

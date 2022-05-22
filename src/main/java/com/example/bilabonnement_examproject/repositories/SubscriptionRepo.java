@@ -102,16 +102,16 @@ public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Intege
             stmt.setString(10,entity.getDeliveryDate());
 
             stmt.executeUpdate();
-
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
 
-        return false;
     }
 
     @Override
-    public boolean updateEntity(Integer key) {
+    public boolean updateEntity(SubscriptionModel subscription) {
         return false;
     }
 }

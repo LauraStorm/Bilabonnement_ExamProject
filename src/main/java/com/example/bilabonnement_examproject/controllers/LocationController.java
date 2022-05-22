@@ -29,19 +29,8 @@ public class LocationController {
 	@PostMapping("/register-location")
     public String getLocationDetails(Model model, @ModelAttribute LocationModel location,
                                      WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
-        String errorMessage = "Lokationen findes ikke";
         model.addAttribute("location",location);
-            session.setAttribute("locationIdSession", location.getId());
-            if (location.getId() == 0) {
-
-                attributes.addFlashAttribute("error", errorMessage);
-
-                return "redirect:/register-location";
-
-        } else {
-                return "redirect:/create-subscription";
-        }
-
+        return locationService.locationsDetilsSelectPost(session,location,attributes);
 
     }
 }

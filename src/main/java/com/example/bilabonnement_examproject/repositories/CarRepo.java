@@ -82,6 +82,7 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
 
     @Override
     public boolean createEntity(CarModel entity) {
+
         String createDamage = "INSERT INTO cars (chassis_number, model, color, rented, wagon_number, manufacturer, " +
                 "equipment_level, steel_price, registration_fee, carbon_emission, sold)  VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try {
@@ -109,31 +110,25 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
     }
 
     @Override
-    public boolean updateEntity(String key) {
+    public boolean updateEntity(CarModel entity) {
 
-        Connection conn = DatabaseConnectionManager.getConnection();
-        CarModel car = getSingleEntity(key);
-
-        boolean rentedStatus = true;
-
-        if (car.isRented()){
-            rentedStatus = false;
+        String updateCar = "UPDATE cars SET rented =? WHERE chassis_number =?";
+        try {
+            PreparedStatement pstmt = DatabaseConnectionManager.getConnection().prepareStatement(updateCar);
+            pstmt.setBoolean(1,entity.isRented());
+            pstmt.setString(2,entity.getChassisNumber());
+            int i = pstmt.executeUpdate();
+            System.out.println(i+ "records inserted");
+            return true;
         }
-
-            try {
-                PreparedStatement stmt = conn.prepareStatement("UPDATE cars SET rented=? WHERE chassis_number=?");
-                stmt.setBoolean(1, rentedStatus);
-                stmt.setString(2, car.getChassisNumber());
-                stmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("update fail");
-            }
-
-
-        return rentedStatus;
+        catch (SQLException sqlException) {
+            System.out.println("Something went wrong!");
+            sqlException.printStackTrace();
+            return false;
+        }
     }
 
+    /*
     public CarModel changeRentedStatus(String chassisNumber) {
 
         Connection conn = DatabaseConnectionManager.getConnection();
@@ -164,4 +159,6 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
 
         return carModel;
     }
+
+     */
 }

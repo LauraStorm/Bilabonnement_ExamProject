@@ -66,7 +66,7 @@ public class DamageRepo implements CRUDInterface<DamageReportModel, Integer> {
     }
 
         @Override
-    public boolean updateEntity(Integer key) {
+    public boolean updateEntity(DamageReportModel damage) {
         return false;
     }
 

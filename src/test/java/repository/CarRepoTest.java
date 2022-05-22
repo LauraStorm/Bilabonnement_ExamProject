@@ -55,12 +55,12 @@ public class CarRepoTest implements CRUDInterface<CarModel, String> {
     }
 
     @Override
-    public boolean updateEntity(String key) {
+    public boolean updateEntity(CarModel car) {
         CarModel fetchedCar = null;
-        for (CarModel car:carModelArrayList) {
-            if (car.getChassisNumber().equals(String.valueOf(key))) {
-                fetchedCar = car;
-                if (car.isRented()) {
+        for (CarModel cars:carModelArrayList) {
+            if (cars.getChassisNumber().equals(String.valueOf(car.getChassisNumber()))) {
+                fetchedCar = cars;
+                if (cars.isRented()) {
                     fetchedCar.setRented(false);
                 } else {
                     fetchedCar.setRented(true);

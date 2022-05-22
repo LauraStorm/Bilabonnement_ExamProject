@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdvanceAgreementRepo implements CRUDInterface<AdvanceAgreementModel, Integer> {
+public class AdvanceAgreementRepo implements CRUDInterface<AdvanceAgreementModel, String> {
     @Override
     public List<AdvanceAgreementModel> getAllEntities() {
         ArrayList<AdvanceAgreementModel> allAgreements = new ArrayList<AdvanceAgreementModel>();
@@ -47,9 +47,39 @@ public class AdvanceAgreementRepo implements CRUDInterface<AdvanceAgreementModel
     }
 
     @Override
-    public AdvanceAgreementModel getSingleEntity(Integer integer) {
-        return null;
-    }
+    public AdvanceAgreementModel getSingleEntity(String chassisNumber) {
+        AdvanceAgreementModel agreement = new AdvanceAgreementModel();
+        Connection connection = DatabaseConnectionManager.getConnection();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM advance_agreement where chassis_number=?");
+            stmt.setString(1,chassisNumber);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String chasssisNum = rs.getString("chassis_number");
+                String terms = rs.getString("terms");
+                int kilometerDriven = rs.getInt("kilometer_driven");
+                int extendKilometer = rs.getInt("extend_kilometer");
+                int refusalPrice = rs.getInt("refusal_price");
+                int purchasePrice = rs.getInt("purchase_price");
+                int locationsId = rs.getInt("locationsid");
+
+                agreement =
+                        new AdvanceAgreementModel(id,chassisNumber,terms,kilometerDriven,
+                                extendKilometer,refusalPrice,purchasePrice,locationsId);
+
+
+            }
+            System.out.println("All damages found");
+
+        } catch (SQLException e) {
+            System.out.println("something went wrong");
+            e.printStackTrace();
+        }
+        return agreement;
+}
 
     @Override
     public boolean createEntity(AdvanceAgreementModel entity) {
@@ -77,7 +107,7 @@ public class AdvanceAgreementRepo implements CRUDInterface<AdvanceAgreementModel
     }
 
     @Override
-    public boolean updateEntity(Integer key) {
+    public boolean updateEntity(AdvanceAgreementModel advanceAgreement) {
         return false;
     }
 }

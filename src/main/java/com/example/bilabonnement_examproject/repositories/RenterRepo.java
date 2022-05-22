@@ -83,7 +83,7 @@ public class RenterRepo implements CRUDInterface<RenterModel, Integer>{
     }
 
     @Override
-    public boolean updateEntity(Integer key) {
+    public boolean updateEntity(RenterModel renter) {
         return false;
     }
 

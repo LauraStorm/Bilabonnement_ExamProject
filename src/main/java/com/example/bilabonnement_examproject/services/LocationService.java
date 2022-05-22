@@ -2,7 +2,9 @@ package com.example.bilabonnement_examproject.services;
 
 import com.example.bilabonnement_examproject.models.LocationModel;
 import com.example.bilabonnement_examproject.repositories.LocationRepo;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +41,20 @@ public class LocationService {
         locationModelsWithExtra.add(new LocationModel("Vælg adresse", "Vælg by", -1, -1));
         locationModelsWithExtra.addAll(locationRepo.getAllEntities());
         return locationModelsWithExtra;
+    }
+
+    public String locationsDetilsSelectPost(HttpSession session, LocationModel location,
+                                            RedirectAttributes attributes){
+        String errorMessage = "Lokationen findes ikke";
+        session.setAttribute("locationIdSession", location.getId());
+        if (location.getId() == 0) {
+
+            attributes.addFlashAttribute("error", errorMessage);
+
+            return "redirect:/register-location";
+
+        } else {
+            return "redirect:/create-subscription";
+        }
     }
 }
