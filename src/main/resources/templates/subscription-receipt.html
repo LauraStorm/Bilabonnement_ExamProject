@@ -22,7 +22,7 @@
         <th>Mærke</th>
         <th>Model</th>
         <th>Farve</th>
-        <th>Status</th>
+        <th>Udlejet</th>
       </tr>
 
         <td th:text="${car.getChassisNumber}"></td>
@@ -85,8 +85,8 @@
         <th>Afleverings Dato</th>
       </tr>
 
-      <td th:text="${subscription.isSelfrisk}"></td>
-      <td th:text="${subscription.isDeliveryInsurance}"></td>
+      <td th:text="${subscription.getSelfriskString(subscription.isSelfrisk)}"></td>
+      <td th:text="${subscription.getIsDeliveryInsuranceAsString(subscription.isDeliveryInsurance)}"></td>
       <td th:text="${subscription.getTotalPriceMd}"></td>
       <td th:text="${subscription.getSubscriptionType}"></td>
       <td th:text="${subscription.getPickupDate}"></td>

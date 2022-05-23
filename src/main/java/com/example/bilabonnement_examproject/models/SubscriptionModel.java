@@ -76,12 +76,28 @@ public class SubscriptionModel {
         return selfrisk;
     }
 
+    public String getSelfriskString (boolean isSelfrisk){
+        if (isSelfrisk == true){
+            return "Ja";
+        } else {
+            return "nej";
+        }
+    }
+
     public void setSelfrisk(boolean selfrisk) {
         this.selfrisk = selfrisk;
     }
 
     public boolean isDeliveryInsurance() {
         return deliveryInsurance;
+    }
+
+    public String getIsDeliveryInsuranceAsString (boolean isDeliveryInsurance){
+        if (isDeliveryInsurance == true){
+            return "Ja";
+        } else {
+            return "Nej";
+        }
     }
 
     public void setDeliveryInsurance(boolean deliveryInsurance) {
