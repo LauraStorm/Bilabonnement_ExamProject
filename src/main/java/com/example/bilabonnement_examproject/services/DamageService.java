@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class DamageService {
-    private RedirectAttributes attributes;
     private CRUDInterface<DamageReportModel, Integer> damageRepo;
     private AdvanceAgreementRepo advanceAgreementRepo = new AdvanceAgreementRepo();
 
@@ -48,7 +47,7 @@ public class DamageService {
         return damageList;
     }
 
-    public String damageDataFormPost(DamageReportModel damage, String chassisNumber){
+    public String damageDataFormPost(DamageReportModel damage, String chassisNumber, RedirectAttributes attributes){
         String result = "";
         damage.setChassisNumber(chassisNumber);
         if (damage.getDefectDescription().isEmpty()) {
