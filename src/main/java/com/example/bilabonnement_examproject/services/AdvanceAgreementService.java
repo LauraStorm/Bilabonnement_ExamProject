@@ -74,8 +74,8 @@ public class AdvanceAgreementService {
         String result = "";
         model.addAttribute("car",new CarRepo().getSingleEntity(chassisNumber));
         damageService.showDamagesForACar(model,chassisNumber);
-        if (advanceAgreement.getTerms().isEmpty()) {
-            attributes.addFlashAttribute("errormessage", "Alle felter skal være udfyldt!");
+        if (advanceAgreement.getTerms().isEmpty() && advanceAgreement.getLocationId() == 0) {
+            attributes.addFlashAttribute("errormessage", "Vilkår og afhentningssted skal være udfyldt!");
             result = "redirect:/registeradvanceagreement?chassisnumber="+chassisNumber;
         } else {
                 createAgreement(advanceAgreement, chassisNumber);
