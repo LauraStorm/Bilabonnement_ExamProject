@@ -36,55 +36,12 @@ public class DamageController {
 
 
 	@PostMapping("/damage")
-    public String damageDataSubmit(@ModelAttribute DamageReportModel damage,
+    public String damageDataSubmit(@ModelAttribute DamageReportModel damage, RedirectAttributes attributes,
                                    Model model, @RequestParam("chassisnumber")
                                                String chassisNumber) {
         model.addAttribute("damage", damage);
-        return damageService.damageDataFormPost(damage,chassisNumber);
+        return damageService.damageDataFormPost(damage,chassisNumber, attributes);
     }
-
-
-    /*
-    @GetMapping("/returncarpage")
-    public String getReturnCarPage(){
-        return "return-car";
-    }
-
-
-
-	@PostMapping("/returncarpage")
-    public String returnCarPage(WebRequest dataFromForm, RedirectAttributes attributes, Model model, HttpSession session,
-                                @RequestParam("chassisnumber")
-                                        String chassisNumber) {
-        CarRepo carRepo = new CarRepo();
-        CarService carService = new CarService();
-        String result = "";
-
-        String chassisNumberInput = dataFromForm.getParameter("chassis-number-input");
-
-        if (!carRepo.getSingleEntity(chassisNumberInput).isRented()) {
-            attributes.addFlashAttribute("error", "Denne bil har ikke været udlejet!");
-            result = "redirect:/getreturncarpage";
-
-        } else if (chassisNumberInput.isEmpty() || chassisNumberInput.length() != 17) {
-            attributes.addFlashAttribute("error", "Udfyld valid stelnummer!");
-            result = "redirect:/getreturncarpage";
-
-        } else {
-            session.setAttribute("returncar", carRepo.getSingleEntity(chassisNumberInput));
-            carService.isChassisNumberValid(chassisNumberInput);
-            carRepo.changeRentedStatus(chassisNumberInput);
-            result = "redirect:/returncarsuccesspage";
-
-            model.addAttribute("car", carRepo.getSingleEntity(chassisNumberInput));
-            result = "redirect:/returncarsuccesspage";
-        }
-
-        return result;
-
-    }
-
-     */
 
 
 	@GetMapping("/selectchassisnumberreturn")
