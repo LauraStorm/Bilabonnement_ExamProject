@@ -64,7 +64,7 @@ public class RenterService {
 
     public String renterServicePost(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
         RenterModel renterModel = null;
-        String errorMessage = "Invalid bruger data";
+        String errorMessage = "Oplysninger ikke korrekt";
 
         String firstName = dataFromForm.getParameter("firstName");
         String lastName = dataFromForm.getParameter("lastName");

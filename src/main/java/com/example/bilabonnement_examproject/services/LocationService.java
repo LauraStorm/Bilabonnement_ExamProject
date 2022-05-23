@@ -45,7 +45,7 @@ public class LocationService {
 
     public String locationsDetilsSelectPost(HttpSession session, LocationModel location,
                                             RedirectAttributes attributes){
-        String errorMessage = "Lokationen findes ikke";
+        String errorMessage = "Lokation skal vælges";
         session.setAttribute("locationIdSession", location.getId());
         if (location.getId() == 0) {
 
