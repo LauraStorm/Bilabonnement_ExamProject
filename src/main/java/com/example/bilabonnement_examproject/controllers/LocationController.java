@@ -28,7 +28,7 @@ public class LocationController {
 
 	@PostMapping("/register-location")
     public String getLocationDetails(Model model, @ModelAttribute LocationModel location,
-                                     WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
+                                     HttpSession session, RedirectAttributes attributes){
         model.addAttribute("location",location);
         return locationService.locationsDetilsSelectPost(session,location,attributes);
 

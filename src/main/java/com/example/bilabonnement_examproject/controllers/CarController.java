@@ -79,12 +79,20 @@ public class CarController {
     }
 
 	@GetMapping("/rented-cars")
-    public String getAllRentedCarsPage(Model car){
+    public String getAllRentedCarsPage(Model car, RedirectAttributes flashAttribute){
         CarRepo carRepo = new CarRepo();
         CarService carService = new CarService();
+
         List<CarModel> rentedCars= carService.getRentedCars(carRepo.getAllEntities());
-        car.addAttribute("rentedCars", rentedCars);
-        return "view-leased-cars";
+
+        if (rentedCars.size() == 0){
+            flashAttribute.addFlashAttribute("error", "Der er ingen udlejede biler");
+            return "view-leased-cars";
+        } else {
+            car.addAttribute("rentedCars", rentedCars);
+            return "view-leased-cars";
+        }
+
     }
 
 
@@ -100,15 +108,23 @@ public class CarController {
 
 
 	@GetMapping("/available-cars")
-    public String getAvailableCars(Model car, RedirectAttributes errorMessage){
+    public String getAvailableCars(Model car, RedirectAttributes flashAttribute){
         CarService carService = new CarService();
         CarRepo carRepo = new CarRepo();
-        List<CarModel> allCars = carRepo.getAllEntities();
 
+        List<CarModel> allCars = carRepo.getAllEntities();
         List<CarModel> allAvailableCars = carService.getUnrentedCars(allCars);
 
-        car.addAttribute("availableCars",allAvailableCars);
-        return "view-available-cars";
+        if (allAvailableCars.size() == 0){
+            flashAttribute.addFlashAttribute("error", "Der ingen ledige biler");
+            return "view-available-cars";
+        } else {
+            car.addAttribute("availableCars",allAvailableCars);
+            return "view-available-cars";
+        }
+
+
+
     }
 
 }

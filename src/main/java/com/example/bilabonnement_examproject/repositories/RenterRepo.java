@@ -73,6 +73,7 @@ public class RenterRepo implements CRUDInterface<RenterModel, Integer>{
 
             stmt.executeUpdate();
             System.out.println("renter created");
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
