@@ -31,7 +31,7 @@ public class AdvanceAgreementController {
 	@GetMapping("/registeradvanceagreement")
     public String registerAdvanceAgreementFormShow(Model model,
              @RequestParam("chassisnumber") String chassisNumber,
-                                                   @RequestParam("issold") boolean isSold) {
+                                                   @RequestParam(value = "issold", required = false) boolean isSold) {
         model.addAttribute("advanceagreement", new AdvanceAgreementModel());
 		return agreementService.getAdvanceAgreement(model,chassisNumber,isSold);
     }
