@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//udarbejdet af Simon
 public class AdvanceAgreementRepo implements CRUDInterface<AdvanceAgreementModel, String> {
     @Override
     public List<AdvanceAgreementModel> getAllEntities() {
