@@ -3,7 +3,6 @@ package com.example.bilabonnement_examproject.models;
 import java.util.HashMap;
 import java.util.Random;
 
-//udarbejdet af Simon
 public class AdvanceAgreementModel {
     private int id;
     private String chassisNumber;
