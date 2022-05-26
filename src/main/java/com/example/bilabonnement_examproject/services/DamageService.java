@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+//udarbejdet af Simon & Elisa
 public class DamageService {
     private CRUDInterface<DamageReportModel, Integer> damageRepo;
     private AdvanceAgreementRepo advanceAgreementRepo = new AdvanceAgreementRepo();
