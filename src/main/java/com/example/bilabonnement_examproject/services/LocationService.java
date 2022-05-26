@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+//udarbejdet af Simon & Laura & Ramus
 public class LocationService {
     LocationRepo locationRepo = new LocationRepo();
 
