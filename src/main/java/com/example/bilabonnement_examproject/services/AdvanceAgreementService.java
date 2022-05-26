@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Objects;
 
+//udarbejdet af Simon & Elisa
 public class AdvanceAgreementService {
     private AdvanceAgreementRepo agreementRepo = new AdvanceAgreementRepo();
     private CarRepo carRepo = new CarRepo();
