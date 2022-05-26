@@ -19,6 +19,8 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//udarbejdet af Simon & Elisa
 @Controller
 public class DamageController {
     private CarService carService = new CarService(new CarRepo());
