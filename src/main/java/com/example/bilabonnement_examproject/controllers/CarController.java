@@ -18,7 +18,7 @@ import java.util.List;
 public class CarController {
     private CarService carService = new CarService(new CarRepo());
 
-
+//udarbejdet af Simon
 	@GetMapping("/selectchassisnumber")
     public String selectChassisNumberShow(Model model, @RequestParam("key") int key) {
         switch (key){
@@ -54,7 +54,7 @@ public class CarController {
         return "select-chassisnumber-of-cars";
     }
 
-
+//udarbejdet af Simon
 	@PostMapping("/selectchassisnumber")
     public String selectChassisNumberSubmit(RedirectAttributes attributes, Model model,
                               @ModelAttribute CarModel car, @RequestParam("key") int key
