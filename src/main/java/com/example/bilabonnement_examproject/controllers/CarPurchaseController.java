@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+//udarbejdet af Simon
 @Controller
 public class CarPurchaseController {
     private CarService carService = new CarService(new CarRepo());
