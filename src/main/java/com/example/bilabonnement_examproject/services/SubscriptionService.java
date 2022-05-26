@@ -15,7 +15,7 @@ import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-//udarbejdet af Simon & Laura
+//udarbejdet af Simon & Laura & Rasmus
 public class SubscriptionService {
     private CRUDInterface subscriptionRepo = new SubscriptionRepo();
     private CRUDInterface carRepo = new CarRepo();
