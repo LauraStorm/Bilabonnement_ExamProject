@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//udarbejdet af Simon & Elisa
 public class DamageRepo implements CRUDInterface<DamageReportModel, Integer> {
 
     @Override
