@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
+//udarbejdet af Simon & Elisa
 @Controller
 public class AdvanceAgreementController {
     private AdvanceAgreementService agreementService = new AdvanceAgreementService();
