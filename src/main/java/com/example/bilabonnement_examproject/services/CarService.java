@@ -103,6 +103,7 @@ public class CarService {
             attributes.addFlashAttribute("errormessage", "Alle felter skal være udfyldt!");
             result = "redirect:/registernewcartofleet";
         } else {
+
             addNewToFleet(car);
             result = "car-register-purchase-result";
         }
