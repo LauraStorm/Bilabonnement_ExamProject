@@ -179,16 +179,17 @@ public class CarModel implements Comparable<CarModel>{
 
 
      */
+    //Laura
     @Override
     public int compareTo(CarModel aCar) {
-        if (this.isRented == aCar.isRented()){
+        if (this.isRented == aCar.isRented && aCar.isRentedToString(aCar.isRented()) == "ja"){
             return 1;
-        } else if (this.isRented != aCar.isRented()){
+        }else if (this.isRented != aCar.isRented && aCar.isRentedToString(aCar.isRented()) != "ja"){
             return -1;
         } else {
             return 0;
         }
-
     }
+
 }
 

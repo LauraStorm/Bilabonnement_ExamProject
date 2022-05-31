@@ -16,7 +16,8 @@ public class FinanceController {
     public String showFinances(Model model){
         SubscriptionService subscriptionService = new SubscriptionService();
         model.addAttribute("sumcurrentlease",subscriptionService.getExpectedRevenueForCurrentSubs());
-        model.addAttribute("totalrevenue",subscriptionService.getTotalRevenueFromCurrentSubs());
+        model.addAttribute("totalrevenue",subscriptionService.getTotalRevenueFromCurrentSubs()); //total
+
         return "finance-page";
     }
 }

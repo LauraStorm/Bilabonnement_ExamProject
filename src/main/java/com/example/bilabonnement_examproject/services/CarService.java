@@ -18,7 +18,7 @@ import java.util.Objects;
 public class CarService {
     private CRUDInterface<CarModel,String> carRepo;
 
-    public CarService(CRUDInterface carRepo){
+    public CarService(CRUDInterface<CarModel,String> carRepo){
        this.carRepo = carRepo;
     }
 
@@ -221,7 +221,7 @@ public class CarService {
     }
 
     public ArrayList<CarModel> getAllRentedCars(){
-        CarRepo carRepo = new CarRepo();
+        CarRepo carRepo= new CarRepo();
         ArrayList<CarModel> rentedCars = new ArrayList<CarModel>();
         for (CarModel cars:carRepo.getAllEntities()
         ) {

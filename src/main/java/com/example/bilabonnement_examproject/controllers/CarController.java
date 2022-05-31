@@ -95,18 +95,17 @@ public class CarController {
 
     }
 
-
+    //Laura
 	@GetMapping("/all-cars")
     public String getAllCars (Model car){
         CarRepo carRepo = new CarRepo();
         List<CarModel> allCars = carRepo.getAllEntities();
         Collections.sort(allCars);                             //Sortere - Se compareTo Metode i CarModel class
-
         car.addAttribute("allCars",allCars);
         return "view-all-cars";
     }
 
-
+    //Laura
 	@GetMapping("/available-cars")
     public String getAvailableCars(Model car, RedirectAttributes flashAttribute){
         CarService carService = new CarService();

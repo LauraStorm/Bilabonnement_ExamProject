@@ -312,7 +312,6 @@ public class SubscriptionService {
     public int getCurrentTotalPriceStatus(){ //lau
        //Start dato til i dag * total pris pr mdr.
         List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
-        CarService carService = new CarService();
         List<CarModel> allRentedCars = carService.getRentedCars(carRepo.getAllEntities());
         //liste med current lejeaftaler
         List<SubscriptionModel> nowleasing = new ArrayList<SubscriptionModel>();
@@ -321,8 +320,6 @@ public class SubscriptionService {
         LocalDate todaysDate = LocalDate.now();
         //pickup day
         LocalDate pickupDate;
-
-
 
         int totalSum = 0;
         for (SubscriptionModel aSubscription :allSubscriptions) {
@@ -341,7 +338,6 @@ public class SubscriptionService {
 
             //ny forloop
             for (int i = 0; i < allRentedCars.size(); i++) {
-
                 //HVIS pick up er før d.d. og delivery er efter d.d.
                 //ny condetion chassis == chassis
                 if (pickupDate.isBefore(todaysDate) && deliveryDate.isAfter(todaysDate) && aSubscription.getChassisNumber().equals(allRentedCars.get(i).getChassisNumber())) {
@@ -368,7 +364,7 @@ public class SubscriptionService {
                     int sum = totalMonth * aSubscription.getTotalPriceMd();
                     totalSum = totalSum + sum;
                 }
-                //ny slut scope fra forloop
+
           }
         }
         System.out.println("size: " +nowleasing.size());

@@ -14,10 +14,9 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
     @Override
     public List<CarModel> getAllEntities() {
         ArrayList<CarModel> carList = new ArrayList<CarModel>();
-        String getAllCarsSqlStmt = "SELECT * FROM cars";
         try {
             Connection conn = DatabaseConnectionManager.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(getAllCarsSqlStmt);
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cars");
             ResultSet rs = pstmt.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
