@@ -10,12 +10,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+//Elisa og Laura
 public class LoginService {
     private CRUDInterface<LoginModel,Integer> loginRepo = new LoginRepo();
-
-    public LoginService (CRUDInterface loginRepo){
-        this.loginRepo = loginRepo;
-    }
 
     public LoginService (){
     }
@@ -38,7 +35,6 @@ public class LoginService {
 
     public String loginPage(WebRequest dataFromForm, RedirectAttributes errorMessage
     , HttpSession session) {
-        //session.invalidate();
 
         //Gem data
         String username = dataFromForm.getParameter("username");

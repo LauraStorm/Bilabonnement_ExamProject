@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+//Elisa og Simon
 public class DamageReportModel {
     private int id;
     private String defectDescription;
@@ -38,16 +39,8 @@ public class DamageReportModel {
         return defectDescription;
     }
 
-    public void setDefectDescription(String defectDescription) {
-        this.defectDescription = defectDescription;
-    }
-
     public double getPrice() {
         return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getChassisNumber() {

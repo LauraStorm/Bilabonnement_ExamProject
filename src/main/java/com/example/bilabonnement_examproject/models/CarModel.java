@@ -2,6 +2,8 @@ package com.example.bilabonnement_examproject.models;
 
 import com.example.bilabonnement_examproject.services.CarService;
 
+//alle
+
 public class CarModel implements Comparable<CarModel>{
     private String chassisNumber;
     private int wagonNumber;
@@ -15,7 +17,7 @@ public class CarModel implements Comparable<CarModel>{
     private boolean isRented;
     private boolean isSold;
 
-
+    // bruges til drop-down forslag
     public CarModel(String chassisNumber, String color, String model, String manufacturer) {
         this.chassisNumber = chassisNumber;
         this.manufacturer = manufacturer;
@@ -43,7 +45,6 @@ public class CarModel implements Comparable<CarModel>{
     }
 
     public CarModel(){
-
     }
 
     public String getChassisNumber() {
@@ -87,13 +88,10 @@ public class CarModel implements Comparable<CarModel>{
         return isSold;
     }
 
-
     public String isSoldToString (boolean isSold){
         CarService carService = new CarService();
         return carService.convertBooleanTermsToString(isSold);
     }
-
-
 
     public void setSold(boolean sold) {
         isSold = sold;
@@ -103,48 +101,24 @@ public class CarModel implements Comparable<CarModel>{
         return wagonNumber;
     }
 
-    public void setWagonNumber(int wagonNumber) {
-        this.wagonNumber = wagonNumber;
-    }
-
     public String getManufacturer() {
         return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
     }
 
     public String getEquipmentLevel() {
         return equipmentLevel;
     }
 
-    public void setEquipmentLevel(String equipmentLevel) {
-        this.equipmentLevel = equipmentLevel;
-    }
-
     public double getSteelPrice() {
         return steelPrice;
-    }
-
-    public void setSteelPrice(double steelPrice) {
-        this.steelPrice = steelPrice;
     }
 
     public double getRegistrationFee() {
         return registrationFee;
     }
 
-    public void setRegistrationFee(double registrationFee) {
-        this.registrationFee = registrationFee;
-    }
-
     public double getCarbonEmission() {
         return carbonEmission;
-    }
-
-    public void setCarbonEmission(double carbonEmission) {
-        this.carbonEmission = carbonEmission;
     }
 
     @Override
@@ -164,21 +138,6 @@ public class CarModel implements Comparable<CarModel>{
                 '}';
     }
 
-    /*
-        @Override
-        public String toString() {
-            CarService carService = new CarService();
-            return "CarModel{" +
-                    "chassisNumber='" + chassisNumber + '\'' +
-                    ", model='" + model + '\'' +
-                    ", color='" + color + '\'' +
-                    ", isRented=" + carService.convertBooleanTermsToString(isRented) +
-                    '}';
-        }
-
-
-
-     */
     //Laura
     @Override
     public int compareTo(CarModel aCar) {
@@ -190,6 +149,4 @@ public class CarModel implements Comparable<CarModel>{
             return 0;
         }
     }
-
 }
-

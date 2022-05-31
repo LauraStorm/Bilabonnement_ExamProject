@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarRepo implements CRUDInterface<CarModel, String>{
+
+    //Laura og Rasmus
     @Override
     public List<CarModel> getAllEntities() {
         ArrayList<CarModel> carList = new ArrayList<CarModel>();
@@ -31,6 +33,7 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
                     double steelPrice = rs.getDouble("steel_price");
                     double registrationFee = rs.getDouble("registration_fee");
                     double carbonEmission = rs.getDouble("carbon_emission");
+                    //assert??
                     assert false;
                     carList.add(new CarModel(chassisNumber,wagonNumber,manufacturer,model,color,equipmentLevel,
                             steelPrice,registrationFee,carbonEmission,isRented,isSold));
@@ -42,6 +45,7 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
         return carList;
     }
 
+    //Laura og Rasmus
     @Override
     public CarModel getSingleEntity(String id) {
         Connection conn = DatabaseConnectionManager.getConnection();
@@ -79,6 +83,7 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
 
     }
 
+    //Simon
     @Override
     public boolean createEntity(CarModel entity) {
 
@@ -108,6 +113,7 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
         }
     }
 
+    //Elisa og Simon
     @Override
     public boolean updateEntity(CarModel entity) {
 
@@ -130,38 +136,4 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
             return false;
         }
     }
-
-    /*
-    public CarModel changeRentedStatus(String chassisNumber) {
-
-        Connection conn = DatabaseConnectionManager.getConnection();
-
-        CarModel carModel = getSingleEntity(chassisNumber);
-
-        boolean rentedStatus = true;
-
-        if (carModel.isRented()){
-            rentedStatus = false;
-        }
-
-        try {
-
-            String sql = "UPDATE cars SET rented=" + rentedStatus + " WHERE chassis_number="+chassisNumber;
-            PreparedStatement stmt = conn.prepareStatement(sql);
-
-            int update = stmt.executeUpdate();
-
-            if (update > 0){
-                System.out.println("Update complete");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("update fail");
-        }
-
-        return carModel;
-    }
-
-     */
 }

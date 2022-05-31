@@ -9,6 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
+//Elisa og Laura
 @Controller
 public class LoginController {
     private LoginService loginService = new LoginService();

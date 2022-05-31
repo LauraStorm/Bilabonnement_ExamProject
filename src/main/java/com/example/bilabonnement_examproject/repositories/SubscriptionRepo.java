@@ -12,6 +12,7 @@ import java.util.List;
 
 public class SubscriptionRepo implements CRUDInterface<SubscriptionModel, Integer>{
 
+    //Laura og Rasmus
     @Override
     public List<SubscriptionModel> getAllEntities() {
         ArrayList<SubscriptionModel> allSubscriptions = new ArrayList<SubscriptionModel>();

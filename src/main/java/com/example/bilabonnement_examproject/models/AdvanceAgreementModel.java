@@ -3,6 +3,7 @@ package com.example.bilabonnement_examproject.models;
 import java.util.HashMap;
 import java.util.Random;
 
+//Simon
 public class AdvanceAgreementModel {
     private int id;
     private String chassisNumber;
@@ -48,26 +49,13 @@ public class AdvanceAgreementModel {
         return terms;
     }
 
-    public void setTerms(String terms) {
-        this.terms = terms;
-    }
-
     public int getKilometersDriven() {
         return kilometersDriven;
-    }
-
-    public void setKilometersDriven(int kilometersDriven) {
-        this.kilometersDriven = kilometersDriven;
     }
 
     public int getExtendKilometer() {
         return extendKilometer;
     }
-
-    public void setExtendKilometer(int extendKilometer) {
-        this.extendKilometer = extendKilometer;
-    }
-
 
     public int getPurchasePrice() {
         return purchasePrice;
@@ -81,21 +69,9 @@ public class AdvanceAgreementModel {
         this.refusalPrice = refusalPrice;
     }
 
-    public void setPurchasePrice(int purchasePrice) {
-        this.purchasePrice = purchasePrice;
-    }
-
     public int getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
-    }
-
-    public void setId() {
-        Random rnd = new Random();
-        this.id = rnd.nextInt(100) + 9999999;
-    }
 }
 

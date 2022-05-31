@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
+//Laura og Rasmus
 @Controller
 public class RenterController {
     private RenterService renterService = new RenterService();

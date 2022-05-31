@@ -9,7 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
+//Elisa og Laura
 @Controller
 public class IndexController {
 

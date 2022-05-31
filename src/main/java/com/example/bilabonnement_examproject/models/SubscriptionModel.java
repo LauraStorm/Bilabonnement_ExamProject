@@ -1,5 +1,6 @@
 package com.example.bilabonnement_examproject.models;
 
+//Laura og Rasmus
 public class SubscriptionModel {
     private int id;
     private int locationId;
@@ -13,6 +14,7 @@ public class SubscriptionModel {
     private String pickupDate;
     private String deliveryDate;
 
+    //henter fra DB
     public SubscriptionModel(int id,boolean selfrisk,boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType,String chassisNumber, int locationId, int rentersId, String pickupDate, String deliveryDate) {
         this.id = id;
         this.locationId = locationId;
@@ -26,7 +28,7 @@ public class SubscriptionModel {
         this.pickupDate = pickupDate;
         this.deliveryDate = deliveryDate;
     }
-
+//opretter til DB
     public SubscriptionModel(boolean selfrisk, boolean deliveryInsurance, int totalPriceMd, int length, String subscriptionType, String chassisNumber, int locationId,  int rentersId, String pickupDate, String deliveryDate) {
         this.locationId = locationId;
         this.chassisNumber = chassisNumber;
@@ -52,10 +54,6 @@ public class SubscriptionModel {
         return locationId;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
-    }
-
     public String getChassisNumber() {
         return chassisNumber;
     }
@@ -66,10 +64,6 @@ public class SubscriptionModel {
 
     public int getRentersId() {
         return rentersId;
-    }
-
-    public void setRentersId(int rentersId) {
-        this.rentersId = rentersId;
     }
 
     public boolean isSelfrisk() {
@@ -84,10 +78,6 @@ public class SubscriptionModel {
         }
     }
 
-    public void setSelfrisk(boolean selfrisk) {
-        this.selfrisk = selfrisk;
-    }
-
     public boolean isDeliveryInsurance() {
         return deliveryInsurance;
     }
@@ -100,48 +90,24 @@ public class SubscriptionModel {
         }
     }
 
-    public void setDeliveryInsurance(boolean deliveryInsurance) {
-        this.deliveryInsurance = deliveryInsurance;
-    }
-
     public int getTotalPriceMd() {
         return totalPriceMd;
-    }
-
-    public void setTotalPriceMd(int totalPriceMd) {
-        this.totalPriceMd = totalPriceMd;
     }
 
     public int getLength() {
         return length;
     }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
-
     public String getSubscriptionType() {
         return subscriptionType;
-    }
-
-    public void setSubscriptionType(String subscriptionType) {
-        this.subscriptionType = subscriptionType;
     }
 
     public String getPickupDate() {
         return pickupDate;
     }
 
-    public void setPickupDate(String pickupDate) {
-        this.pickupDate = pickupDate;
-    }
-
     public String getDeliveryDate() {
         return deliveryDate;
-    }
-
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
     }
 
     @Override

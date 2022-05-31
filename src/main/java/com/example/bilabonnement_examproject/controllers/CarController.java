@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.List;
 
+
 @Controller
 public class CarController {
     private CarService carService = new CarService(new CarRepo());
@@ -65,19 +66,19 @@ public class CarController {
 
 
 
-
+// Laura og Rasmus
     @GetMapping("/register-car")
     public String getCarDetails(){
         return "register-car";
     }
 
-
+    // Laura og Rasmus
 	@PostMapping("/get-chassis-number")
     public String getChassisNumber(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
         String chassisNumberFromForm = dataFromForm.getParameter("chassis-number");
         return carService.getChassisNumberPost(chassisNumberFromForm,attributes,session);
     }
-
+    // Laura og Rasmus
 	@GetMapping("/rented-cars")
     public String getAllRentedCarsPage(Model car, RedirectAttributes flashAttribute){
         CarRepo carRepo = new CarRepo();
@@ -121,9 +122,5 @@ public class CarController {
             car.addAttribute("availableCars",allAvailableCars);
             return "view-available-cars";
         }
-
-
-
     }
-
 }
