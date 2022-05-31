@@ -11,7 +11,7 @@ import repository.SubscriptionRepoTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SubscriptionServiceTest {
-
+/*
     @Test
     void getTotalPriceForAllRentedCars() {
         //ARRANGE
@@ -58,6 +58,6 @@ class SubscriptionServiceTest {
         assertEquals(expectedSum,valid);
     }
 
-
+*/
 }
 
