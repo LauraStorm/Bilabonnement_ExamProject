@@ -28,7 +28,6 @@ import java.util.Objects;
 public class AdvanceAgreementController {
     private AdvanceAgreementService agreementService = new AdvanceAgreementService();
 
-
 	@GetMapping("/registeradvanceagreement")
     public String registerAdvanceAgreementFormShow(Model model,
              @RequestParam("chassisnumber") String chassisNumber,

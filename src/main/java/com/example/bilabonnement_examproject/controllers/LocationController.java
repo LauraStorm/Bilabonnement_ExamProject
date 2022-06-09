@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 @Controller
 public class LocationController {
-    private LocationRepo locationRepo = new LocationRepo();
     private LocationService locationService = new LocationService();
 
 	@GetMapping("/register-location")

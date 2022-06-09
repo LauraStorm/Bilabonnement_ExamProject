@@ -1,4 +1,4 @@
-package com.example.bilabonnement_examproject;
+package com.example.bilabonnement_examproject.services;
 
 import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;

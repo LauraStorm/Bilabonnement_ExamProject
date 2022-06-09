@@ -83,10 +83,10 @@ public class CarRepo implements CRUDInterface<CarModel, String>{
     @Override
     public boolean createEntity(CarModel entity) {
 
-        String createDamage = "INSERT INTO cars (chassis_number, model, color, rented, wagon_number, manufacturer, " +
+        String createCar = "INSERT INTO cars (chassis_number, model, color, rented, wagon_number, manufacturer, " +
                 "equipment_level, steel_price, registration_fee, carbon_emission, sold)  VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try {
-            PreparedStatement pstmt = DatabaseConnectionManager.getConnection().prepareStatement(createDamage);
+            PreparedStatement pstmt = DatabaseConnectionManager.getConnection().prepareStatement(createCar);
             pstmt.setString(1,entity.getChassisNumber());
             pstmt.setString(2,entity.getModel());
             pstmt.setString(3,entity.getColor());

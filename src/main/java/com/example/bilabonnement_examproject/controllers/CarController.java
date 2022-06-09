@@ -21,33 +21,7 @@ public class CarController {
 //udarbejdet af Simon
 	@GetMapping("/selectchassisnumber")
     public String selectChassisNumberShow(Model model, @RequestParam("key") int key) {
-        switch (key){
-            case 1: {
-                model.addAttribute("header","Registrer skader på en bil");
-                model.addAttribute("actionname","Anmeld skader");
-                break;
-            }
-            case 2: {
-                model.addAttribute("header","Opret en forhåndsaftale på en bil");
-                model.addAttribute("actionname","Opret aftale");
-                break;
-            }
-            case 3: {
-                model.addAttribute("header","Meld en bil tilbageleveret");
-                model.addAttribute("actionname","Tilbagelever");
-                break;
-            }
-            case 4:{
-                model.addAttribute("header","Sælg følgende biler");
-                model.addAttribute("actionname","Sælg");
-                break;
-            }
-            default:{
-                model.addAttribute("header","Behandel en bil");
-                model.addAttribute("actionname","Videre");
-                break;
-            }
-        }
+        carService.headersForSelectChassisNumber(key,model);
         model.addAttribute("key",key);
         model.addAttribute("availablecars",carService.fillCarListWithADummyOption(carService.getAllUnsoldCars()));
         model.addAttribute("car",new CarModel());

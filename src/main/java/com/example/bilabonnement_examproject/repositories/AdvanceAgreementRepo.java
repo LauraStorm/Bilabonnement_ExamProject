@@ -49,7 +49,7 @@ public class AdvanceAgreementRepo implements CRUDInterface<AdvanceAgreementModel
 
     @Override
     public AdvanceAgreementModel getSingleEntity(String chassisNumber) {
-        AdvanceAgreementModel agreement = new AdvanceAgreementModel();
+        AdvanceAgreementModel agreement = null;
         Connection connection = DatabaseConnectionManager.getConnection();
 
         try {
@@ -80,7 +80,7 @@ public class AdvanceAgreementRepo implements CRUDInterface<AdvanceAgreementModel
             e.printStackTrace();
         }
         return agreement;
-}
+    }
 
     @Override
     public boolean createEntity(AdvanceAgreementModel entity) {

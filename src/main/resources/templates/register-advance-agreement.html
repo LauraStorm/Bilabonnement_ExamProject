@@ -28,13 +28,13 @@
             <input type="text" th:field="*{terms}" class="inputstyle"/> <br> <br>
 
             <label class="labelType">Kørte kilometer:</label> <br>
-            <input type="text" th:field="*{kilometersDriven}" class="inputstyle"/> <br><br>
+            <input type="number" th:field="*{kilometersDriven}" class="inputstyle"/> <br><br>
 
             <label class="labelType">Købsprisen:</label> <br>
-            <input type="text" th:field="*{purchasePrice}" class="inputstyle"/> <br><br>
+            <input type="number" th:field="*{purchasePrice}" class="inputstyle"/> <br><br>
 
             <label class="labelType">Overkørte kilometer: </label> <br>
-            <input type="text" th:field="*{extendKilometer}" class="inputstyle"/> <br><br>
+            <input type="number" th:field="*{extendKilometer}" class="inputstyle"/> <br><br>
             <div class="">
 
                 <div value="" class="labelType">Vælg afhentning</div>
@@ -48,8 +48,8 @@
                 </div>
             </div>
             <p>
-                <input type="submit" value="Gem" class="buttom" />
-                <input type="reset" value="Nulstil felterne" class="buttom"/></p>
+                <input type="submit" onclick="confirmSubmit()" value="Gem" class="buttom" />
+                <input type="reset"  value="Nulstil felterne" class="buttom"/></p>
 
         </form>
     </div>

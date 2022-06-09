@@ -1,5 +1,6 @@
 package com.example.bilabonnement_examproject.services;
 
+import com.example.bilabonnement_examproject.domainEnums.ManufacturerEnum;
 import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.models.LocationModel;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class CarService {
@@ -62,6 +64,36 @@ public class CarService {
             }
         }
         return result;
+    }
+
+    public void headersForSelectChassisNumber(int key, Model model){
+        switch (key){
+            case 1: {
+                model.addAttribute("header","Registrer skader på en bil");
+                model.addAttribute("actionname","Anmeld skader");
+                break;
+            }
+            case 2: {
+                model.addAttribute("header","Opret en forhåndsaftale på en bil");
+                model.addAttribute("actionname","Opret aftale");
+                break;
+            }
+            case 3: {
+                model.addAttribute("header","Meld en bil tilbageleveret");
+                model.addAttribute("actionname","Tilbagelever");
+                break;
+            }
+            case 4:{
+                model.addAttribute("header","Sælg følgende biler");
+                model.addAttribute("actionname","Sælg");
+                break;
+            }
+            default:{
+                model.addAttribute("header","Behandel en bil");
+                model.addAttribute("actionname","Videre");
+                break;
+            }
+        }
     }
 
 
@@ -127,16 +159,23 @@ public class CarService {
 
 
 // TODO NUMBER AND CHAR CERTAIN PLACES
+
     public boolean isChassisNumberValid(String chassisNumber) {
-        CarRepo carRepo = new CarRepo();
-
         boolean isValid = false;
-        if (chassisNumber.length() == 17 && chassisNumber.matches("[0-9]+")) {
-
-                if (!carRepo.getSingleEntity(chassisNumber).isRented()) {
-                    isValid = true;
-                }
+        if (chassisNumber.length() == 17 && chassisNumber.matches("[a-zA-Z0-9]")){
+            return true;
             }
+        return isValid;
+    }
+
+    public boolean isManufacturerValid(String manufacturer) {
+        boolean isValid = false;
+        for (ManufacturerEnum manufact : ManufacturerEnum.values()
+        ) {
+            if (manufact.toString().equals(manufacturer.toUpperCase(Locale.ROOT))) {
+                isValid = true;
+            }
+        }
         return isValid;
     }
 
@@ -175,13 +214,19 @@ public class CarService {
     }
 
     public boolean addNewToFleet(CarModel car) {
-        try {
-            carRepo.createEntity(car);
-            return true;
-        } catch (Exception exception) {
-            System.out.println("Something went wrong inserting!");
-            return false;
+        if (isChassisNumberValid(car.getChassisNumber()) &&
+        isManufacturerValid(car.getManufacturer())) {
+            try {
+                carRepo.createEntity(car);
+                return true;
+            } catch (Exception exception) {
+                System.out.println("Something went wrong inserting!");
+                return false;
 
+            }
+        } else {
+            System.out.println("Chassis number is not valid!");
+            return false;
         }
     }
 

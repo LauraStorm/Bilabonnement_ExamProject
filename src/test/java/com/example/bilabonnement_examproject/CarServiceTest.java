@@ -4,25 +4,48 @@ package com.example.bilabonnement_examproject;
 import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.repositories.CRUDInterface;
 import com.example.bilabonnement_examproject.services.CarService;
+import com.example.bilabonnement_examproject.testRepositories.CarRepoTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-import repository.CarRepoTest;
+
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@ExtendWith((MockitoExtension, class))
 public class CarServiceTest {
-    private CRUDInterface<CarModel,Integer> carRepo;
 
-    public CarServiceTest(CRUDInterface carRepo){
-        this.carRepo = carRepo;
+
+    public CarModel getRandomCar(){
+        CarRepoTest carRepoTest = new CarRepoTest();
+        Random random = new Random();
+        int rndInt = random.nextInt(carRepoTest.getAllEntities().size());
+        return carRepoTest.getAllEntities().get(rndInt);
+    }
+    @Test
+    void addNewToFleet(){
+        CarService carService = new CarService(new CarRepoTest());
+
+        //Arrange
+        boolean expectedCarIsAdded = true;
+        boolean expectedChassisNumberIsOver18Chars = false;
+        boolean expectedManufacturerInValid = false;
+
+        //Act
+        CarModel carToCheck = getRandomCar();
+        boolean isAdded = carService.addNewToFleet(carToCheck);
+        carToCheck.setChassisNumber("527381029530194021");
+        boolean isOver18chars = carService.addNewToFleet(carToCheck);
+        carToCheck.setManufacturer("VVW");
+        boolean manufacturerIsInValid = carService.addNewToFleet(carToCheck);
+
+        //Assert
+        assertEquals(expectedCarIsAdded,isAdded);
+        assertEquals(expectedChassisNumberIsOver18Chars,isOver18chars);
+        assertEquals(expectedManufacturerInValid,manufacturerIsInValid);
+
     }
 
-    public CarServiceTest() {
-
-    }
-
+/*
     @Test
     void isChassisNumberValid() {
 
@@ -51,6 +74,8 @@ public class CarServiceTest {
         assertEquals(expectedIsOnlyDigits,isOnlyDigits);
         assertEquals(expectedIsLetter,isLetter);
     }
+
+ */
 }
 
 

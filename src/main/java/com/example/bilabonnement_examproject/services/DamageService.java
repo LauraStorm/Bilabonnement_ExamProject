@@ -15,7 +15,6 @@ import java.util.Objects;
 //udarbejdet af Simon & Elisa
 public class DamageService {
     private CRUDInterface<DamageReportModel, Integer> damageRepo;
-    private AdvanceAgreementRepo advanceAgreementRepo = new AdvanceAgreementRepo();
 
 
     public DamageService(CRUDInterface damageRepo){
