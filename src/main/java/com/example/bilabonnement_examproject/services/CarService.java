@@ -1,6 +1,5 @@
 package com.example.bilabonnement_examproject.services;
 
-import com.example.bilabonnement_examproject.domainEnums.ManufacturerEnum;
 import com.example.bilabonnement_examproject.models.CarModel;
 import com.example.bilabonnement_examproject.models.DamageReportModel;
 import com.example.bilabonnement_examproject.models.LocationModel;
@@ -14,13 +13,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 public class CarService {
     private CRUDInterface<CarModel,String> carRepo;
 
-    public CarService(CRUDInterface carRepo){
+    public CarService(CRUDInterface<CarModel,String> carRepo){
        this.carRepo = carRepo;
     }
 
@@ -28,6 +26,7 @@ public class CarService {
 
     }
 
+    //Simon
     public String selectChassisNumberPost(CarModel car, int key, RedirectAttributes attributes){
         String result = "";
         if (!car.getChassisNumber().equals("Vælg: Stelnummer") && !car.isSold()) {
@@ -66,37 +65,7 @@ public class CarService {
         return result;
     }
 
-    public void headersForSelectChassisNumber(int key, Model model){
-        switch (key){
-            case 1: {
-                model.addAttribute("header","Registrer skader på en bil");
-                model.addAttribute("actionname","Anmeld skader");
-                break;
-            }
-            case 2: {
-                model.addAttribute("header","Opret en forhåndsaftale på en bil");
-                model.addAttribute("actionname","Opret aftale");
-                break;
-            }
-            case 3: {
-                model.addAttribute("header","Meld en bil tilbageleveret");
-                model.addAttribute("actionname","Tilbagelever");
-                break;
-            }
-            case 4:{
-                model.addAttribute("header","Sælg følgende biler");
-                model.addAttribute("actionname","Sælg");
-                break;
-            }
-            default:{
-                model.addAttribute("header","Behandel en bil");
-                model.addAttribute("actionname","Videre");
-                break;
-            }
-        }
-    }
-
-
+    //Laura og Rasmus
     public String getChassisNumberPost(String chassisNumberFromForm, RedirectAttributes attributes, HttpSession session){
         String result = "";
 
@@ -127,7 +96,7 @@ public class CarService {
         return result;
     }
 
-
+    //Elisa og Simon
     public String submitCarToFleetPost(CarModel car, RedirectAttributes attributes){
         String result = "";
         if (car.getChassisNumber().isEmpty() ||
@@ -135,19 +104,21 @@ public class CarService {
             attributes.addFlashAttribute("errormessage", "Alle felter skal være udfyldt!");
             result = "redirect:/registernewcartofleet";
         } else {
+
             addNewToFleet(car);
             result = "car-register-purchase-result";
         }
         return result;
     }
 
-
+    //Elisa og Simon
     public void selectCarToReturn(Model model,int key){
         model.addAttribute("key",key);
         model.addAttribute("availablecars",fillCarListWithADummyOption(
                 getRentedCarsToReturn()));
     }
 
+    //Elisa og Simon
     public String returnCarSuccesPage(String chassisNumber, Model model){
         CarModel car = carRepo.getSingleEntity(chassisNumber);
         car.setRented(false);
@@ -158,27 +129,21 @@ public class CarService {
 
 
 
-// TODO NUMBER AND CHAR CERTAIN PLACES
-
+    //alle
     public boolean isChassisNumberValid(String chassisNumber) {
+        CarRepo carRepo = new CarRepo();
+
         boolean isValid = false;
-        if (chassisNumber.length() == 17 && chassisNumber.matches("[a-zA-Z0-9]")){
-            return true;
+        if (chassisNumber.length() == 17 && chassisNumber.matches("[0-9]+")) {
+
+                if (!carRepo.getSingleEntity(chassisNumber).isRented()) {
+                    isValid = true;
+                }
             }
         return isValid;
     }
 
-    public boolean isManufacturerValid(String manufacturer) {
-        boolean isValid = false;
-        for (ManufacturerEnum manufact : ManufacturerEnum.values()
-        ) {
-            if (manufact.toString().equals(manufacturer.toUpperCase(Locale.ROOT))) {
-                isValid = true;
-            }
-        }
-        return isValid;
-    }
-
+    //Laura og Rasmus
     public List<CarModel> getUnrentedCars(List<CarModel> allCars){
         List<CarModel> UnrentedCars = new ArrayList<CarModel>();
 
@@ -192,6 +157,7 @@ public class CarService {
         return UnrentedCars;
     }
 
+    //Laura og Rasmus
     public List<CarModel> getRentedCars(List<CarModel> allCars){
         List<CarModel> rentedCars = new ArrayList<CarModel>();
 
@@ -205,6 +171,7 @@ public class CarService {
         return rentedCars;
     }
 
+    //Laura og Rasmus
     public String convertBooleanTermsToString(boolean isRented){
         if (isRented == true){
             return "ja";
@@ -213,23 +180,19 @@ public class CarService {
         }
     }
 
+    //Simon
     public boolean addNewToFleet(CarModel car) {
-        if (isChassisNumberValid(car.getChassisNumber()) &&
-        isManufacturerValid(car.getManufacturer())) {
-            try {
-                carRepo.createEntity(car);
-                return true;
-            } catch (Exception exception) {
-                System.out.println("Something went wrong inserting!");
-                return false;
-
-            }
-        } else {
-            System.out.println("Chassis number is not valid!");
+        try {
+            carRepo.createEntity(car);
+            return true;
+        } catch (Exception exception) {
+            System.out.println("Something went wrong inserting!");
             return false;
+
         }
     }
 
+    //Simon
     public ArrayList<CarModel> getAllUnsoldCars(){
         ArrayList<CarModel> unsoldCarsList = new ArrayList<CarModel>();
         for (CarModel cars:carRepo.getAllEntities()
@@ -241,6 +204,7 @@ public class CarService {
         return unsoldCarsList;
     }
 
+    //Elisa
     public ArrayList<CarModel> getRentedCarsToReturn(){
         ArrayList<CarModel> rentedCarsList = new ArrayList<CarModel>();
         for (CarModel cars:carRepo.getAllEntities()) {
@@ -251,21 +215,9 @@ public class CarService {
         return rentedCarsList;
     }
 
-
-    public ArrayList<CarModel> getAllUnrentedCars(){
-        CarRepo carRepo = new CarRepo();
-        ArrayList<CarModel> unrentedCars = new ArrayList<CarModel>();
-        for (CarModel cars:carRepo.getAllEntities()
-        ) {
-            if (!cars.isRented()){
-                unrentedCars.add(cars);
-            }
-        }
-        return unrentedCars;
-    }
-
+    //Elisa
     public ArrayList<CarModel> getAllRentedCars(){
-        CarRepo carRepo = new CarRepo();
+        CarRepo carRepo= new CarRepo();
         ArrayList<CarModel> rentedCars = new ArrayList<CarModel>();
         for (CarModel cars:carRepo.getAllEntities()
         ) {
@@ -276,28 +228,7 @@ public class CarService {
         return rentedCars;
     }
 
-    public boolean isCarUnrented(String chassisNumber) {
-        CarRepo carRepo = new CarRepo();
-        boolean isCarUnrented = false;
-        ArrayList<CarModel> unrentedCars = new ArrayList<CarModel>();
-        for (CarModel cars : carRepo.getAllEntities()
-        ) {
-            if (!cars.isRented()) {
-                unrentedCars.add(cars);
-                for (CarModel carsUn : unrentedCars
-                ) {
-                    if (Objects.equals(carsUn.getChassisNumber(), chassisNumber)) {
-                        isCarUnrented =  true;
-                    } else {
-                        isCarUnrented =  false;
-                    }
-                }
-            }
-        }
-        return isCarUnrented;
-    }
-
-
+    //Simon og Rasmus
     public ArrayList<CarModel> fillCarListWithADummyOption(ArrayList<CarModel> carArray){
         ArrayList<CarModel> carModelArrayListExtended = new ArrayList<CarModel>();
         carModelArrayListExtended.add(new CarModel("Vælg: Stelnummer","Farve","Model","Mærke"));
@@ -305,12 +236,5 @@ public class CarService {
         return carModelArrayListExtended;
 
     }
-
-    public CarModel changeRentedStatus(CarModel car){
-        carRepo.updateEntity(car);
-        return carRepo.getSingleEntity(car.getChassisNumber());
-    }
-
-
 }
 

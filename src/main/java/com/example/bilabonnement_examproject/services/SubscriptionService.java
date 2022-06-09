@@ -15,7 +15,6 @@ import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-//udarbejdet af Simon & Laura & Rasmus
 public class SubscriptionService {
     private CRUDInterface subscriptionRepo = new SubscriptionRepo();
     private CRUDInterface carRepo = new CarRepo();
@@ -26,12 +25,11 @@ public class SubscriptionService {
         this.carRepo=carRepository;
     }
 
-
-
     public SubscriptionService (){
 
     }
 
+    //Laura og Rasmus
     public String subscriptionServicePost(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
         SubscriptionModel subscriptionModel = null;
         String errorMessage = "Alle felter skal udfyldes";
@@ -71,11 +69,13 @@ public class SubscriptionService {
         }
     }
 
+    //Laura og Rasmus
     public ArrayList<SubscriptionModel> getAllSubscriptions(){
         ArrayList<SubscriptionModel> subscriptionModels = new ArrayList<SubscriptionModel>(subscriptionRepo.getAllEntities());
         return subscriptionModels;
     }
 
+    //Laura og Rasmus
     public String StringTooBooleanTerms(String input){
         String paid = "";
 
@@ -89,6 +89,7 @@ public class SubscriptionService {
         return paid;
     }
 
+    //Laura og Rasmus
     public String findType (String length){
         String type = "";
 
@@ -100,34 +101,8 @@ public class SubscriptionService {
         return type;
     }
 
-    public int getTotalPriceForRentedCars () {
-        List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
-        List<CarModel> allCars = carRepo.getAllEntities();
-        int sum = 0;
-        for (CarModel currentCar : allCars) {
-            if (currentCar.isRented()){
-        for ( SubscriptionModel currentSubscription : allSubscriptions) {
-                if (currentCar.getChassisNumber().equals(currentSubscription.getChassisNumber())){
-
-                    /*
-                    int spanDays = expectedTimeSpanPickUpAndEnd(
-                            currentSubscription.getPickupDate(),currentSubscription.getLength()).getDays();
-
-                     */
-
-                    int spanMonths = expectedTimeSpanPickUpAndEndMonths(
-                            currentSubscription.getPickupDate(),currentSubscription.getLength());
-
-                    sum += currentSubscription.getTotalPriceMd()*spanMonths;
-                }
-            }
-        }
-            //antal mdr. * total pris pr. mdr.
-        }
-        return sum;
-    }
-
-    public int getExpectedRevenueForCurrentSubs(){  //lau & simon
+    //Simon
+    public int getExpectedRevenueForCurrentSubs(){
         SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
         ArrayList<CarModel> allRentedCars = carService.getAllRentedCars();
         ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
@@ -162,7 +137,8 @@ public class SubscriptionService {
     }
 
 
-    public int getTotalRevenueFromCurrentSubs(){  //lau & simon
+    //Simon
+    public int getTotalRevenueFromCurrentSubs(){
         SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
         ArrayList<CarModel> allRentedCars = carService.getAllRentedCars();
         ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
@@ -196,7 +172,7 @@ public class SubscriptionService {
     }
 
 
-
+    //Rasmus
     //år-månede-dag -> xxxx-xx-xx
     public String getDeliveryDate(String pickupDate, int lenght){
         String deliveryDate = "";
@@ -231,6 +207,7 @@ public class SubscriptionService {
         return deliveryDate;
     }
 
+    //Simon
     public int expectedTimeSpanPickUpAndEndMonths(String pickUpDate, int leaseLength){
         HashMap<Integer,Month> monthHashMap = new HashMap<Integer,Month>();
         monthHashMap.put(1,Month.JANUARY);
@@ -257,6 +234,7 @@ public class SubscriptionService {
         return (int) today.until(endOfLease,ChronoUnit.MONTHS);
     }
 
+    //Simon
     public int expectedTimeSpanPickUpAndEndDays(String pickUpDate, int leaseLength){
         HashMap<Integer,Month> monthHashMap = new HashMap<Integer,Month>();
         monthHashMap.put(1,Month.JANUARY);
@@ -282,179 +260,4 @@ public class SubscriptionService {
 
         return (int) today.until(endOfLease,ChronoUnit.DAYS);
     }
-
-
-    public int getTotalPriceForAllRentedCars(){  //lau
-        ArrayList<CarModel> allRentedCars = carService.getAllRentedCars();
-        ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
-
-        int totalPriceForAllRentedCars = 0;
-
-        for (CarModel car:allRentedCars) {
-            if (car.isRented()){
-                for (SubscriptionModel subscription : allSubscriptions) {
-                    if(car.getChassisNumber().equals(subscription.getChassisNumber())){
-                        //antal mdr. * total pris pr. mdr.
-                        int leasingLengthInMonth = subscription.getLength();
-                        int pricePrMonth = subscription.getTotalPriceMd();
-                        totalPriceForAllRentedCars = totalPriceForAllRentedCars + leasingLengthInMonth * pricePrMonth;
-                        System.out.println(subscription);
-                        System.out.println(totalPriceForAllRentedCars);
-                    }
-                }
-            }
-
-        }
-        System.out.println(totalPriceForAllRentedCars);
-        return totalPriceForAllRentedCars;
-    }
-
-    public int getCurrentTotalPriceStatus(){ //lau
-       //Start dato til i dag * total pris pr mdr.
-        List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
-        CarService carService = new CarService();
-        List<CarModel> allRentedCars = carService.getRentedCars(carRepo.getAllEntities());
-        //liste med current lejeaftaler
-        List<SubscriptionModel> nowleasing = new ArrayList<SubscriptionModel>();
-
-        //dags dato
-        LocalDate todaysDate = LocalDate.now();
-        //pickup day
-        LocalDate pickupDate;
-
-
-
-        int totalSum = 0;
-        for (SubscriptionModel aSubscription :allSubscriptions) {
-            String[] pickup = aSubscription.getPickupDate().split("-");
-            //pickup day
-            int pickupYear = Integer.parseInt(pickup[0]);
-            int pickupMonth = Integer.parseInt(pickup[1]);
-            int pickupDay = Integer.parseInt(pickup[2]);
-            pickupDate = LocalDate.of(pickupYear, pickupMonth, pickupDay);
-            //Delivery
-            String[] delivery = aSubscription.getDeliveryDate().split("-");
-            int deliveryYear = Integer.parseInt(delivery[0]);
-            int deliveryMonth = Integer.parseInt(delivery[1]);
-            int deliveryDay = Integer.parseInt(delivery[2]);
-            LocalDate deliveryDate = LocalDate.of(deliveryYear, deliveryMonth, deliveryDay);
-
-            //ny forloop
-            for (int i = 0; i < allRentedCars.size(); i++) {
-
-                //HVIS pick up er før d.d. og delivery er efter d.d.
-                //ny condetion chassis == chassis
-                if (pickupDate.isBefore(todaysDate) && deliveryDate.isAfter(todaysDate) && aSubscription.getChassisNumber().equals(allRentedCars.get(i).getChassisNumber())) {
-                    nowleasing.add(aSubscription);
-
-                    System.out.println(aSubscription);
-
-                    Period periodBetweenDates = Period.between(pickupDate, todaysDate);
-                    System.out.println("period: " + periodBetweenDates);
-                    System.out.println("month: " + periodBetweenDates.getMonths());
-
-                    int totalMonth = 0;
-                    if (periodBetweenDates.getYears() <= 1) {
-                        totalMonth += 12 * periodBetweenDates.getYears();
-                    }
-                    if (periodBetweenDates.getMonths() != 0) {
-                        totalMonth += periodBetweenDates.getMonths();
-                    }
-
-                    if (periodBetweenDates.getMonths() == 0 && periodBetweenDates.getDays() > 0) {
-                        totalMonth += 1;
-                    }
-
-                    int sum = totalMonth * aSubscription.getTotalPriceMd();
-                    totalSum = totalSum + sum;
-                }
-                //ny slut scope fra forloop
-          }
-        }
-        System.out.println("size: " +nowleasing.size());
-        System.out.println("totalSum: " +totalSum);
-
-        return totalSum;
-    }
-
-    public boolean isDeliveryDatePassedTodaysDate (String deliveryDate){
-        //Delivery date
-        String [] delivery = deliveryDate.split("-");
-        int deliveryYear = Integer.parseInt(delivery[0]);
-        int deliveryMonth = Integer.parseInt(delivery[1]);
-        int deliveryDay = Integer.parseInt(delivery[2]);
-        LocalDate endDate = LocalDate.of(deliveryYear,deliveryMonth,deliveryDay);
-        //Todays date
-        LocalDate todaysDate = LocalDate.now();
-
-        if (endDate.isAfter(todaysDate) || endDate.isEqual(todaysDate)){
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public List<SubscriptionModel> onGoingSubscription (){
-        List<SubscriptionModel> allSubscriptions = subscriptionRepo.getAllEntities();
-
-        ArrayList<SubscriptionModel> onGoingSubscriptions = new ArrayList<SubscriptionModel>();
-
-        for (SubscriptionModel aSupscription : allSubscriptions) {
-            //Delivery date
-            String [] delivery = aSupscription.getDeliveryDate().split("-");
-            int deliveryYear = Integer.parseInt(delivery[0]);
-            int deliveryMonth = Integer.parseInt(delivery[1]);
-            int deliveryDay = Integer.parseInt(delivery[2]);
-            LocalDate deliveryDate = LocalDate.of(deliveryYear,deliveryMonth,deliveryDay);
-            //Todays date
-            LocalDate todaysDate = LocalDate.now();
-            if(deliveryDate.isAfter(todaysDate)){
-                System.out.println("delivery Date: " + deliveryDate + " today: " + todaysDate);
-                System.out.println(deliveryDate.isAfter(todaysDate));
-                System.out.println(aSupscription);
-                onGoingSubscriptions.add(aSupscription);
-            }
-        }
-        return onGoingSubscriptions;
-    }
-
-
-
-    public int getExpectedSumFromTodayUntilDeliveryDate (){
-        int totalLeasePrice = getTotalPriceForAllRentedCars();
-        int currentTotalPriceStatus = getCurrentTotalPriceStatus();
-
-        int expectedMoneyToReceive = totalLeasePrice - currentTotalPriceStatus;
-
-        return expectedMoneyToReceive;
-    }
-
-
-    /*
-    public HashMap<String,Integer> mosRentedCarManufacturer() {
-        ArrayList<CarModel> allCars = (ArrayList<CarModel>) carRepo.getAllEntities();
-        ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
-        HashMap<String, Integer> hashSetChassisNumbersAndID = new HashMap<String, Integer>();
-
-        HashMap<String, Integer> manufacturerMap = new HashMap<String, Integer>();
-        for (SubscriptionModel subscriptionsForHash : allSubscriptions
-        ) {
-            hashSetChassisNumbersAndID.put(subscriptionsForHash.getChassisNumber(), subscriptionsForHash.getId());
-        }
-        for (CarModel cars : allCars
-        ) {
-            if (hashSetChassisNumbersAndID.containsKey(cars.getChassisNumber())) {
-                if (manufacturerMap.values().contains(cars.getManufacturer())) {
-                    manufacturerMap.put(cars.getManufacturer(), manufacturerMap.get(cars.getManufacturer()) + 1);
-                } else {
-                    manufacturerMap.put(cars.getManufacturer(), 1);
-                }
-            }
-        }
-        return manufacturerMap;
-    }
-
-     */
-
-
 }

@@ -1,5 +1,6 @@
 package com.example.bilabonnement_examproject.models;
 
+//Laura og Rasmus
 public class LocationModel {
     private int id;
     private String address;
@@ -25,12 +26,6 @@ public class LocationModel {
         this.deliveryPrice = deliveryPrice;
     }
 
-    public LocationModel(String address, String city, int postcode) {
-        this.address = address;
-        this.city = city;
-        this.postcode = postcode;
-    }
-
     public int getId() {
         return id;
     }
@@ -51,24 +46,12 @@ public class LocationModel {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public int getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
-        this.postcode = postcode;
-    }
-
     public int getDeliveryPrice() {
         return deliveryPrice;
-    }
-
-    public void setDeliveryPrice(int deliveryPrice) {
-        this.deliveryPrice = deliveryPrice;
     }
 
     @Override

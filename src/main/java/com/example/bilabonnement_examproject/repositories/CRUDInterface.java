@@ -4,6 +4,7 @@ import com.example.bilabonnement_examproject.models.CarModel;
 
 import java.util.List;
 
+//Alle
 public interface CRUDInterface <T, ID>{
 
     //read all entities

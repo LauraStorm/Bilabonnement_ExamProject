@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
+//Laura og Rasmus
 @Controller
 public class LocationController {
     private LocationService locationService = new LocationService();

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Elisa og Laura
 public class LoginRepo implements CRUDInterface<LoginModel,Integer>{
 
     @Override

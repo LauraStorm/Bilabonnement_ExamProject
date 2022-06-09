@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Laura og Rasmus
 public class LocationRepo implements CRUDInterface<LocationModel, Integer>{
     @Override
     public List<LocationModel> getAllEntities() {
@@ -74,6 +75,4 @@ public class LocationRepo implements CRUDInterface<LocationModel, Integer>{
     public boolean updateEntity(LocationModel location) {
         return false;
     }
-
-
 }

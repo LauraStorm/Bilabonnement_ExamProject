@@ -8,9 +8,9 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-//udarbejdet af Simon & Laura & Ramus
+//udarbejdet af Simon & Laura & Rasmus
 public class LocationService {
-    LocationRepo locationRepo = new LocationRepo();
+    private LocationRepo locationRepo = new LocationRepo();
 
     //lav unit test
     public boolean isLocationValid(String city, String address, int postcode){

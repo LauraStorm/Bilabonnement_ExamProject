@@ -4,6 +4,7 @@ import java.io.*;
 import java.sql.*;
 import java.util.Properties;
 
+//Alle
 public class DatabaseConnectionManager {
     private static String url;
     private static String username;
@@ -13,6 +14,7 @@ public class DatabaseConnectionManager {
     private DatabaseConnectionManager(){}
 
 
+    //environment variables
     public static Connection getConnection(){
         if(conn != null){
             return conn;

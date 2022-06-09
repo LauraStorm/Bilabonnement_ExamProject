@@ -7,7 +7,6 @@ import com.example.bilabonnement_examproject.models.SubscriptionModel;
 import com.example.bilabonnement_examproject.repositories.CarRepo;
 import com.example.bilabonnement_examproject.repositories.LocationRepo;
 import com.example.bilabonnement_examproject.repositories.RenterRepo;
-import com.example.bilabonnement_examproject.repositories.SubscriptionRepo;
 import com.example.bilabonnement_examproject.services.SubscriptionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 
+//Laura og Rasmus
 @Controller
 public class SubscriptionController {
     private SubscriptionService subscriptionService = new SubscriptionService();
@@ -31,7 +31,6 @@ public class SubscriptionController {
     public String getSubscriptionDetails(WebRequest dataFromForm, HttpSession session, RedirectAttributes attributes){
         return subscriptionService.subscriptionServicePost(dataFromForm,session,attributes);
     }
-
 
 	@GetMapping("/receipt")
     public String getSubscriptionReceipt(HttpSession session, Model model){
@@ -55,10 +54,5 @@ public class SubscriptionController {
         model.addAttribute("renter", renterModel);
 
         return"subscription-receipt";
-    }
-
-    @GetMapping("/success")
-    public String getSuccesPage(){
-        return "success-page";
     }
 }

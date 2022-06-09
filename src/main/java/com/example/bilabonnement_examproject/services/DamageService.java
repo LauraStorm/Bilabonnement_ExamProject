@@ -62,8 +62,4 @@ public class DamageService {
         }
         return result;
     }
-
-
-
-
 }

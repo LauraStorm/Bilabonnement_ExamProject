@@ -1,4 +1,4 @@
-/*
+
 package com.example.bilabonnement_examproject.services;
 
 import com.example.bilabonnement_examproject.models.CarModel;
@@ -11,9 +11,9 @@ import repository.SubscriptionRepoTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SubscriptionServiceTest {
-
+/*
     @Test
-    void totalSum () {
+    void getTotalPriceForAllRentedCars() {
         //ARRANGE
         CRUDInterface<SubscriptionModel,Integer> allSubscriptions = new SubscriptionRepoTest();
         CRUDInterface<CarModel,String> allCars = new CarRepoTestLaura();
@@ -57,6 +57,7 @@ class SubscriptionServiceTest {
         //ASSERT
         assertEquals(expectedSum,valid);
     }
+
+*/
 }
 
- */

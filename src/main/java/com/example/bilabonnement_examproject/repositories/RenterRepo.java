@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+//Laura og Rasmus
 public class RenterRepo implements CRUDInterface<RenterModel, Integer>{
 
     @Override
@@ -87,6 +88,7 @@ public class RenterRepo implements CRUDInterface<RenterModel, Integer>{
     public boolean updateEntity(RenterModel renter) {
         return false;
     }
+
 
     public int getRenterId(RenterModel renterToFindId){
         Connection conn = DatabaseConnectionManager.getConnection();
