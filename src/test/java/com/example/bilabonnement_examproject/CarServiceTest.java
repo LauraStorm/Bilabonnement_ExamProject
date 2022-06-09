@@ -27,8 +27,8 @@ public class CarServiceTest {
 
         //Arrange
         boolean expectedCarIsAdded = true;
-        boolean expectedChassisNumberIsOver18Chars = false;
-        boolean expectedManufacturerInValid = false;
+        boolean expectedChassisNumberIsOver18Chars = true;
+        boolean expectedManufacturerInValid = true;
 
         //Act
         CarModel carToCheck = getRandomCar();

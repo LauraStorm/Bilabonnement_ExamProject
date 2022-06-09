@@ -47,6 +47,10 @@ public class CarModel implements Comparable<CarModel>{
     public CarModel(){
     }
 
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
     public String getChassisNumber() {
         return chassisNumber;
     }
