@@ -27,6 +27,14 @@ public class DamageReportModel {
         this.chassisNumber = chassisNumber;
     }
 
+    public void setDefectDescription(String defectDescription) {
+        this.defectDescription = defectDescription;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public int getId() {
         return id;
     }

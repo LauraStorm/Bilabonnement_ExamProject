@@ -42,6 +42,42 @@ public class SubscriptionModel {
         this.deliveryDate = deliveryDate;
     }
 
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
+    }
+
+    public void setRentersId(int rentersId) {
+        this.rentersId = rentersId;
+    }
+
+    public void setSelfrisk(boolean selfrisk) {
+        this.selfrisk = selfrisk;
+    }
+
+    public void setDeliveryInsurance(boolean deliveryInsurance) {
+        this.deliveryInsurance = deliveryInsurance;
+    }
+
+    public void setTotalPriceMd(int totalPriceMd) {
+        this.totalPriceMd = totalPriceMd;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setSubscriptionType(String subscriptionType) {
+        this.subscriptionType = subscriptionType;
+    }
+
+    public void setPickupDate(String pickupDate) {
+        this.pickupDate = pickupDate;
+    }
+
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
     public int getId() {
         return id;
     }

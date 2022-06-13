@@ -36,24 +36,24 @@ public class AdvanceAgreementService {
     public String getAdvanceAgreement(Model model, String chassisNumber, boolean isSold) {
         AdvanceAgreementModel advanceAgreement = agreementRepo.getSingleEntity(chassisNumber);
         CarModel car = carRepo.getSingleEntity(chassisNumber);
-        if (Objects.equals(advanceAgreement.getChassisNumber(), chassisNumber)){
-            model.addAttribute("advanceagreement", advanceAgreement);
-            damageService.showDamagesForACar(model,chassisNumber);
-            model.addAttribute("car", car);
-            if (isSold){
-                car.setSold(true);
-                carRepo.updateEntity(car);
-                model.addAttribute("header","Bilen er nu solgt");
-                return "register-advance-agreement-result";
+            if (advanceAgreement != null) {
+                model.addAttribute("advanceagreement", advanceAgreement);
+                damageService.showDamagesForACar(model, chassisNumber);
+                model.addAttribute("car", car);
+                if (isSold) {
+                    car.setSold(true);
+                    carRepo.updateEntity(car);
+                    model.addAttribute("header", "Bilen er nu solgt");
+                    return "register-advance-agreement-result";
+                } else {
+                    model.addAttribute("header", "Forhåndsaftale er nu oprettet");
+                    return "register-advance-agreement-result";
+                }
             } else {
-                model.addAttribute("header","Forhåndsaftale er nu oprettet");
-                return "register-advance-agreement-result";
-            }
-        } else  {
                 model.addAttribute("chassisnumber", chassisNumber);
                 model.addAttribute("locations", locationService.getSelectLocationListForView());
                 return "register-advance-agreement";
-        }
+            }
     }
 
     public boolean createAgreement(AdvanceAgreementModel advanceAgreement, String chassisNumber) {

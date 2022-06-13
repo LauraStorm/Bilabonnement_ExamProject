@@ -38,7 +38,7 @@ public class CarServiceTest {
         carToCheck.setManufacturer("VVW");
         boolean manufacturerIsInValid = carService.addNewToFleet(carToCheck);
 
-        //Assert
+        //Assert 
         assertEquals(expectedCarIsAdded,isAdded);
         assertEquals(expectedChassisNumberIsOver18Chars,isOver18chars);
         assertEquals(expectedManufacturerInValid,manufacturerIsInValid);

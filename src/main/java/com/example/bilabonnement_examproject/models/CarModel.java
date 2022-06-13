@@ -25,6 +25,26 @@ public class CarModel implements Comparable<CarModel>{
         this.color = color;
     }
 
+    public void setWagonNumber(int wagonNumber) {
+        this.wagonNumber = wagonNumber;
+    }
+
+    public void setEquipmentLevel(String equipmentLevel) {
+        this.equipmentLevel = equipmentLevel;
+    }
+
+    public void setSteelPrice(double steelPrice) {
+        this.steelPrice = steelPrice;
+    }
+
+    public void setRegistrationFee(double registrationFee) {
+        this.registrationFee = registrationFee;
+    }
+
+    public void setCarbonEmission(double carbonEmission) {
+        this.carbonEmission = carbonEmission;
+    }
+
     public CarModel(String chassisNumber) {
         this.chassisNumber = chassisNumber;
     }

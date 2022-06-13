@@ -106,7 +106,6 @@ public class SubscriptionService {
         SubscriptionRepo subscriptionRepo = new SubscriptionRepo();
         ArrayList<CarModel> allRentedCars = carService.getAllRentedCars();
         ArrayList<SubscriptionModel> allSubscriptions = getAllSubscriptions();
-        ArrayList<SubscriptionModel> uniqueSubscriptions = new ArrayList<SubscriptionModel>();
         HashMap<String,Integer> hashSetChassisNumbersAndID = new HashMap<String,Integer>();
 
 

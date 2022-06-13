@@ -26,6 +26,18 @@ public class LocationModel {
         this.deliveryPrice = deliveryPrice;
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
+    }
+
+    public void setDeliveryPrice(int deliveryPrice) {
+        this.deliveryPrice = deliveryPrice;
+    }
+
     public int getId() {
         return id;
     }

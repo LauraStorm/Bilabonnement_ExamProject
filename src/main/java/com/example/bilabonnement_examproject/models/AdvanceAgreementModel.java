@@ -29,6 +29,26 @@ public class AdvanceAgreementModel {
         this.locationId = locationId;
     }
 
+    public void setTerms(String terms) {
+        this.terms = terms;
+    }
+
+    public void setKilometersDriven(int kilometersDriven) {
+        this.kilometersDriven = kilometersDriven;
+    }
+
+    public void setExtendKilometer(int extendKilometer) {
+        this.extendKilometer = extendKilometer;
+    }
+
+    public void setPurchasePrice(int purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
+    }
+
     public String getChassisNumber() {
         return chassisNumber;
     }
